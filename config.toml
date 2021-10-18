@@ -1,4 +1,4 @@
-base_url = "https://rodmoioliveira.github.io/myblog"
+base_url = "https://naughty-snyder-535441.netlify.app/"
 compile_sass = true
 output_dir = "docs"
 build_search_index = true

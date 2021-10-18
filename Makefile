@@ -3,7 +3,7 @@
 build: ## Build blog
 	@zola build --output-dir docs
 
-serve: ## Serve blog
+dev: ## Serve blog
 	@zola serve
 
 changelog: ## Autogenerate CHANGELOG.md
@@ -15,5 +15,5 @@ help: ## Display this help screen
 	{printf "\033[36m%-25s\033[0m %s\n", $$1, $$2}' | \
 	sort
 
-.PHONY: changelog help build serve
+.PHONY: changelog help build dev
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://rodmoioliveira.github.io/myblog/</loc>
+        <loc>https://naughty-snyder-535441.netlify.app/</loc>
     </url>
     <url>
-        <loc>https://rodmoioliveira.github.io/myblog/blog/</loc>
+        <loc>https://naughty-snyder-535441.netlify.app/blog/</loc>
     </url>
     <url>
-        <loc>https://rodmoioliveira.github.io/myblog/blog/first/</loc>
+        <loc>https://naughty-snyder-535441.netlify.app/blog/first/</loc>
         <lastmod>2019-11-27</lastmod>
     </url>
     <url>
-        <loc>https://rodmoioliveira.github.io/myblog/blog/second/</loc>
+        <loc>https://naughty-snyder-535441.netlify.app/blog/second/</loc>
         <lastmod>2019-11-28</lastmod>
     </url>
 </urlset>
