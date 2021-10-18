@@ -1,1 +1,10 @@
 @import 'scales_minor_third';
+@import 'lato';
+@import 'constants';
+
+body {
+  font-family: var(--primary-font);
+  font-size: var(--font-size);
+  margin: 0;
+  padding: 0;
+}
