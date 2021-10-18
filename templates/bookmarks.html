@@ -3,7 +3,7 @@
 <h2>Blogs</h2>
 <ul>
   {% for blog in page.extra.blogs | sort(attribute="title") %}
-  <li><a href="{{ blog.link }}" target="_blank" rel="noopener noreferrer">{{blog.title}}</a></li>
+  <li><a href="{{ blog.link | safe }}" target="_blank" rel="noopener noreferrer">{{blog.title}}</a></li>
   {% endfor %}
 </ul>
 
