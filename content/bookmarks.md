@@ -1,7 +1,6 @@
 +++
 title = "bookmarks"
 template = "bookmarks.html"
-insert_anchor_links = "left"
 +++
 
 Here is my collection of important links on a myriad of subjects.

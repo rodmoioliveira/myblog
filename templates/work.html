@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Bookmarks{% endblock title %}
+{% block content %}
+    <section class="work">
+        <h1 class="work__title">{{ page.title }}</h1>
+        {{ page.content | safe }}
+    </section>
+{% endblock content %}
+
