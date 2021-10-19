@@ -14,6 +14,8 @@ template = "work.html"
 - - An interactive web application to explore data visualizations on soccer passing networks.
 - [Soccer Knockout Standings](https://rodmoioliveira.github.io/soccer-knockout-standings/)
 - - Knockout standings implemented with a heap data structure.
+- [Concept Maps](https://github.com/rodmoioliveira/concept_maps)
+- - Some concept maps that I made for teaching purposes back in the day when I was a history teacher.
 - [Maracanã 70 anos](https://interativos.globoesporte.globo.com/futebol/especial/maracana-70-anos)
 - - No aniversário do estádio, faremos uma viagem ao longo das décadas que transformaram o templo do futebol em uma verdadeira casa para o torcedor.
 - [Ficou marcado na história](https://interativos.globoesporte.globo.com/futebol/times/flamengo/especial/ficou-marcado-na-historia)
