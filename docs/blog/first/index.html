@@ -46,6 +46,10 @@
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/style.css" media="all" />
   </head>
   <header class="header">
@@ -58,7 +62,32 @@
     <article class="post">
         <h1 class="post__title">My first post</h1>
         <p class="post__date">2019-11-27</p>
-        <p>This is my first blog post.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae dapibus sem. Praesent et quam non augue faucibus luctus. Morbi accumsan a justo sit amet luctus. Pellentesque euismod augue eget erat tristique lobortis eget fringilla odio. Vestibulum sit amet iaculis sem, nec bibendum lorem. Nulla maximus et odio eget interdum. Donec vel consectetur enim. Integer vitae metus ante. Sed commodo ornare euismod. In hac habitasse platea dictumst. Aenean placerat lobortis enim ac posuere. In in massa urna. Cras tincidunt, metus in venenatis molestie, enim urna consequat purus, id lacinia magna leo ac eros. Nullam gravida eget tortor id lacinia. Cras ut est blandit, pellentesque purus vitae, volutpat risus. Quisque iaculis dui a purus viverra, in facilisis ipsum eleifend.</p>
+<p>Suspendisse eget quam congue, euismod risus vitae, egestas enim. Suspendisse lacus mauris, dignissim nec nulla sit amet, pulvinar dapibus ipsum. Nam tristique ex eget tortor finibus pulvinar. Proin erat tellus, cursus ut ornare vitae, varius sed ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tortor nunc, elementum non laoreet vitae, laoreet quis nulla. Fusce vel pulvinar metus. Vestibulum vestibulum, justo vel pellentesque scelerisque, elit sem vehicula risus, nec tincidunt tortor lectus et felis. Vestibulum cursus pellentesque massa non pharetra. Sed sit amet risus ac tellus laoreet imperdiet.</p>
+<p>Nam egestas neque non est gravida mollis. Donec vitae risus metus. Sed eget ante lacinia diam tempus aliquam quis in diam. Aenean sed ligula laoreet, porta sapien euismod, malesuada justo. Donec mauris enim, condimentum in maximus in, vulputate sit amet ante. Donec facilisis dui venenatis, viverra metus sed, viverra ex. Quisque mollis turpis in porttitor bibendum. Sed ultrices felis scelerisque aliquet aliquam.</p>
+<pre data-linenos data-lang="rs" style="background-color:#2b303b;color:#c0c5ce;" class="language-rs "><code class="language-rs" data-lang="rs"><table><tbody><tr><td>1</td><td><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">latency</span><span>(</span><span style="color:#bf616a;">api</span><span>: &amp;</span><span style="color:#b48ead;">str</span><span>, </span><span style="color:#bf616a;">collection</span><span>: &amp;Collection) -&gt; Result&lt;time::Duration, error::FunesError&gt; {
+</span><tr><td>2</td><td><span>    </span><span style="color:#b48ead;">let</span><span> key = </span><span style="color:#96b5b4;">key</span><span>(api)?;
+</span><tr><td>3</td><td><span>    </span><span style="color:#b48ead;">let</span><span> latency = collection.latencies.</span><span style="color:#96b5b4;">get</span><span>(key).</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><tr><td>4</td><td><span>    </span><span style="color:#b48ead;">let mut</span><span> rng = rand::thread_rng();
+</span><tr><td>5</td><td><span>    </span><span style="color:#b48ead;">let</span><span> random = rng.</span><span style="color:#96b5b4;">gen_range</span><span>(</span><span style="color:#d08770;">0</span><span>..=</span><span style="color:#d08770;">100</span><span>);
+</span><tr><td>6</td><td><span>
+</span><tr><td>7</td><td><span>    </span><span style="color:#b48ead;">let</span><span> api_res_time = </span><span style="color:#b48ead;">match</span><span> random {
+</span><tr><td>8</td><td><span>        </span><span style="color:#d08770;">0</span><span>..=</span><span style="color:#d08770;">50 </span><span>=&gt; latency.p50,
+</span><tr><td>9</td><td><span>        </span><span style="color:#d08770;">51</span><span>..=</span><span style="color:#d08770;">75 </span><span>=&gt; latency.p75,
+</span><tr><td>10</td><td><span>        </span><span style="color:#d08770;">76</span><span>..=</span><span style="color:#d08770;">90 </span><span>=&gt; latency.p90,
+</span><tr><td>11</td><td><span>        </span><span style="color:#d08770;">91</span><span>..=</span><span style="color:#d08770;">95 </span><span>=&gt; latency.p95,
+</span><tr><td>12</td><td><span>        </span><span style="color:#d08770;">96</span><span>..=</span><span style="color:#d08770;">99 </span><span>=&gt; latency.p99,
+</span><tr><td>13</td><td><span>        </span><span style="color:#d08770;">100 </span><span>=&gt; latency.max,
+</span><tr><td>14</td><td><span>        _ =&gt; latency.min,
+</span><tr><td>15</td><td><span>    };
+</span><tr><td>16</td><td><span>
+</span><tr><td>17</td><td><span>    Ok(time::Duration::from_millis(
+</span><tr><td>18</td><td><span>        api_res_time / *statics::</span><span style="color:#d08770;">ASYNC_TASK_SLEEP_MODIFIER</span><span>,
+</span><tr><td>19</td><td><span>    ))
+</span><tr><td>20</td><td><span>}
+</span></tr></tbody></table></code></pre>
+<p>Donec tincidunt sem vel nisl efficitur, quis tristique tortor vulputate. Sed quam neque, ornare eget leo vitae, dictum iaculis felis. Proin elementum tortor at nisl mattis lobortis ac sit amet tellus. Morbi pulvinar hendrerit purus mollis aliquam. Nam fermentum augue neque, at varius metus ultrices ac. Quisque vel sapien et eros finibus rutrum in eget lorem. Donec sollicitudin consectetur congue. Sed non turpis et nisl vehicula vestibulum. Mauris tincidunt est urna, eu tincidunt est tempus in. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas tempor ultricies aliquam. Morbi a arcu arcu. Phasellus faucibus luctus nulla, et aliquam dui posuere in. Maecenas bibendum fringilla diam, quis rutrum nunc egestas non. Donec nunc velit, viverra id lorem eget, molestie elementum libero.</p>
+<p>Morbi dapibus orci nulla, nec sollicitudin ante malesuada mollis. Proin elit leo, hendrerit eget lorem id, porta laoreet quam. Suspendisse mollis, eros ut malesuada fermentum, odio nisi pulvinar felis, ac feugiat orci metus eget nunc. Pellentesque sit amet tempor ante, et pharetra diam. Proin tortor tellus, finibus tempus placerat eu, bibendum vel nibh. Nam pretium risus nulla, in consequat magna interdum id. Vestibulum sollicitudin, dui sit amet laoreet dapibus, turpis ante finibus diam, at sodales nisl felis at enim. Donec mollis dignissim euismod.</p>
 
     </article>
 
