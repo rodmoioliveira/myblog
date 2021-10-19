@@ -1,10 +1,8 @@
-{% extends "base.html" %} {% block content %}
-<h1 class="title">{{ page.title }}</h1>
-<h2>Blogs</h2>
-<ul>
-  {% for blog in page.extra.blogs | sort(attribute="title") %}
-  <li><a href="{{ blog.link | safe }}" target="_blank" rel="noopener noreferrer">{{blog.title}}</a></li>
-  {% endfor %}
-</ul>
-
+{% extends "base.html" %}
+{% block title %}Bookmarks{% endblock title %}
+{% block content %}
+    <section class="bookmarks">
+        <h1 class="bookmarks__title">{{ page.title }}</h1>
+        {{ page.content | safe }}
+    </section>
 {% endblock content %}

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
-
+{% block title %}Home{% endblock title %}
 {% block content %}
-<h1 class="title">
-  This is my blog made with Zola.
-</h1>
-<p><a href="{{ section.permalink | safe }}blog">Blog</a></p>
-<p><a href="{{ section.permalink | safe }}bookmarks">Bookmarks</a></p>
+    <section class="index">
+        <p>My name is Rodolfo Mói.</p>
+    </section>
 {% endblock content %}

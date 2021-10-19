@@ -24,8 +24,18 @@ a {
   margin: 0.5em 0;
 }
 
+li {
+  font-size: 1.2em;
+}
+
 small {
   font-size: 0.75em;
+}
+
+a,
+li,
+small {
+  font-weight: 300;
 }
 
 h1,
@@ -34,4 +44,5 @@ h3,
 h4,
 h5 {
   margin: 0.3em 0;
+  font-weight: 700;
 }

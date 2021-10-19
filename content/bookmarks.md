@@ -1,12 +1,11 @@
 +++
-title = "Bookmarks"
+title = "bookmarks"
 template = "bookmarks.html"
-
-[extra]
-blogs = [
-  { title = "Piotr Kołaczkowski", link = "https://pkolaczk.github.io" },
-  { title = "Brendan Gregg", link = "https://www.brendangregg.com/" },
-  { title = "Cliff L. Biffle", link = "http://cliffle.com/" },
-  { title = "Bryan Cantrill", link = "http://dtrace.org/blogs/bmc/" },
-]
 +++
+
+## blogs
+
+- [Piotr Kołaczkowski](https://pkolaczk.github.io) - Blog on programming, optimization and performance analysis.
+- [Brendan Gregg](https://www.brendangregg.com/) - Internationally renowned expert in computing performance.
+- [Cliff L. Biffle](http://cliffle.com/)
+- [Bryan Cantrill](http://dtrace.org/blogs/bmc/)

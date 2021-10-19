@@ -1,11 +1,30 @@
 @import 'scales_minor_third';
 // @import 'scales_perfect_fourth';
-@import 'lato';
 @import 'constants';
+@import 'index', 'bookmarks', 'post', 'posts', 'footer', 'nav',
+  'header';
+
+// * {
+//   outline: 1px dashed red;
+// }
 
 body {
   font-family: var(--primary-font);
   font-size: var(--font-size);
-  margin: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  @media (max-width: 1200px) {
+    font-size: calc(
+      16px + (22 - 16) * ((100vw - 320px) / (1200 - 320))
+    );
+  }
+}
+
+ul,
+nav {
+  list-style: none;
   padding: 0;
 }

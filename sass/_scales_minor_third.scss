@@ -14,8 +14,7 @@ h4 {
   font-size: 1.44em;
 }
 
-h5,
-summary {
+h5 {
   font-size: 1.2em;
 }
 
@@ -25,8 +24,18 @@ a {
   margin: 0.5em 0;
 }
 
+li {
+  font-size: 1em;
+}
+
 small {
   font-size: 0.833em;
+}
+
+a,
+li,
+small {
+  font-weight: 300;
 }
 
 h1,
@@ -35,4 +44,5 @@ h3,
 h4,
 h5 {
   margin: 0.3em 0;
+  font-weight: 700;
 }

@@ -1,0 +1,15 @@
+.footer {
+  color: var(--seconday-color);
+  background-color: var(--primary-color);
+  padding: var(--footer-padding);
+}
+.footer__ul {
+  display: flex;
+  justify-content: center;
+}
+.footer__li {
+  margin: 0 1em;
+}
+.footer__link {
+  color: var(--secondary-color);
+}

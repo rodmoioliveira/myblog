@@ -1,0 +1,14 @@
+.nav {
+  border-top: 1px solid var(--tertiary-color);
+  padding: var(--nav-padding);
+}
+.nav__ul {
+  display: flex;
+  justify-content: center;
+}
+.nav__li {
+  margin: 0 1em;
+}
+.nav__link {
+  color: var(--primary-color);
+}
