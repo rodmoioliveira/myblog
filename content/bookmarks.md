@@ -24,3 +24,12 @@ Here is my collection of important links on a myriad of subjects.
 - -
 - [Piotr Kołaczkowski](https://pkolaczk.github.io)
 - - Blog on programming, optimization and performance analysis.
+
+### [maintaining the web]
+
+- [This Page is Designed to Last](https://jeffhuang.com/designed_to_last/)
+- - A Manifesto for Preserving Content on the Web.
+- [This is a motherfucking website](https://motherfuckingwebsite.com/)
+- - You probably build websites and think your shit is special. Wrong, motherfucker.
+- [low tech magazine](https://solar.lowtechmagazine.com/)
+- - This is a solar-powered website, which means it sometimes goes offline.
