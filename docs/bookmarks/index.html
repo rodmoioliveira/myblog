@@ -52,12 +52,24 @@
     />
     <link rel="stylesheet" href="/style.css" media="all" />
   </head>
-  <header class="header">
-    <h1 class="header__title">
-      <a class="header__link" href="/">r.m.o.</a>
-    </h1>
-  </header>
-  <body>
+  <body id="body" data-theme="light">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link" href="/">r.m.o.</a>
+      </h1>
+      <button class="header__btn" id="theme">dark</button>
+    </header>
+
+    <script>
+      const theme = localStorage.getItem('rodolfo-blog-theme');
+      if (theme === 'dark') {
+        const btn = document.getElementById('theme');
+        const body = document.getElementById('body');
+        body.setAttribute('data-theme', 'dark');
+        btn.innerText = 'light';
+      }
+    </script>
+
     
     <section class="bookmarks">
         <h1 class="bookmarks__title">bookmarks</h1>
@@ -113,49 +125,51 @@
 
     </section>
 
+
+    <nav class="nav">
+      <ul class="nav__ul">
+        <li class="nav__li">
+          <a class="nav__link" href="/blog">blog</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/bookmarks">bookmarks</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/work">work</a>
+        </li>
+      </ul>
+    </nav>
+    <footer class="footer">
+      <ul class="footer__ul">
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://www.linkedin.com/in/rodmoi/"
+            >linkedin</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://github.com/rodmoioliveira"
+            >github</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://twitter.com/rodmoi"
+            >twitter</a
+          >
+        </li>
+      </ul>
+    </footer>
+    <script type="text/javascript" src="/script.js"></script>
   </body>
-  <nav class="nav">
-    <ul class="nav__ul">
-      <li class="nav__li">
-        <a class="nav__link" href="/blog">blog</a>
-      </li>
-      <li class="nav__li">
-        <a class="nav__link" href="/bookmarks">bookmarks</a>
-      </li>
-      <li class="nav__li">
-        <a class="nav__link" href="/work">work</a>
-      </li>
-    </ul>
-  </nav>
-  <footer class="footer">
-    <ul class="footer__ul">
-      <li class="footer__li">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          class="footer__link"
-          href="https://www.linkedin.com/in/rodmoi/"
-          >linkedin</a
-        >
-      </li>
-      <li class="footer__li">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          class="footer__link"
-          href="https://github.com/rodmoioliveira"
-          >github</a
-        >
-      </li>
-      <li class="footer__li">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          class="footer__link"
-          href="https://twitter.com/rodmoi"
-          >twitter</a
-        >
-      </li>
-    </ul>
-  </footer>
 </html>

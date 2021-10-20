@@ -10,7 +10,7 @@ pre {
 // The line numbers already provide some kind of left/right padding
 pre[data-linenos] {
   padding: 1em;
-  background-color: var(--primary-color) !important;
+  background-color: var(--code-background-color) !important;
 }
 pre table td {
   padding: 0;

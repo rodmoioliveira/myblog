@@ -1,5 +1,6 @@
 .nav {
-  border-top: 1px solid var(--tertiary-color);
+  color: var(--seconday-color);
+  background-color: var(--primary-color);
   padding: var(--nav-padding);
 }
 .nav__ul {
@@ -10,5 +11,5 @@
   margin: 0 1em;
 }
 .nav__link {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
