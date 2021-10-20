@@ -1,7 +1,8 @@
 .footer {
   color: var(--seconday-color);
-  background-color: var(--primary-color);
   padding: var(--footer-padding);
+  border-bottom: 1px solid var(--tertiary-color);
+  margin-bottom: 2em;
 }
 .footer__ul {
   display: flex;
@@ -11,5 +12,5 @@
   margin: 0 1em;
 }
 .footer__link {
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
