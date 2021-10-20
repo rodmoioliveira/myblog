@@ -1,5 +1,4 @@
 @import 'scales_minor_third';
-// @import 'scales_perfect_fourth';
 @import 'constants';
 @import 'index', 'bookmarks', 'post', 'posts', 'footer', 'nav',
   'header', 'codeblock', 'work';
@@ -19,7 +18,7 @@ body {
 html {
   @media (max-width: 1200px) {
     font-size: calc(
-      14px + (22 - 14) * ((100vw - 320px) / (1200 - 320))
+      12px + (16 - 12) * ((100vw - 320px) / (1200 - 320))
     );
   }
 }

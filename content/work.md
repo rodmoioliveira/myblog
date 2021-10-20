@@ -3,17 +3,19 @@ title = "work"
 template = "work.html"
 +++
 
-#### [open source projects]
+### [open source projects]
 
 - [funes](https://crates.io/crates/funes)
 - - funes is a server to mock HTTP responses.
 
-#### [infographics]
+### [infographics]
 
 - [Football Passing Networks](https://grafos-da-bola.netlify.app/)
 - - An interactive web application to explore data visualizations on soccer passing networks.
 - [Soccer Knockout Standings](https://rodmoioliveira.github.io/soccer-knockout-standings/)
 - - Knockout standings implemented with a heap data structure.
+- [Qual é o maior campeão mundial?](https://interativos.globoesporte.globo.com/futebol/materia/mata-mata-dos-campeoes-da-copa-do-mundo)
+- - Mata-mata é bom, não é? De Copa do Mundo, então, melhor ainda. Agora imagina um mata-mata só com campeões mundiais? O GloboEsporte.com preparou um torneio com as seleções que conquistaram 16 das 18 Copas disputadas desde 1950. E quem escolhe o vencedor é você.
 - [Concept Maps](https://github.com/rodmoioliveira/concept_maps)
 - - Some concept maps that I made for teaching purposes back in the day when I was a history teacher.
 - [Maracanã 70 anos](https://interativos.globoesporte.globo.com/futebol/especial/maracana-70-anos)
