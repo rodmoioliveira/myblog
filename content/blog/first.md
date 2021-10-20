@@ -10,25 +10,24 @@ Suspendisse eget quam congue, euismod risus vitae, egestas enim. Suspendisse lac
 Nam egestas neque non est gravida mollis. Donec vitae risus metus. Sed eget ante lacinia diam tempus aliquam quis in diam. Aenean sed ligula laoreet, porta sapien euismod, malesuada justo. Donec mauris enim, condimentum in maximus in, vulputate sit amet ante. Donec facilisis dui venenatis, viverra metus sed, viverra ex. Quisque mollis turpis in porttitor bibendum. Sed ultrices felis scelerisque aliquet aliquam.
 
 ```rs,linenos
-fn latency(api: &str, collection: &Collection) -> Result<time::Duration, error::FunesError> {
-    let key = key(api)?;
-    let latency = collection.latencies.get(key).unwrap();
-    let mut rng = rand::thread_rng();
-    let random = rng.gen_range(0..=100);
-
-    let api_res_time = match random {
-        0..=50 => latency.p50,
-        51..=75 => latency.p75,
-        76..=90 => latency.p90,
-        91..=95 => latency.p95,
-        96..=99 => latency.p99,
-        100 => latency.max,
-        _ => latency.min,
+pub fn handle_pagination(
+    count: i64,
+    offset: i64,
+    limit: i64,
+) -> Result<(), errors::MyError> {
+    if offset % limit != 0 {
+        return Err(errors::MyError::BadOffset);
     };
 
-    Ok(time::Duration::from_millis(
-        api_res_time / *statics::ASYNC_TASK_SLEEP_MODIFIER,
-    ))
+    let has_items = count > 0;
+    let page_total = (count as f64 / limit as f64).ceil() as i64;
+    let page_current = if !has_items { 0 } else { (offset / limit) + 1 };
+
+    if page_current > page_total {
+        return Err(errors::MyError::BadPagination);
+    };
+
+    Ok(())
 }
 ```
 

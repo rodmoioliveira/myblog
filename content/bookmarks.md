@@ -5,7 +5,7 @@ template = "bookmarks.html"
 
 Here is my collection of important links on a myriad of subjects.
 
-#### [computer science and programming]
+### [computer science and programming]
 
 - [Epigrams on Programming](http://pu.inf.uni-tuebingen.de/users/klaeren/epigrams.html)
 - - by Alan J. Perlis, Yale University.
@@ -14,7 +14,7 @@ Here is my collection of important links on a myriad of subjects.
 - [Teach Yourself Computer Science](https://teachyourselfcs.com/)
 - - If you’re a self-taught engineer or bootcamp grad, you owe it to yourself to learn computer science.
 
-#### [technical blogs]
+### [technical blogs]
 
 - [Brendan Gregg](https://www.brendangregg.com/)
 - - Internationally renowned expert in computing performance.
