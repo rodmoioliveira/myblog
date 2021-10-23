@@ -1,33 +1,47 @@
-code {
+code:not([data-lang]) {
+  background-color: var(--primary-color) !important;
+  color: var(--secondary-color) !important;
+  border-radius: 0.1em;
   font-family: 'PT Mono', monospace !important;
+  padding: 0.1em 0.2em;
 }
 
-pre {
-  padding: 1rem;
-  border: 1px solid var(--tertiary-color);
-  overflow: auto;
-  line-height: 1.4;
+code[data-lang] {
+  border-radius: 0;
+  font-family: 'PT Mono', monospace !important;
+  padding: 0;
+  color: inherit;
 }
-// The line numbers already provide some kind of left/right padding
+
+pre[data-lang] {
+  background-color: var(--code-background-color) !important;
+  border: 1px solid var(--tertiary-color);
+  line-height: 1.4;
+  overflow: auto;
+  padding: 1rem;
+  margin: 2em auto;
+}
+
 pre[data-linenos] {
   padding: 1em;
   background-color: var(--code-background-color) !important;
 }
+
 pre table td {
   padding: 0;
 }
-// The line number cells
+
 pre table td:nth-of-type(1) {
   text-align: right;
   user-select: none;
   padding-right: 0.5em;
 }
+
 pre mark {
-  // If you want your highlights to take the full width.
   display: block;
-  // The default background colour of a mark is bright yellow
   background-color: rgba(254, 252, 232, 0.9);
 }
+
 pre table {
   width: 100%;
   border-collapse: collapse;
