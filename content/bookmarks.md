@@ -7,6 +7,8 @@ Here is my collection of important links on a myriad of subjects.
 
 ### [computer science and programming]
 
+- [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html)
+- - The ‘Unix philosophy’ originated with Ken Thompson's early meditations on how to design a small but capable operating system with a clean service interface.
 - [Epigrams on Programming](http://pu.inf.uni-tuebingen.de/users/klaeren/epigrams.html)
 - - by Alan J. Perlis, Yale University.
 - [Papers We Love](https://paperswelove.org/)
