@@ -35,7 +35,7 @@
       http-equiv="Content-Type"
       content="text/html; charset=UTF-8"
     />
-    <title>Bookmarks</title>
+    <title>One Liners: Counting Files and Lines</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="preconnect"
@@ -71,80 +71,25 @@
     </script>
 
     
-    <section class="bookmarks">
-        <h2 class="bookmarks__title">bookmarks</h2>
-        <p>Here is my collection of important links on a myriad of subjects.</p>
-<h3 id="computer-science-and-programming">[computer science and programming]</h3>
-<ul>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://homepage.cs.uri.edu/%7Ethenry/resources/unix_art/ch01s06.html">Basics of the Unix Philosophy</a></li>
-<li>
-<ul>
-<li>The ‘Unix philosophy’ originated with Ken Thompson's early meditations on how to design a small but capable operating system with a clean service interface.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="http://pu.inf.uni-tuebingen.de/users/klaeren/epigrams.html">Epigrams on Programming</a></li>
-<li>
-<ul>
-<li>by Alan J. Perlis, Yale University.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://paperswelove.org/">Papers We Love</a></li>
-<li>
-<ul>
-<li>Papers We Love is a repository of academic computer science papers and a community who loves reading them.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://teachyourselfcs.com/">Teach Yourself Computer Science</a></li>
-<li>
-<ul>
-<li>If you’re a self-taught engineer or bootcamp grad, you owe it to yourself to learn computer science.</li>
-</ul>
-</li>
-</ul>
-<h3 id="technical-blogs">[technical blogs]</h3>
-<ul>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://www.brendangregg.com/">Brendan Gregg</a></li>
-<li>
-<ul>
-<li>Internationally renowned expert in computing performance.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="http://dtrace.org/blogs/bmc/">Bryan Cantrill</a></li>
-<li>
-<ul>
-<li></li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="http://cliffle.com/">Cliff L. Biffle</a></li>
-<li>
-<ul>
-<li></li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://pkolaczk.github.io">Piotr Kołaczkowski</a></li>
-<li>
-<ul>
-<li>Blog on programming, optimization and performance analysis.</li>
-</ul>
-</li>
-</ul>
-<h3 id="maintaining-the-web">[maintaining the web]</h3>
-<ul>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://jeffhuang.com/designed_to_last/">This Page is Designed to Last</a></li>
-<li>
-<ul>
-<li>A Manifesto for Preserving Content on the Web.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://motherfuckingwebsite.com/">This is a motherfucking website</a></li>
-<li>
-<ul>
-<li>You probably build websites and think your shit is special. Wrong, motherfucker.</li>
-</ul>
-</li>
-</ul>
+    <article class="post">
+        <h2 class="post__title">One Liners: Counting Files and Lines</h2>
+        <p class="post__date">2021-10-25</p>
+        <p>Sometimes is useful to count the number of files and/or LOC a project has.
+Here's a way you could do that using <a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/sharkdp/fd">fd</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/xargs.1.html">xargs</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/wc.1.html">wc</a> and
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/sort.1.html">sort</a>:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#65737e;"># count the total LOC with files in crescent order by LOC.
+</span><span style="color:#bf616a;">fd</span><span> .</span><span style="color:#bf616a;"> -t</span><span> f | </span><span style="color:#bf616a;">xargs</span><span> wc</span><span style="color:#bf616a;"> -l </span><span>| </span><span style="color:#bf616a;">sort -n
+</span><span>
+</span><span style="color:#65737e;"># count the total LOC of scss files in crescent order by LOC.
+</span><span style="color:#bf616a;">fd</span><span> .</span><span style="color:#bf616a;"> -e</span><span> scss | </span><span style="color:#bf616a;">xargs</span><span> wc</span><span style="color:#bf616a;"> -l </span><span>| </span><span style="color:#bf616a;">sort -n
+</span><span>
+</span><span style="color:#65737e;"># count the number of files a project has.
+</span><span style="color:#bf616a;">fd</span><span> .</span><span style="color:#bf616a;"> -t</span><span> f | </span><span style="color:#bf616a;">wc -l
+</span></code></pre>
 
-    </section>
+    </article>
 
 
     <nav class="nav">
