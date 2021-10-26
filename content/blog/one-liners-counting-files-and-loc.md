@@ -1,5 +1,5 @@
 +++
-title = "One Liners: Counting Files and Lines"
+title = "One-Liners: Counting Files and LOC"
 date = 2021-10-25
 draft = false
 +++

@@ -1,6 +1,6 @@
 :root {
   --primary-font: 'Merriweather', serif;
-  --font-size: 1.4rem;
+  --font-size: 1.6rem;
 
   --fw-black: 900;
   --fw-light: 300;
@@ -28,5 +28,9 @@
     --primary-color: #f9f9f9;
     --secondary-color: #111;
     --tertiary-color: #333;
+  }
+
+  @media (max-width: 1200px) {
+    --font-size: 1.4rem;
   }
 }

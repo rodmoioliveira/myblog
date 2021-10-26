@@ -29,7 +29,7 @@ Here is my collection of important links on a myriad of subjects.
 
 ### [maintaining the web]
 
-- [This Page is Designed to Last](https://jeffhuang.com/designed_to_last/)
-- - A Manifesto for Preserving Content on the Web.
 - [This is a motherfucking website](https://motherfuckingwebsite.com/)
 - - You probably build websites and think your shit is special. Wrong, motherfucker.
+- [This Page is Designed to Last](https://jeffhuang.com/designed_to_last/)
+- - A Manifesto for Preserving Content on the Web.

@@ -22,7 +22,7 @@ button {
 html {
   @media (max-width: 1200px) {
     font-size: calc(
-      12px + (16 - 12) * ((100vw - 320px) / (1200 - 320))
+      12px + (18 - 12) * ((100vw - 320px) / (1200 - 320))
     );
   }
 }
