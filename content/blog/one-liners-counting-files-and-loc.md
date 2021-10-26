@@ -14,11 +14,11 @@ Here's a way you could do that using [fd](https://github.com/sharkdp/fd),
 
 ```sh
 # count the total LOC with files in crescent order by LOC.
-fd . -t f | xargs wc -l | sort -n
+fd -t f | xargs wc -l | sort -n
 
 # count the total LOC of scss files in crescent order by LOC.
-fd . -e scss | xargs wc -l | sort -n
+fd -e scss | xargs wc -l | sort -n
 
 # count the number of files a project has.
-fd . -t f | wc -l
+fd -t f | wc -l
 ```

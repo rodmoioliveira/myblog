@@ -81,13 +81,13 @@ Here's a way you could do that using <a rel="noopener nofollow noreferrer" targe
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/wc.1.html">wc</a> and
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/sort.1.html">sort</a>:</p>
 <pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#65737e;"># count the total LOC with files in crescent order by LOC.
-</span><span style="color:#bf616a;">fd</span><span> .</span><span style="color:#bf616a;"> -t</span><span> f | </span><span style="color:#bf616a;">xargs</span><span> wc</span><span style="color:#bf616a;"> -l </span><span>| </span><span style="color:#bf616a;">sort -n
+</span><span style="color:#bf616a;">fd -t</span><span> f | </span><span style="color:#bf616a;">xargs</span><span> wc</span><span style="color:#bf616a;"> -l </span><span>| </span><span style="color:#bf616a;">sort -n
 </span><span>
 </span><span style="color:#65737e;"># count the total LOC of scss files in crescent order by LOC.
-</span><span style="color:#bf616a;">fd</span><span> .</span><span style="color:#bf616a;"> -e</span><span> scss | </span><span style="color:#bf616a;">xargs</span><span> wc</span><span style="color:#bf616a;"> -l </span><span>| </span><span style="color:#bf616a;">sort -n
+</span><span style="color:#bf616a;">fd -e</span><span> scss | </span><span style="color:#bf616a;">xargs</span><span> wc</span><span style="color:#bf616a;"> -l </span><span>| </span><span style="color:#bf616a;">sort -n
 </span><span>
 </span><span style="color:#65737e;"># count the number of files a project has.
-</span><span style="color:#bf616a;">fd</span><span> .</span><span style="color:#bf616a;"> -t</span><span> f | </span><span style="color:#bf616a;">wc -l
+</span><span style="color:#bf616a;">fd -t</span><span> f | </span><span style="color:#bf616a;">wc -l
 </span></code></pre>
 
     </article>
