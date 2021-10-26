@@ -1,5 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Work{% endblock title %}
+
+{% block title %}{{ page.title | capitalize }}{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+
+{% block og_title %}{{ page.title | capitalize }}{% endblock %}
+{% block tw_title %}{{ page.title | capitalize }}{% endblock %}
+{% block og_image %}{% endblock %}
+{% block url %}https://rm-o.netlify.app/{{ page.slug }}{% endblock %}
+{% block og_url %}https://rm-o.netlify.app/{{ page.slug }}{% endblock %}
+{% block og_description %}{{ page.description }}{% endblock %}
+{% block tw_description %}{{ page.description }}{% endblock %}
+
 {% block content %}
     <section class="work">
         <h2 class="work__title">{{ page.title }}</h2>

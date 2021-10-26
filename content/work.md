@@ -1,6 +1,8 @@
 +++
 title = "work"
 template = "work.html"
+description = "Rodolfo Moi's work."
+slug = "work"
 +++
 
 ### [open source projects]

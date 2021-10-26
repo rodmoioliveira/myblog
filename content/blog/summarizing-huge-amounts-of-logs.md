@@ -1,6 +1,8 @@
 +++
 title = "Summarizing huge amounts of logs"
+description = "?"
 date = 2021-11-01
+slug = "summarizing-huge-amounts-of-logs"
 draft = true
 +++
 

@@ -1,6 +1,8 @@
 +++
 title = "bookmarks"
 template = "bookmarks.html"
+description = "Rodolfo Moi's collection of important links on a myriad of subjects."
+slug = "bookmarks"
 +++
 
 Here is my collection of important links on a myriad of subjects.
