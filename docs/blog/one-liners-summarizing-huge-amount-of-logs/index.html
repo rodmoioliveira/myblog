@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META TAGS -->
+    <meta charset="utf-8" />
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="blog, programming" />
+    <meta name="description" content="?" />
+    <meta name="language" content="en-US" />
+    <meta name="author" content="Rodolfo Mói, rodmoi.oliveira@gmail.com" />
+    <meta name="designer" content="Rodolfo Mói" />
+    <meta name="copyright" content="Rodolfo Mói" />
+    <meta name="reply-to" content="rodmoi.oliveira@gmail.com" />
+    <meta name="owner" content="Rodolfo Mói" />
+    <meta name="url" content="https://rm-o.netlify.app/one-liners-summarizing-huge-amount-of-logs" />
+    <meta name="date" content="2021-11-27" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- OG AND TWITTER META TAGS -->
+    <meta property="og:type" content="page" />
+    <meta property="og:url" content="https://rm-o.netlify.app/one-liners-summarizing-huge-amount-of-logs" />
+    <meta property="og:title" content="One-liners: summarizing huge amount of logs" />
+    <meta property="og:image" content="/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
+    <meta property="og:description" content="?" />
+    <meta property="article:author" content="Rodolfo Mói" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@rodmoi" />
+    <meta name="twitter:title" content="One-liners: summarizing huge amount of logs" />
+    <meta name="twitter:creator" content="@rodmoi" />
+    <meta name="twitter:description" content="?" />
+
+    <title>One-liners: summarizing huge amount of logs</title>
+
+    <!-- STYLES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" media="all" />
+  </head>
+  <body id="body" data-theme="light">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link" href="/">rm-o</a>
+      </h1>
+      <button class="header__btn" id="theme">dark</button>
+    </header>
+
+    <script>
+      const theme = localStorage.getItem('rodolfo-blog-theme');
+      if (theme === 'dark') {
+        const btn = document.getElementById('theme');
+        const body = document.getElementById('body');
+        body.setAttribute('data-theme', 'dark');
+        btn.innerText = 'light';
+      }
+    </script>
+
+    
+    <article class="post">
+        <h2 class="post__title">One-Liners: Summarizing huge amount of logs</h2>
+        <p class="post__date">2021-11-27</p>
+        <p>We are going to use the
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.kaggle.com/eliasdabbas/web-server-access-logs">web-server-access-logs</a>
+dataset to demonstrate useful techniques of log summarization. To follow along,
+you must have installed in your machine:
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/sharkdp/bat">bat</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/sharkdp/fd">fd</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/head.1.html">head</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/sort.1.html">sort</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/tail.1.html">tail</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/uniq.1.html">uniq</a> and
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/wc.1.html">wc</a> commands.</p>
+<h3 id="peeking">Peeking</h3>
+<p>Let's begin by peeking at the data: how many logs do we have in the
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.kaggle.com/eliasdabbas/web-server-access-logs">web-server-access-logs</a>
+dataset? Use the <code>wc</code> command with the <code>-l</code> flag to count the total of lines in
+the logs:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">wc -l</span><span> access.log
+</span><span>
+</span><span style="color:#bf616a;">10365152</span><span> access.log
+</span></code></pre>
+<p>To get an idea of the logs structure, you can inspect the data with <code>head</code> and
+<code>tail</code> commands:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">head -n</span><span> 3 access.log
+</span><span>
+</span><span style="color:#bf616a;">54.36.149.41</span><span> - - </span><span style="color:#b48ead;">[</span><span>22/Jan/2019:03:56:14 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /filter/27|13%20%D9%85%DA%AF%D8%A7%D9%BE%DB%8C%DA%A9%D8%B3%D9%84,27|%DA%A9%D9%85%D8%AA%D8%B1%20%D8%A7%D8%B2%205%20%D9%85%DA%AF%D8%A7%D9%BE%DB%8C%DA%A9%D8%B3%D9%84,p53 HTTP/1.1</span><span>&quot; 200 30577 &quot;</span><span style="color:#a3be8c;">-</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (compatible; AhrefsBot/6.1; +http://ahrefs.com/robot/)</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span><span style="color:#bf616a;">31.56.96.51</span><span> - - </span><span style="color:#b48ead;">[</span><span>22/Jan/2019:03:56:16 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /image/60844/productModel/200x200 HTTP/1.1</span><span>&quot; 200 5667 &quot;</span><span style="color:#a3be8c;">https://www.zanbil.ir/m/filter/b113</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (Linux; Android 6.0; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span><span style="color:#bf616a;">31.56.96.51</span><span> - - </span><span style="color:#b48ead;">[</span><span>22/Jan/2019:03:56:16 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /image/61474/productModel/200x200 HTTP/1.1</span><span>&quot; 200 5379 &quot;</span><span style="color:#a3be8c;">https://www.zanbil.ir/m/filter/b113</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (Linux; Android 6.0; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span><span>
+</span><span>
+</span><span style="color:#bf616a;">tail -n</span><span> 3 access.log
+</span><span>
+</span><span style="color:#bf616a;">5.213.7.50</span><span> - - </span><span style="color:#b48ead;">[</span><span>26/Jan/2019:20:29:13 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /m/product/18962/%D8%BA%D8%B0%D8%A7-%D8%B3%D8%A7%D8%B2-%D9%85%D9%88%D9%84%DB%8C%D9%86%DA%A9%D8%B3-%D9%85%D8%AF%D9%84-FP7367RT HTTP/1.1</span><span>&quot; 200 20959 &quot;</span><span style="color:#a3be8c;">https://www.google.com/</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Version/10.0 Mobile/14D27 Safari/602.1</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span><span style="color:#bf616a;">109.125.169.52</span><span> - - </span><span style="color:#b48ead;">[</span><span>26/Jan/2019:20:29:13 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /image/%7B%7BbasketItem.id%7D%7D?type=productModel&amp;wh=50x50 HTTP/1.1</span><span>&quot; 200 5 &quot;</span><span style="color:#a3be8c;">https://www.zanbil.ir/</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (Windows NT 6.1; rv:64.0) Gecko/20100101 Firefox/64.0</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span><span style="color:#bf616a;">37.129.59.160</span><span> - - </span><span style="color:#b48ead;">[</span><span>26/Jan/2019:20:29:13 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /basket/view HTTP/1.1</span><span>&quot; 200 17299 &quot;</span><span style="color:#a3be8c;">https://www-zanbil-ir.cdn.ampproject.org/v/s/www.zanbil.ir/m/product/32148/%DA%AF%D9%88%D8%B4%DB%8C-%D8%AA%D9%84%D9%81%D9%86-%D8%A8%DB%8C-%D8%B3%DB%8C%D9%85-%D9%BE%D8%A7%D9%86%D8%A7%D8%B3%D9%88%D9%86%DB%8C%DA%A9-%D9%85%D8%AF%D9%84-Panasonic-Cordless-Telephone-KX-TGC412?amp_js_v=0.1&amp;usqp=mq331AQECAEoAQ%3D%3D</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (Linux; Android 6.0.1; D6633 Build/23.5.A.1.291) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span></code></pre>
+<p>You might want to check out a subset of the data. Use <code>bat</code> with the <code>-r</code> flag
+to inspect just the sample within the range:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 12345:12346</span><span style="color:#bf616a;"> -n
+</span><span>
+</span><span style="color:#bf616a;">12345</span><span> 54.37.16.239 - - </span><span style="color:#b48ead;">[</span><span>22/Jan/2019:04:45:28 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /image/50761/productModel/200x200 HTTP/1.1</span><span>&quot; 200 4740 &quot;</span><span style="color:#a3be8c;">https://www.zanbil.ir/m/filter/p24083?page=1</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (Linux; Android 9; G8142 Build/47.2.A.4.41) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span><span style="color:#bf616a;">12346</span><span> 23.101.169.3 - - </span><span style="color:#b48ead;">[</span><span>22/Jan/2019:04:45:29 +0330</span><span style="color:#b48ead;">] </span><span>&quot;</span><span style="color:#a3be8c;">GET /image/12682/productTypeMenu HTTP/1.1</span><span>&quot; 200 11 &quot;</span><span style="color:#a3be8c;">https://www.zanbil.ir/browse/air-conditioner-split/%DA%A9%D9%88%D9%84%D8%B1-%DA%AF%D8%A7%D8%B2%DB%8C</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0;  Trident/5.0)</span><span>&quot; &quot;</span><span style="color:#a3be8c;">-</span><span>&quot;
+</span></code></pre>
+<p>You can, if you want, filter the logs by the entries that use the POST method
+and pipe the result into a file:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">rg </span><span>&quot;</span><span style="color:#a3be8c;">POST</span><span>&quot; access.log &gt; post_access.log
+</span><span style="color:#bf616a;">wc -l</span><span> post_access.log
+</span><span>
+</span><span style="color:#bf616a;">139155
+</span></code></pre>
+<h3 id="summarizing">Summarizing</h3>
+<p>Now is when the fun begins: summarizing the data. Let's count the HTTP methods
+most used in the first 100,000 entries:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 1:100000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)(GET|POST|PUT|PATCH|OPTION|HEAD)(.+)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$2</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">sort </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">uniq -c </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n
+</span><span>
+</span><span>    </span><span style="color:#bf616a;">2</span><span> OPTION
+</span><span>   </span><span style="color:#bf616a;">11</span><span> PUT
+</span><span>  </span><span style="color:#bf616a;">577</span><span> POST
+</span><span>  </span><span style="color:#bf616a;">725</span><span> HEAD
+</span><span style="color:#bf616a;">98685</span><span> GET
+</span></code></pre>
+<p>We might want to know the distribution of HTTP status code responses within a
+subset range of the data, from 30,000 to 40,000:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 30000:40000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)&quot; (\d{3}) (\d.+) &quot;(.+)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$2</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">sort </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">uniq -c </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n
+</span><span>
+</span><span>   </span><span style="color:#bf616a;">1</span><span> 400
+</span><span>  </span><span style="color:#bf616a;">11</span><span> 403
+</span><span>  </span><span style="color:#bf616a;">38</span><span> 499
+</span><span>  </span><span style="color:#bf616a;">51</span><span> 304
+</span><span> </span><span style="color:#bf616a;">150</span><span> 404
+</span><span> </span><span style="color:#bf616a;">177</span><span> 301
+</span><span> </span><span style="color:#bf616a;">321</span><span> 302
+</span><span style="color:#bf616a;">9252</span><span> 200
+</span></code></pre>
+<p>How about the top 3 user-agents from a sample of 100,000 entries:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 1:100000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)&quot;(.+)&quot; (&quot;-&quot;$)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$2</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">sort </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">uniq -c </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">tail -n</span><span> 3
+</span><span>
+</span><span style="color:#bf616a;">7533</span><span> Mozilla/5.0 (Linux; </span><span style="color:#bf616a;">Android</span><span> 6.0.1; </span><span style="color:#bf616a;">Nexus</span><span> 5X Build/MMB29P) </span><span style="color:#bf616a;">AppleWebKit/537.36</span><span> (KHTML, like Gecko) </span><span style="color:#bf616a;">Chrome/41.0.2272.96</span><span> Mobile Safari/537.36 (compatible; </span><span style="color:#bf616a;">Googlebot/2.1</span><span>; </span><span style="color:#bf616a;">+http://www.google.com/bot.html</span><span>)
+</span><span style="color:#bf616a;">7784</span><span> Mozilla/5.0 (compatible; </span><span style="color:#bf616a;">Googlebot/2.1</span><span>; </span><span style="color:#bf616a;">+http://www.google.com/bot.html</span><span>)
+</span><span style="color:#bf616a;">9566</span><span> Mozilla/5.0 (compatible; </span><span style="color:#bf616a;">bingbot/2.0</span><span>; </span><span style="color:#bf616a;">+http://www.bing.com/bingbot.htm</span><span>)
+</span></code></pre>
+
+    </article>
+
+
+    <nav class="nav">
+      <ul class="nav__ul">
+        <li class="nav__li">
+          <a class="nav__link" href="/blog">blog</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/bookmarks">bookmarks</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/work">work</a>
+        </li>
+      </ul>
+    </nav>
+    <footer class="footer">
+      <ul class="footer__ul">
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://www.linkedin.com/in/rodmoi/"
+            >linkedin</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://github.com/rodmoioliveira"
+            >github</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://twitter.com/rodmoi"
+            >twitter</a
+          >
+        </li>
+      </ul>
+    </footer>
+    <script type="text/javascript" src="/script.js"></script>
+  </body>
+</html>
