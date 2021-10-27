@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META TAGS -->
+    <meta charset="utf-8" />
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="blog, programming" />
+    <meta name="description" content="Let&#x27;s demonstrate some useful techniques for peeking, summarizing, and plotting logs data." />
+    <meta name="language" content="en-US" />
+    <meta name="author" content="Rodolfo Mói, rodmoi.oliveira@gmail.com" />
+    <meta name="designer" content="Rodolfo Mói" />
+    <meta name="copyright" content="Rodolfo Mói" />
+    <meta name="reply-to" content="rodmoi.oliveira@gmail.com" />
+    <meta name="owner" content="Rodolfo Mói" />
+    <meta name="url" content="https://rm-o.netlify.app/one-liners-log-summarization" />
+    <meta name="date" content="2021-11-27" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- OG AND TWITTER META TAGS -->
+    <meta property="og:type" content="page" />
+    <meta property="og:url" content="https://rm-o.netlify.app/one-liners-log-summarization" />
+    <meta property="og:title" content="One-liners: log summarization" />
+    <meta property="og:image" content="/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
+    <meta property="og:description" content="Let&#x27;s demonstrate some useful techniques for peeking, summarizing, and plotting logs data." />
+    <meta property="article:author" content="Rodolfo Mói" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@rodmoi" />
+    <meta name="twitter:title" content="One-liners: log summarization" />
+    <meta name="twitter:creator" content="@rodmoi" />
+    <meta name="twitter:description" content="Let&#x27;s demonstrate some useful techniques for peeking, summarizing, and plotting logs data." />
+
+    <title>One-liners: log summarization</title>
+
+    <!-- STYLES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" media="all" />
+  </head>
+  <body id="body" data-theme="light">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link" href="/">rm-o</a>
+      </h1>
+      <button class="header__btn" id="theme">dark</button>
+    </header>
+
+    <script>
+      const theme = localStorage.getItem('rodolfo-blog-theme');
+      if (theme === 'dark') {
+        const btn = document.getElementById('theme');
+        const body = document.getElementById('body');
+        body.setAttribute('data-theme', 'dark');
+        btn.innerText = 'light';
+      }
+    </script>
+
+    
+    <article class="post">
+        <h2 class="post__title">One-Liners: Log Summarization</h2>
+        <p class="post__date">2021-11-27</p>
+        <p>We are going to use the
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.kaggle.com/eliasdabbas/web-server-access-logs">web-server-access-logs</a>
+dataset to demonstrate useful techniques of log summarization. To follow along,
+you must have installed in your machine:
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/awk.1p.html">awk</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/sharkdp/bat">bat</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/sharkdp/fd">fd</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="http://www.gnuplot.info/">gnuplot</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/head.1.html">head</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/sort.1.html">sort</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/tail.1.html">tail</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/uniq.1.html">uniq</a> and
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/wc.1.html">wc</a> commands.</p>
+<h3 id="peeking">Peeking</h3>
+<p>Let's begin by peeking at the data: how many logs do we have in the
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.kaggle.com/eliasdabbas/web-server-access-logs">web-server-access-logs</a>
+dataset? Use the <code>wc</code> command with the <code>-l</code> flag to count the total of lines in
+the logs:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">wc -l</span><span> access.log
+</span><span>
+</span><span style="color:#65737e;"># 10365152 access.log
+</span></code></pre>
+<p>To get an idea of the logs structure, you can inspect the data with <code>head</code> and
+<code>tail</code> commands:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">head -n</span><span> 3 access.log
+</span><span>
+</span><span style="color:#65737e;"># 54.36.149.41 - - [22/Jan/2019:03:56:14 +0330] &quot;GET /filter/27|13%20%D9%85%DA%AF%D8%A7%D9%BE%DB%8C%DA%A9%D8%B3%D9%84,27|%DA%A9%D9%85%D8%AA%D8%B1%20%D8%A7%D8%B2%205%20%D9%85%DA%AF%D8%A7%D9%BE%DB%8C%DA%A9%D8%B3%D9%84,p53 HTTP/1.1&quot; 200 30577 &quot;-&quot; &quot;Mozilla/5.0 (compatible; AhrefsBot/6.1; +http://ahrefs.com/robot/)&quot; &quot;-&quot;
+</span><span style="color:#65737e;"># 31.56.96.51 - - [22/Jan/2019:03:56:16 +0330] &quot;GET /image/60844/productModel/200x200 HTTP/1.1&quot; 200 5667 &quot;https://www.zanbil.ir/m/filter/b113&quot; &quot;Mozilla/5.0 (Linux; Android 6.0; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36&quot; &quot;-&quot;
+</span><span style="color:#65737e;"># 31.56.96.51 - - [22/Jan/2019:03:56:16 +0330] &quot;GET /image/61474/productModel/200x200 HTTP/1.1&quot; 200 5379 &quot;https://www.zanbil.ir/m/filter/b113&quot; &quot;Mozilla/5.0 (Linux; Android 6.0; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.158 Mobile Safari/537.36&quot; &quot;-&quot;
+</span><span>
+</span><span style="color:#bf616a;">tail -n</span><span> 3 access.log
+</span><span>
+</span><span style="color:#65737e;"># 5.213.7.50 - - [26/Jan/2019:20:29:13 +0330] &quot;GET /m/product/18962/%D8%BA%D8%B0%D8%A7-%D8%B3%D8%A7%D8%B2-%D9%85%D9%88%D9%84%DB%8C%D9%86%DA%A9%D8%B3-%D9%85%D8%AF%D9%84-FP7367RT HTTP/1.1&quot; 200 20959 &quot;https://www.google.com/&quot; &quot;Mozilla/5.0 (iPhone; CPU iPhone OS 10_2_1 like Mac OS X) AppleWebKit/602.4.6 (KHTML, like Gecko) Version/10.0 Mobile/14D27 Safari/602.1&quot; &quot;-&quot;
+</span><span style="color:#65737e;"># 109.125.169.52 - - [26/Jan/2019:20:29:13 +0330] &quot;GET /image/%7B%7BbasketItem.id%7D%7D?type=productModel&amp;wh=50x50 HTTP/1.1&quot; 200 5 &quot;https://www.zanbil.ir/&quot; &quot;Mozilla/5.0 (Windows NT 6.1; rv:64.0) Gecko/20100101 Firefox/64.0&quot; &quot;-&quot;
+</span><span style="color:#65737e;"># 37.129.59.160 - - [26/Jan/2019:20:29:13 +0330] &quot;GET /basket/view HTTP/1.1&quot; 200 17299 &quot;https://www-zanbil-ir.cdn.ampproject.org/v/s/www.zanbil.ir/m/product/32148/%DA%AF%D9%88%D8%B4%DB%8C-%D8%AA%D9%84%D9%81%D9%86-%D8%A8%DB%8C-%D8%B3%DB%8C%D9%85-%D9%BE%D8%A7%D9%86%D8%A7%D8%B3%D9%88%D9%86%DB%8C%DA%A9-%D9%85%D8%AF%D9%84-Panasonic-Cordless-Telephone-KX-TGC412?amp_js_v=0.1&amp;usqp=mq331AQECAEoAQ%3D%3D&quot; &quot;Mozilla/5.0 (Linux; Android 6.0.1; D6633 Build/23.5.A.1.291) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36&quot; &quot;-&quot;
+</span></code></pre>
+<p>You might want to check out a subset of the data. Use <code>bat</code> with the <code>-r</code> flag
+to inspect just the sample within the range:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 12345:12346</span><span style="color:#bf616a;"> -n
+</span><span>
+</span><span style="color:#65737e;"># 12345 54.37.16.239 - - [22/Jan/2019:04:45:28 +0330] &quot;GET /image/50761/productModel/200x200 HTTP/1.1&quot; 200 4740 &quot;https://www.zanbil.ir/m/filter/p24083?page=1&quot; &quot;Mozilla/5.0 (Linux; Android 9; G8142 Build/47.2.A.4.41) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36&quot; &quot;-&quot;
+</span><span style="color:#65737e;"># 12346 23.101.169.3 - - [22/Jan/2019:04:45:29 +0330] &quot;GET /image/12682/productTypeMenu HTTP/1.1&quot; 200 11 &quot;https://www.zanbil.ir/browse/air-conditioner-split/%DA%A9%D9%88%D9%84%D8%B1-%DA%AF%D8%A7%D8%B2%DB%8C&quot; &quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0;  Trident/5.0)&quot; &quot;-&quot;
+</span></code></pre>
+<p>You can, if you want, filter the logs by the entries that use the POST method
+and pipe the result into a file:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">rg</span><span> POST access.log &gt; post_access.log
+</span><span style="color:#bf616a;">wc -l</span><span> post_access.log
+</span><span>
+</span><span style="color:#65737e;"># 139155 post_access.log
+</span></code></pre>
+<h3 id="summarizing">Summarizing</h3>
+<p>Now is when the fun begins: summarizing the data. Let's count the HTTP methods
+most used in the first 100,000 entries:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 1:100000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH)(.+)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$2</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">sort </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">uniq -c </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n
+</span><span>
+</span><span style="color:#65737e;">#     2 OPTIONS
+</span><span style="color:#65737e;">#    11 PUT
+</span><span style="color:#65737e;">#   577 POST
+</span><span style="color:#65737e;">#   725 HEAD
+</span><span style="color:#65737e;"># 98685 GET
+</span></code></pre>
+<p>We might want to know the distribution of HTTP status code responses within a
+subset range of the data, for example, from 30,000 to 40,000:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 30000:40000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)&quot; (\d{3}) (\d.+) &quot;(.+)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$2</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">sort </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">uniq -c </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n
+</span><span>
+</span><span style="color:#65737e;">#    1 400
+</span><span style="color:#65737e;">#   11 403
+</span><span style="color:#65737e;">#   38 499
+</span><span style="color:#65737e;">#   51 304
+</span><span style="color:#65737e;">#  150 404
+</span><span style="color:#65737e;">#  177 301
+</span><span style="color:#65737e;">#  321 302
+</span><span style="color:#65737e;"># 9252 200
+</span></code></pre>
+<p>How about the top 3 user-agents from a sample of 100,000 entries?</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 1:100000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)&quot;(.+)&quot; (&quot;-&quot;$)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$2</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">sort </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">uniq -c </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">tail -n</span><span> 3
+</span><span>
+</span><span style="color:#65737e;"># 7533 Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+</span><span style="color:#65737e;"># 7784 Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+</span><span style="color:#65737e;"># 9566 Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
+</span></code></pre>
+<h3 id="plotting">Plotting</h3>
+<p>It's time to get fancy! Let's construct a
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://www.mathsisfun.com/data/histograms.html">histogram</a> of the
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://docs.nginx.com/nginx/admin-guide/monitoring/logging/#setting-up-the-access-log">$body_bytes_sent</a>
+values present in the dataset. Check out this reference in
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://stackoverflow.com/questions/39614454/creating-histograms-in-bash">StackOverflow</a>
+on how to do it using <a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/awk.1p.html">awk</a>.
+Let's create an awk script named <code>hist</code>:</p>
+<pre data-linenos data-lang="awk" style="background-color:#2b303b;color:#c0c5ce;" class="language-awk "><code class="language-awk" data-lang="awk"><table><tbody><tr><td>1</td><td><span style="color:#65737e;">#!/usr/bin/awk -f
+</span><tr><td>2</td><td><span>
+</span><tr><td>3</td><td><span style="color:#d08770;">BEGIN</span><span>{
+</span><tr><td>4</td><td><span>    </span><span style="color:#bf616a;">bin_width</span><span>=</span><span style="color:#d08770;">20000</span><span>;
+</span><tr><td>5</td><td><span>}
+</span><tr><td>6</td><td><span>{
+</span><tr><td>7</td><td><span>    </span><span style="color:#bf616a;">bin</span><span>=</span><span style="color:#96b5b4;">int</span><span>((</span><span style="color:#bf616a;">$1</span><span>-</span><span style="color:#d08770;">0.0001</span><span>)/</span><span style="color:#bf616a;">bin_width</span><span>);
+</span><tr><td>8</td><td><span>
+</span><tr><td>9</td><td><span>    </span><span style="color:#8fa1b3;">if</span><span>(</span><span style="color:#bf616a;">bin </span><span>in </span><span style="color:#bf616a;">hist</span><span>){
+</span><tr><td>10</td><td><span>        </span><span style="color:#bf616a;">hist</span><span>[</span><span style="color:#bf616a;">bin</span><span>]+=</span><span style="color:#d08770;">1
+</span><tr><td>11</td><td><span>    }</span><span style="color:#bf616a;">else</span><span>{
+</span><tr><td>12</td><td><span>        </span><span style="color:#bf616a;">hist</span><span>[</span><span style="color:#bf616a;">bin</span><span>]=</span><span style="color:#d08770;">1
+</span><tr><td>13</td><td><span>    }
+</span><tr><td>14</td><td><span>}
+</span><tr><td>15</td><td><span style="color:#d08770;">END</span><span>{
+</span><tr><td>16</td><td><span>    </span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#bf616a;">h </span><span>in </span><span style="color:#bf616a;">hist</span><span>)
+</span><tr><td>17</td><td><span>      </span><span style="color:#b48ead;">printf </span><span>&quot;</span><span style="color:#a3be8c;">%2.2f %i</span><span style="color:#96b5b4;">\n</span><span>&quot;, (</span><span style="color:#bf616a;">h</span><span>*</span><span style="color:#bf616a;">bin_width</span><span>)/</span><span style="color:#d08770;">1000000</span><span>, </span><span style="color:#bf616a;">hist</span><span>[</span><span style="color:#bf616a;">h</span><span>]
+</span><tr><td>18</td><td><span>}
+</span></tr></tbody></table></code></pre>
+<p>Then, we have to add the script to our pipeline. Don't forget to make the awk
+script executable first with <code>chmod +x hist</code>. Here's the histogram in bins of
+20,000 bytes of the first 1,000,000 entries:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 1:1000000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)&quot; (\d{3}) (\d{0,10}) (&quot;.+)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$3</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">./hist </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n </span><span>&gt; histogram_first_1000000.dat
+</span><span style="color:#bf616a;">bat</span><span> histogram_first_1000000.dat
+</span><span>
+</span><span style="color:#65737e;"># 0,00 837305
+</span><span style="color:#65737e;"># 0,02 91277
+</span><span style="color:#65737e;"># 0,04 34250
+</span><span style="color:#65737e;"># 0,06 15385
+</span><span style="color:#65737e;"># 0,08 10300
+</span><span style="color:#65737e;"># 0,10 3666
+</span><span style="color:#65737e;"># 0,12 645
+</span><span style="color:#65737e;"># 0,14 470
+</span><span style="color:#65737e;"># 0,16 274
+</span><span style="color:#65737e;"># 0,18 4143
+</span><span style="color:#65737e;"># 0,20 250
+</span><span style="color:#65737e;"># 0,22 152
+</span><span style="color:#65737e;"># 0,24 264
+</span><span style="color:#65737e;"># 0,26 199
+</span><span style="color:#65737e;"># 0,28 22
+</span><span style="color:#65737e;"># 0,30 80
+</span><span style="color:#65737e;"># 0,32 11
+</span><span style="color:#65737e;"># 0,34 22
+</span><span style="color:#65737e;"># 0,36 21
+</span><span style="color:#65737e;"># 0,38 10
+</span><span style="color:#65737e;"># 0,40 7
+</span><span style="color:#65737e;"># 0,42 12
+</span><span style="color:#65737e;"># 0,44 1
+</span><span style="color:#65737e;"># 0,48 149
+</span><span style="color:#65737e;"># 0,50 114
+</span><span style="color:#65737e;"># 0,52 144
+</span><span style="color:#65737e;"># 0,54 500
+</span><span style="color:#65737e;"># 0,56 263
+</span><span style="color:#65737e;"># 0,58 28
+</span><span style="color:#65737e;"># 0,64 3
+</span><span style="color:#65737e;"># 0,66 1
+</span><span style="color:#65737e;"># 0,68 3
+</span><span style="color:#65737e;"># 0,70 18
+</span><span style="color:#65737e;"># 0,74 1
+</span><span style="color:#65737e;"># 0,76 2
+</span><span style="color:#65737e;"># 0,78 1
+</span><span style="color:#65737e;"># 0,86 1
+</span><span style="color:#65737e;"># 0,90 1
+</span><span style="color:#65737e;"># 1,12 3
+</span><span style="color:#65737e;"># 1,14 1
+</span><span style="color:#65737e;"># 1,24 1
+</span></code></pre>
+<p>To visualize the histogram, we could plot it with
+<a rel="noopener nofollow noreferrer" target="_blank" href="http://www.gnuplot.info/">gnuplot</a> directly in the terminal. Here's an example
+for the first 1,000 entries:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 1:1000 | \
+</span><span>   </span><span style="color:#bf616a;">sd </span><span>&#39;</span><span style="color:#a3be8c;">(.+)&quot; (\d{3}) (\d{0,10}) (&quot;.+)</span><span>&#39; &#39;</span><span style="color:#a3be8c;">$3</span><span>&#39; | \
+</span><span>   </span><span style="color:#bf616a;">./hist </span><span>| \
+</span><span>   </span><span style="color:#bf616a;">sort -n </span><span>&gt; histogram_first_1000.dat
+</span><span>
+</span><span style="color:#bf616a;">bat</span><span> histogram_first_1000.dat | \
+</span><span> </span><span style="color:#bf616a;">gnuplot -p -e </span><span>&quot;</span><span style="color:#a3be8c;">set key off; </span><span style="color:#96b5b4;">\
+</span><span style="color:#a3be8c;"> set style data histogram; </span><span style="color:#96b5b4;">\
+</span><span style="color:#a3be8c;"> set term dumb 70 16; </span><span style="color:#96b5b4;">\
+</span><span style="color:#a3be8c;"> plot &#39;-&#39; using 2:xtic(1)</span><span>&quot;
+</span><span>
+</span><span style="color:#65737e;">#  600 +-----------------------------------------------------------+
+</span><span style="color:#65737e;">#      |     *+*    +      +      +     +      +      +     +      |
+</span><span style="color:#65737e;">#  500 |-+   * *                                                 +-|
+</span><span style="color:#65737e;">#      |     * *                                                   |
+</span><span style="color:#65737e;">#  400 |-+   * *                                                 +-|
+</span><span style="color:#65737e;">#      |     * *                                                   |
+</span><span style="color:#65737e;">#  300 |-+   * *                                                 +-|
+</span><span style="color:#65737e;">#      |     * *   ***                                             |
+</span><span style="color:#65737e;">#  200 |-+   * *   * *                                           +-|
+</span><span style="color:#65737e;">#      |     * *   * *    ***                                      |
+</span><span style="color:#65737e;">#  100 |-+   * *   * *    * *                                    +-|
+</span><span style="color:#65737e;">#      |     *+*   *+*    *+*     +     +      +      +     +      |
+</span><span style="color:#65737e;">#    0 +-----------------------------------------------------------+
+</span><span style="color:#65737e;">#           0,00  0,02   0,04   0,06  0,08   0,10   0,16  0,18
+</span></code></pre>
+<p>Cool huh?</p>
+
+    </article>
+
+
+    <nav class="nav">
+      <ul class="nav__ul">
+        <li class="nav__li">
+          <a class="nav__link" href="/blog">blog</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/bookmarks">bookmarks</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/work">work</a>
+        </li>
+      </ul>
+    </nav>
+    <footer class="footer">
+      <ul class="footer__ul">
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://www.linkedin.com/in/rodmoi/"
+            >linkedin</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://github.com/rodmoioliveira"
+            >github</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://twitter.com/rodmoi"
+            >twitter</a
+          >
+        </li>
+      </ul>
+    </footer>
+    <script type="text/javascript" src="/script.js"></script>
+  </body>
+</html>
