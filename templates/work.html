@@ -13,7 +13,9 @@
 {% block content %}
     <section class="work">
         <h2 class="work__title">{{ page.title }}</h2>
+        <p class="mark__start">&ctdot;</p>
         {{ page.content | safe }}
+        <p class="mark__end">&smashp;</p>
     </section>
 {% endblock content %}
 
