@@ -1,3 +1,146 @@
-<!doctype html>
-<title>404 Not Found</title>
-<h1>404 Not Found</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META TAGS -->
+    <meta charset="utf-8" />
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="blog, programming" />
+    <meta name="description" content="404" />
+    <meta name="language" content="en-US" />
+    <meta name="author" content="Rodolfo Mói, rodmoi.oliveira@gmail.com" />
+    <meta name="designer" content="Rodolfo Mói" />
+    <meta name="copyright" content="Rodolfo Mói" />
+    <meta name="reply-to" content="rodmoi.oliveira@gmail.com" />
+    <meta name="owner" content="Rodolfo Mói" />
+    <meta name="url" content="https://rm-o.netlify.app/" />
+    <meta name="date" content="" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- OG AND TWITTER META TAGS -->
+    <meta property="og:type" content="page" />
+    <meta property="og:url" content="https://rm-o.netlify.app/" />
+    <meta property="og:title" content="404 Not Found" />
+    <meta property="og:image" content="/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
+    <meta property="og:description" content="404 Not Found" />
+    <meta property="article:author" content="Rodolfo Mói" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@rodmoi" />
+    <meta name="twitter:title" content="404 Not Found" />
+    <meta name="twitter:creator" content="@rodmoi" />
+    <meta name="twitter:description" content="404 Not Found" />
+
+    <title>404 Not Found</title>
+
+    <!-- STYLES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" media="all" />
+  </head>
+  <body id="body" data-theme="light">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link" href="/">rm-o</a>
+      </h1>
+      <button class="header__btn" id="theme">dark</button>
+    </header>
+
+    <script>
+      const theme = localStorage.getItem('rodolfo-blog-theme');
+      if (theme === 'dark') {
+        const btn = document.getElementById('theme');
+        const body = document.getElementById('body');
+        body.setAttribute('data-theme', 'dark');
+        btn.innerText = 'light';
+      }
+    </script>
+
+    
+<section class="_404">
+  <p class="mark__start">&ctdot;</p>
+  <h1 class="_404__title">404 Not Found</h1>
+  <p>
+    The server has not found anything matching the Request-URI. No
+    indication is given of whether the condition is temporary or
+    permanent. The 410 (Gone) status code SHOULD be used if the server
+    knows, through some internally configurable mechanism, that an old
+    resource is permanently unavailable and has no forwarding address.
+    This status code is commonly used when the server does not wish to
+    reveal exactly why the request has been refused, or when no other
+    response is applicable.
+    <a
+      rel="noopener nofollow noreferrer"
+      target="_blank"
+      href="https://datatracker.ietf.org/doc/html/rfc2616#section-10.4.5"
+      >RFC 2616</a
+    >
+  </p>
+  <p class="mark__end">&smashp;</p>
+</section>
+
+
+    <nav class="nav">
+      <ul class="nav__ul">
+        <li class="nav__li">
+          <a class="nav__link" href="/blog">blog</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/bookmarks">bookmarks</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/work">work</a>
+        </li>
+      </ul>
+    </nav>
+    <footer class="footer">
+      <ul class="footer__ul">
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://www.linkedin.com/in/rodmoi/"
+            >linkedin</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://github.com/rodmoioliveira"
+            >github</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://twitter.com/rodmoi"
+            >twitter</a
+          >
+        </li>
+      </ul>
+    </footer>
+    <script type="text/javascript" src="/script.js"></script>
+  </body>
+</html>
