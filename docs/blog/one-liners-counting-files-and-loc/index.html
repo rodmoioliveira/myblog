@@ -6,7 +6,7 @@
     <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="blog, programming" />
-    <meta name="description" content="Sometimes is useful to count the number of files and&#x2F;or LOC a project has." />
+    <meta name="description" content="Sometimes it is useful to count the number of files and&#x2F;or LOC a project has." />
     <meta name="language" content="en-US" />
     <meta name="author" content="Rodolfo Mói, rodmoi.oliveira@gmail.com" />
     <meta name="designer" content="Rodolfo Mói" />
@@ -28,13 +28,13 @@
     <meta property="og:url" content="https://rm-o.netlify.app/one-liners-counting-files-and-loc" />
     <meta property="og:title" content="One-liners: counting files and loc" />
     <meta property="og:image" content="/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
-    <meta property="og:description" content="Sometimes is useful to count the number of files and&#x2F;or LOC a project has." />
+    <meta property="og:description" content="Sometimes it is useful to count the number of files and&#x2F;or LOC a project has." />
     <meta property="article:author" content="Rodolfo Mói" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@rodmoi" />
     <meta name="twitter:title" content="One-liners: counting files and loc" />
     <meta name="twitter:creator" content="@rodmoi" />
-    <meta name="twitter:description" content="Sometimes is useful to count the number of files and&#x2F;or LOC a project has." />
+    <meta name="twitter:description" content="Sometimes it is useful to count the number of files and&#x2F;or LOC a project has." />
 
     <title>One-liners: counting files and loc</title>
 
@@ -78,11 +78,12 @@
         <h2 class="post__title">One-Liners: Counting Files and LOC</h2>
         <p class="post__date">&#8226;&nbsp;2021-10-25&nbsp;&#8226;</p>
         <p class="mark__start">&ctdot;</p>
-        <p>Sometimes is useful to count the number of files and/or LOC a project has.
-Here's a way you could do that using <a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/sharkdp/fd">fd</a>,
-<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/xargs.1.html">xargs</a>,
-<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/wc.1.html">wc</a> and
-<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/sort.1.html">sort</a>:</p>
+        <p>Sometimes it is useful to count the number of files and/or LOC a project has.
+Here's a way you could do that using
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/sharkdp/fd">fd</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/sort.1.html">sort</a>,
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/wc.1.html">wc</a>, and
+<a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/xargs.1.html">xargs</a>:</p>
 <pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#65737e;"># count the total LOC with files in crescent order by LOC.
 </span><span style="color:#bf616a;">fd -t</span><span> f | </span><span style="color:#bf616a;">xargs</span><span> wc</span><span style="color:#bf616a;"> -l </span><span>| </span><span style="color:#bf616a;">sort -n
 </span><span>
