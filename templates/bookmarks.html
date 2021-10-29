@@ -12,7 +12,7 @@
 
 {% block content %}
     <section class="bookmarks">
-        <h2 class="bookmarks__title">{{ page.title }}</h2>
+        <h2 class="bookmarks__title">{{ page.title | capitalize }}</h2>
         <p class="mark__start">&ctdot;</p>
         {{ page.content | safe }}
         <p class="mark__end">&smashp;</p>
