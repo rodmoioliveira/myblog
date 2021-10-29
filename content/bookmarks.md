@@ -13,7 +13,7 @@ Here is my collection of important links on a myriad of subjects.
 - - The ‘Unix philosophy’ originated with Ken Thompson's early meditations on how to design a small but capable operating system with a clean service interface.
 - [Epigrams on Programming](http://pu.inf.uni-tuebingen.de/users/klaeren/epigrams.html)
 - - by Alan J. Perlis, Yale University.
-- [Papers We Love](https://paperswelove.org/)
+- [Papers We Love](https://github.com/papers-we-love/papers-we-love)
 - - Papers We Love is a repository of academic computer science papers and a community who loves reading them.
 - [Teach Yourself Computer Science](https://teachyourselfcs.com/)
 - - If you’re a self-taught engineer or bootcamp grad, you owe it to yourself to learn computer science.
