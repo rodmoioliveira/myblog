@@ -35,3 +35,8 @@ Here is my collection of important links on a myriad of subjects.
 - - You probably build websites and think your shit is special. Wrong, motherfucker.
 - [This Page is Designed to Last](https://jeffhuang.com/designed_to_last/)
 - - A Manifesto for Preserving Content on the Web.
+
+{{ subtitle(content="RFCs") }}
+
+- [Hypertext Transfer Protocol -- HTTP/1.1](https://datatracker.ietf.org/doc/html/rfc2616)
+- [HTTP Header Field Registrations](https://datatracker.ietf.org/doc/html/rfc4229)

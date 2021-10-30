@@ -11,6 +11,8 @@ Here is some stuff that I did.
 
 - [funes](https://crates.io/crates/funes)
 - - funes is a server to mock HTTP responses.
+- [rm-o](https://github.com/rodmoioliveira/myblog)
+- - This is my blog.
 
 {{ subtitle(content="Infographics") }}
 
@@ -28,5 +30,10 @@ Here is some stuff that I did.
 - - Este não é apenas mais um estádio da próxima Copa do Mundo. Principal palco da Olimpíada de 1980, sua história está repleta de memórias além do futebol.
 - [Rota dos Convocados](https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/rota-dos-convocados)
 - - O técnico Tite já escolheu os 23 jogadores que vão defender a Seleção na Copa do Mundo da Rússia, em junho.
+- [Toda Bola é Quadrada](https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/toda-bola-e-quadrada)
+- - O Globoesporte.com desmonta as bolas de todas as Copas e mostra como a tecnologia precisou voltar às origens para deixar a bola de futebol mais redonda e estável do que nunca para o Mundial de 2018.
+
+{{ subtitle(content="Teaching") }}
+
 - [Concept Maps](https://github.com/rodmoioliveira/concept_maps)
 - - Some concept maps that I made for teaching purposes back in the day when I was a history teacher.
