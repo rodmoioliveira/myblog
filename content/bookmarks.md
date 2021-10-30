@@ -7,7 +7,7 @@ slug = "bookmarks"
 
 Here is my collection of important links on a myriad of subjects.
 
-### [computer science and programming]
+{{ subtitle(content="Computer Science and Programming") }}
 
 - [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html)
 - - The ‘Unix philosophy’ originated with Ken Thompson's early meditations on how to design a small but capable operating system with a clean service interface.
@@ -18,7 +18,7 @@ Here is my collection of important links on a myriad of subjects.
 - [Teach Yourself Computer Science](https://teachyourselfcs.com/)
 - - If you’re a self-taught engineer or bootcamp grad, you owe it to yourself to learn computer science.
 
-### [technical blogs]
+{{ subtitle(content="Technical Blogs") }}
 
 - [Brendan Gregg](https://www.brendangregg.com/)
 - - Internationally renowned expert in computing performance.
@@ -29,7 +29,7 @@ Here is my collection of important links on a myriad of subjects.
 - [Piotr Kołaczkowski](https://pkolaczk.github.io)
 - - Blog on programming, optimization and performance analysis.
 
-### [maintaining the web]
+{{ subtitle(content="Maintaining the Web") }}
 
 - [This is a motherfucking website](https://motherfuckingwebsite.com/)
 - - You probably build websites and think your shit is special. Wrong, motherfucker.

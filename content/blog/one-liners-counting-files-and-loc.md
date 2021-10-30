@@ -13,7 +13,6 @@ Here's a way you could do that using
 [wc](https://man7.org/linux/man-pages/man1/wc.1.html), and
 [xargs](https://man7.org/linux/man-pages/man1/xargs.1.html):
 
-
 ```sh
 # count the total LOC with files in crescent order by LOC.
 fd -t f | xargs wc -l | sort -n
