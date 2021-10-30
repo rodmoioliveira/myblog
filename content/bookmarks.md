@@ -21,12 +21,14 @@ relaxed as if I had read it. Enjoy it!
 
 {{ subtitle(content="Technical Blogs") }}
 
+- [Andrew Gallant](https://blog.burntsushi.net/)
+- - Ripgreg maintainer.
 - [Brendan Gregg](https://www.brendangregg.com/)
 - - Internationally renowned expert in computing performance.
 - [Bryan Cantrill](http://dtrace.org/blogs/bmc/)
-- -
+- - CTO and co-founder of Oxide Computer Company.
 - [Cliff L. Biffle](http://cliffle.com/)
-- -
+- - Top notch Rust content.
 - [Piotr Kołaczkowski](https://pkolaczk.github.io)
 - - Blog on programming, optimization and performance analysis.
 
