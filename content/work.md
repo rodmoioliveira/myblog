@@ -5,7 +5,7 @@ description = "Rodolfo Moi's work."
 slug = "work"
 +++
 
-Here is some stuff that I did.
+Action is eloquence, right? Here it's some of the action I got into:
 
 {{ subtitle(content="Open Source") }}
 

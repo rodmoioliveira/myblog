@@ -5,7 +5,8 @@ description = "Rodolfo Moi's collection of important links on a myriad of subjec
 slug = "bookmarks"
 +++
 
-Here is my collection of important links on a myriad of subjects.
+Here are many things that I do not know because I bookmarked a link and then
+relaxed as if I had read it. Enjoy it!
 
 {{ subtitle(content="Computer Science and Programming") }}
 
