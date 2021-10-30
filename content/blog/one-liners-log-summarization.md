@@ -6,6 +6,8 @@ slug = "one-liners-log-summarization"
 draft = false
 +++
 
+### Getting
+
 We are going to use the
 [web-server-access-logs](https://www.kaggle.com/eliasdabbas/web-server-access-logs)
 dataset to demonstrate useful techniques of log summarization. To follow along,
@@ -20,7 +22,7 @@ you must have installed in your machine:
 [uniq](https://man7.org/linux/man-pages/man1/uniq.1.html) and
 [wc](https://man7.org/linux/man-pages/man1/wc.1.html) commands.
 
-{{ subtitle(content="Peeking") }}
+### Peeking
 
 Let's begin by peeking at the data: how many logs do we have in the
 [web-server-access-logs](https://www.kaggle.com/eliasdabbas/web-server-access-logs)
@@ -70,7 +72,7 @@ wc -l post_access.log
 # 139155 post_access.log
 ```
 
-{{ subtitle(content="Summarizing") }}
+### Summarizing
 
 Now is when the fun begins: summarizing the data. Let's count the HTTP methods
 most used in the first 100,000 entries:
@@ -124,7 +126,7 @@ bat access.log -r 1:100000 | \
 # 9566 Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
 ```
 
-{{ subtitle(content="Plotting") }}
+### Plotting
 
 It's time to get fancy! Let's construct a
 [histogram](https://www.mathsisfun.com/data/histograms.html) of the

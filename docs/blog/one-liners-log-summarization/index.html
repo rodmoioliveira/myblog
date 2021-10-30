@@ -78,7 +78,33 @@
         <h2 class="post__title">One-Liners: Log Summarization</h2>
         <p class="post__date">&#8226;&nbsp;2021-11-27&nbsp;&#8226;</p>
         <p class="mark__start">&ctdot;</p>
-        <p>We are going to use the
+        
+            <section class="post__content-table">
+                <p class="mark__content-table">&Colone;</p>
+                <ul class="post__ul">
+                    
+                        <li class="post__li">
+                            <a class="post__anchor" href="https://rm-o.netlify.app/blog/one-liners-log-summarization/#getting">Getting</a>
+                        </li>
+                    
+                        <li class="post__li">
+                            <a class="post__anchor" href="https://rm-o.netlify.app/blog/one-liners-log-summarization/#peeking">Peeking</a>
+                        </li>
+                    
+                        <li class="post__li">
+                            <a class="post__anchor" href="https://rm-o.netlify.app/blog/one-liners-log-summarization/#summarizing">Summarizing</a>
+                        </li>
+                    
+                        <li class="post__li">
+                            <a class="post__anchor" href="https://rm-o.netlify.app/blog/one-liners-log-summarization/#plotting">Plotting</a>
+                        </li>
+                    
+                </ul>
+                <p class="mark__content-table">&Colone;</p>
+            </section>
+        
+        <h3 id="getting">Getting</h3>
+<p>We are going to use the
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://www.kaggle.com/eliasdabbas/web-server-access-logs">web-server-access-logs</a>
 dataset to demonstrate useful techniques of log summarization. To follow along,
 you must have installed in your machine:
@@ -91,11 +117,7 @@ you must have installed in your machine:
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/tail.1.html">tail</a>,
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/uniq.1.html">uniq</a> and
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://man7.org/linux/man-pages/man1/wc.1.html">wc</a> commands.</p>
-<h3 class="subtitle" id="peeking">
-  <a class="subtitle__anchor" href="#peeking">
-    Peeking
-  </a>
-</h3>
+<h3 id="peeking">Peeking</h3>
 <p>Let's begin by peeking at the data: how many logs do we have in the
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://www.kaggle.com/eliasdabbas/web-server-access-logs">web-server-access-logs</a>
 dataset? Use the <code>wc</code> command with the <code>-l</code> flag to count the total of lines in
@@ -132,11 +154,7 @@ and pipe the result into a file:</p>
 </span><span>
 </span><span style="color:#65737e;"># 139155 post_access.log
 </span></code></pre>
-<h3 class="subtitle" id="summarizing">
-  <a class="subtitle__anchor" href="#summarizing">
-    Summarizing
-  </a>
-</h3>
+<h3 id="summarizing">Summarizing</h3>
 <p>Now is when the fun begins: summarizing the data. Let's count the HTTP methods
 most used in the first 100,000 entries:</p>
 <pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">bat</span><span> access.log</span><span style="color:#bf616a;"> -r</span><span> 1:100000 | \
@@ -180,11 +198,7 @@ subset range of the data, for example, from 30,000 to 40,000:</p>
 </span><span style="color:#65737e;"># 7784 Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
 </span><span style="color:#65737e;"># 9566 Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
 </span></code></pre>
-<h3 class="subtitle" id="plotting">
-  <a class="subtitle__anchor" href="#plotting">
-    Plotting
-  </a>
-</h3>
+<h3 id="plotting">Plotting</h3>
 <p>It's time to get fancy! Let's construct a
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://www.mathsisfun.com/data/histograms.html">histogram</a> of the
 <a rel="noopener nofollow noreferrer" target="_blank" href="https://docs.nginx.com/nginx/admin-guide/monitoring/logging/#setting-up-the-access-log">$body_bytes_sent</a>

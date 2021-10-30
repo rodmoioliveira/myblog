@@ -16,6 +16,19 @@
         <h2 class="post__title">{{ page.title }}</h2>
         <p class="post__date">&#8226;&nbsp;{{ page.date }}&nbsp;&#8226;</p>
         <p class="mark__start">&ctdot;</p>
+        {% if page.toc %}
+            <section class="post__content-table">
+                <p class="mark__content-table">&Colone;</p>
+                <ul class="post__ul">
+                    {% for h3 in page.toc %}
+                        <li class="post__li">
+                            <a class="post__anchor" href="{{ h3.permalink | safe }}">{{ h3.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p class="mark__content-table">&Colone;</p>
+            </section>
+        {% endif %}
         {{ page.content | safe }}
         <p class="mark__end">&smashp;</p>
     </article>
