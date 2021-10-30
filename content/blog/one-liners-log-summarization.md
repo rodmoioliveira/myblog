@@ -6,8 +6,6 @@ slug = "one-liners-log-summarization"
 draft = false
 +++
 
-### Getting
-
 We are going to use the
 [web-server-access-logs](https://www.kaggle.com/eliasdabbas/web-server-access-logs)
 dataset to demonstrate useful techniques of log summarization. To follow along,

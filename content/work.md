@@ -3,18 +3,18 @@ title = "work"
 template = "work.html"
 description = "Rodolfo Moi's work."
 slug = "work"
+[extra]
+intro = "Action is eloquence, right? Here it's some of the action I got into:"
 +++
 
-Action is eloquence, right? Here it's some of the action I got into:
-
-{{ subtitle(content="Open Source") }}
+### Open Source
 
 - [funes](https://crates.io/crates/funes)
 - - funes is a server to mock HTTP responses.
 - [rm-o](https://github.com/rodmoioliveira/myblog)
 - - This is my blog.
 
-{{ subtitle(content="Infographics") }}
+### Infographics
 
 - [Football Passing Networks](https://grafos-da-bola.netlify.app/)
 - - An interactive web application to explore data visualizations on soccer passing networks.
@@ -33,7 +33,7 @@ Action is eloquence, right? Here it's some of the action I got into:
 - [Toda Bola é Quadrada](https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/toda-bola-e-quadrada)
 - - O Globoesporte.com desmonta as bolas de todas as Copas e mostra como a tecnologia precisou voltar às origens para deixar a bola de futebol mais redonda e estável do que nunca para o Mundial de 2018.
 
-{{ subtitle(content="Teaching") }}
+### Teaching
 
 - [Concept Maps](https://github.com/rodmoioliveira/concept_maps)
 - - Some concept maps that I made for teaching purposes back in the day when I was a history teacher.

@@ -3,12 +3,11 @@ title = "bookmarks"
 template = "bookmarks.html"
 description = "Rodolfo Moi's collection of important links on a myriad of subjects."
 slug = "bookmarks"
+[extra]
+intro = "Here are many things that I do not know because I bookmarked a link and then relaxed as if I had read it. Enjoy it!"
 +++
 
-Here are many things that I do not know because I bookmarked a link and then
-relaxed as if I had read it. Enjoy it!
-
-{{ subtitle(content="Computer Science and Programming") }}
+### Computer Science and Programming
 
 - [Basics of the Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html)
 - - The ‘Unix philosophy’ originated with Ken Thompson's early meditations on how to design a small but capable operating system with a clean service interface.
@@ -19,7 +18,7 @@ relaxed as if I had read it. Enjoy it!
 - [Teach Yourself Computer Science](https://teachyourselfcs.com/)
 - - If you’re a self-taught engineer or bootcamp grad, you owe it to yourself to learn computer science.
 
-{{ subtitle(content="Technical Blogs") }}
+### Technical Blogs
 
 - [Andrew Gallant](https://blog.burntsushi.net/)
 - - Ripgreg maintainer.
@@ -32,14 +31,14 @@ relaxed as if I had read it. Enjoy it!
 - [Piotr Kołaczkowski](https://pkolaczk.github.io)
 - - Blog on programming, optimization and performance analysis.
 
-{{ subtitle(content="Maintaining the Web") }}
+### Maintaining the Web
 
 - [This is a motherfucking website](https://motherfuckingwebsite.com/)
 - - You probably build websites and think your shit is special. Wrong, motherfucker.
 - [This Page is Designed to Last](https://jeffhuang.com/designed_to_last/)
 - - A Manifesto for Preserving Content on the Web.
 
-{{ subtitle(content="RFCs") }}
+### RFCs
 
 - [Hypertext Transfer Protocol -- HTTP/1.1](https://datatracker.ietf.org/doc/html/rfc2616)
 - [HTTP Header Field Registrations](https://datatracker.ietf.org/doc/html/rfc4229)
