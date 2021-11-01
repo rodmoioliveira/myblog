@@ -8,9 +8,11 @@
   margin: 1em 0 0;
 }
 .toc__ul {
-  list-style: circle;
+  list-style: disc;
   margin: 0 !important;
   padding: 0.3em 2em 1em !important;
 }
-// .toc__li {}
+.toc__li {
+  color: var(--primary-color) !important;
+}
 // .toc__anchor {}
