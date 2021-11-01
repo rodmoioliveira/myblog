@@ -19,7 +19,7 @@
         {% endif %}
         {% if page.toc %}
             <section class="toc">
-                <p class="mark__toc">&colone;</p>
+                <p class="toc__title">Table of Content:</p>
                 <ul class="toc__ul">
                     {% for h3 in page.toc %}
                         <li class="toc__li">
@@ -27,7 +27,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <p class="mark__toc">&eqcolon;</p>
             </section>
         {% endif %}
         {{ page.content | safe }}

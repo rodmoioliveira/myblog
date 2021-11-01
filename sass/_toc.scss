@@ -1,13 +1,16 @@
 .toc {
-  margin: 0 auto;
+  margin: 1.2em auto;
+  border: 1px dashed var(--primary-color);
+  border-left: 1px dashed transparent;
+  border-right: 1px dashed transparent;
+}
+.toc__title {
+  margin: 1em 0 0;
 }
 .toc__ul {
   list-style: circle;
-  margin: 0 1em !important;
-  padding-left: 1em;
+  margin: 0 !important;
+  padding: 0.3em 2em 1em !important;
 }
 // .toc__li {}
-.toc__anchor {
-  font-weight: 900;
-  text-decoration: none;
-}
+// .toc__anchor {}
