@@ -28,7 +28,7 @@ Modules](http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.132.7232) from
 Parnas](https://en.wikipedia.org/wiki/David_Parnas), is a must-read and pretty
 enlightening.
 
-### The benefits of modular programming
+### Expected benefits
 
 Accordingly to Parnas, these are the three expected benefits of modular
 programming:
@@ -39,8 +39,13 @@ programming:
    modules.
 3. **comprehensibility** - the whole system should be more comprehensible
    because it can be studied one module at the time.
-4. **testability** - [integrity of the module is tested independently]
-5. **maintainability**
+
+(1) managerial - development time should be shortened because separate groups
+would work on each module with little need for communication: (2) product
+flexibility - it should be possible to make drastic changes to one module
+without a need to change others; (3) comprehensibility - it should be possible
+to study the system one module at a time. The whole system can therefore be
+better designed because it is better understood. {{ reference(id=1, type="text") }}
 
 ### Keyword In Context (KWIC)
 
@@ -52,6 +57,19 @@ the end of the line. The KWIC index system outputs a listing of all circular
 shifts of all lines in alphabetical order.
 {% end %}
 
-Provide visual representation of the input and output of the program and it's
-history: https://en.wikipedia.org/wiki/Key_Word_in_Context#:~:text=Key%20Word%20In%20Context%20(KWIC,common%20format%20for%20concordance%20lines.&text=A%20KWIC%20index%20is%20formed,searchable%20alphabetically%20in%20the%20index.
+### Two decomposition examples
 
+### Information hiding
+
+### References
+
+- {{ reference(id=1, type="foot") }}
+- - D. L. Parnas. 1972. On the criteria to be used in decomposing systems into modules. Commun. ACM 15, 12 (Dec. 1972), 1053–1058. [https://doi.org/10.1145/361598.361623](https://doi.org/10.1145/361598.361623)
+- {{ reference(id=2, type="foot") }}
+- - Atlantic Publishers & Distributors. 1989. Advanced Indexing and Abstracting Practices. [https://books.google.com.br/books?id=nIUkl7bLzYUC](https://books.google.com.br/books?id=nIUkl7bLzYUC)
+- {{ reference(id=3, type="foot") }}
+- - Luhn, H.P. (1960), Keyword-in-context index for technical literature (kwic index). Amer. Doc., 11: 288-295. [https://doi.org/10.1002/asi.5090110403](https://doi.org/10.1002/asi.5090110403)
+- {{ reference(id=4, type="foot") }}
+- - https://en.wikipedia.org/wiki/Key_Word_in_Context - overview
+- {{ reference(id=5, type="foot") }}
+- - Example de input and output - https://users.cs.duke.edu/~ola/ipc/kwic.html

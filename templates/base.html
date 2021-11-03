@@ -3,7 +3,7 @@
   <head>
     <!-- META TAGS -->
     <meta charset="utf-8" />
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="blog, programming" />
     <meta name="description" content="{% block description %}{% endblock %}" />
@@ -35,34 +35,17 @@
     <meta name="twitter:title" content="{% block tw_title %}{% endblock %}" />
     <meta name="twitter:creator" content="@rodmoi" />
     <meta name="twitter:description" content="{% block tw_description %}{% endblock %}" />
-
     <title>{% block title %}{% endblock title %}</title>
 
     <!-- STYLES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/style.css" media="all" />
   </head>
   <body id="body" data-theme="light">
-    <header class="header">
-      <h1 class="header__title">
-        <a class="header__link" href="/">rm-o</a>
-      </h1>
-      <button class="header__btn" id="theme">dark</button>
-    </header>
-
+    {% include "header.html" ignore missing %}
     <script>
       const theme = localStorage.getItem('rodolfo-blog-theme');
       if (theme === 'dark') {
@@ -72,53 +55,9 @@
         btn.innerText = 'light';
       }
     </script>
-
     {% block content %} {% endblock content %}
-
-    <nav class="nav">
-      <ul class="nav__ul">
-        <li class="nav__li">
-          <a class="nav__link" href="/blog">blog</a>
-        </li>
-        <li class="nav__li">
-          <a class="nav__link" href="/bookmarks">bookmarks</a>
-        </li>
-        <li class="nav__li">
-          <a class="nav__link" href="/work">work</a>
-        </li>
-      </ul>
-    </nav>
-    <footer class="footer">
-      <ul class="footer__ul">
-        <li class="footer__li">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer__link"
-            href="https://www.linkedin.com/in/rodmoi/"
-            >linkedin</a
-          >
-        </li>
-        <li class="footer__li">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer__link"
-            href="https://github.com/rodmoioliveira"
-            >github</a
-          >
-        </li>
-        <li class="footer__li">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer__link"
-            href="https://twitter.com/rodmoi"
-            >twitter</a
-          >
-        </li>
-      </ul>
-    </footer>
+    {% include "nav.html" ignore missing %}
+    {% include "footer.html" ignore missing %}
     <script type="text/javascript" src="/scripts/script.js"></script>
   </body>
 </html>

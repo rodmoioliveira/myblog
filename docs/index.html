@@ -3,7 +3,7 @@
   <head>
     <!-- META TAGS -->
     <meta charset="utf-8" />
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="blog, programming" />
     <meta name="description" content="Rodolfo Mói personal website." />
@@ -27,7 +27,10 @@
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://rm-o.netlify.app/" />
     <meta property="og:title" content="rm-o: home" />
-    <meta property="og:image" content="/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
+    <meta
+      property="og:image"
+      content="/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg"
+    />
     <meta property="og:description" content="Rodolfo Mói personal website." />
     <meta property="article:author" content="Rodolfo Mói" />
     <meta name="twitter:card" content="summary" />
@@ -35,16 +38,11 @@
     <meta name="twitter:title" content="rm-o: home" />
     <meta name="twitter:creator" content="@rodmoi" />
     <meta name="twitter:description" content="Rodolfo Mói personal website." />
-
     <title>rm-o: home</title>
 
     <!-- STYLES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap"
       rel="stylesheet"
@@ -64,30 +62,30 @@
     </header>
 
     <script>
-      const theme = localStorage.getItem('rodolfo-blog-theme');
-      if (theme === 'dark') {
-        const btn = document.getElementById('theme');
-        const body = document.getElementById('body');
-        body.setAttribute('data-theme', 'dark');
-        btn.innerText = 'light';
+      const theme = localStorage.getItem("rodolfo-blog-theme");
+      if (theme === "dark") {
+        const btn = document.getElementById("theme");
+        const body = document.getElementById("body");
+        body.setAttribute("data-theme", "dark");
+        btn.innerText = "light";
       }
     </script>
 
-    
     <section class="index">
-        <p class="mark__start">&ctdot;</p>
-        <p>
-            My name is Rodolfo Mói de Oliveira. I'm currently working as a backend engineer at
-            <a
-                rel="noopener nofollow noreferrer"
-                target="_blank"
-                href="https://www.americanas.com.br/">
-                americanas s.a.
-            </a>
-        </p>
-        <p class="mark__end">&smashp;</p>
+      <p class="mark__start">&ctdot;</p>
+      <p>
+        My name is Rodolfo Mói de Oliveira. I'm currently working as a backend
+        engineer at
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://www.americanas.com.br/"
+        >
+          americanas s.a.
+        </a>
+      </p>
+      <p class="mark__end">&smashp;</p>
     </section>
-
 
     <nav class="nav">
       <ul class="nav__ul">
@@ -102,6 +100,7 @@
         </li>
       </ul>
     </nav>
+
     <footer class="footer">
       <ul class="footer__ul">
         <li class="footer__li">
@@ -133,6 +132,7 @@
         </li>
       </ul>
     </footer>
+
     <script type="text/javascript" src="/scripts/script.js"></script>
   </body>
 </html>

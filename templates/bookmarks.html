@@ -14,21 +14,8 @@
     <section class="bookmarks">
         <h2 class="bookmarks__title">{{ page.title | capitalize }}</h2>
         <p class="mark__start">&ctdot;</p>
-        {% if page.extra.intro %}
-            <p>{{page.extra.intro}}</p>
-        {% endif %}
-        {% if page.toc %}
-            <section class="toc">
-                <p class="toc__title">Table of Content:</p>
-                <ul class="toc__ul">
-                    {% for h3 in page.toc %}
-                        <li class="toc__li">
-                            <a class="toc__anchor" href="{{ h3.permalink | safe }}">{{ h3.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
+        {% include "intro.html" ignore missing %}
+        {% include "toc.html" ignore missing %}
         {{ page.content | safe }}
         <p class="mark__end">&smashp;</p>
     </section>

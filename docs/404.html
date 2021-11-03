@@ -3,7 +3,7 @@
   <head>
     <!-- META TAGS -->
     <meta charset="utf-8" />
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="blog, programming" />
     <meta name="description" content="404" />
@@ -27,7 +27,10 @@
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://rm-o.netlify.app/" />
     <meta property="og:title" content="404 Not Found" />
-    <meta property="og:image" content="/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
+    <meta
+      property="og:image"
+      content="/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg"
+    />
     <meta property="og:description" content="404 Not Found" />
     <meta property="article:author" content="Rodolfo Mói" />
     <meta name="twitter:card" content="summary" />
@@ -35,16 +38,11 @@
     <meta name="twitter:title" content="404 Not Found" />
     <meta name="twitter:creator" content="@rodmoi" />
     <meta name="twitter:description" content="404 Not Found" />
-
     <title>404 Not Found</title>
 
     <!-- STYLES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap"
       rel="stylesheet"
@@ -64,38 +62,35 @@
     </header>
 
     <script>
-      const theme = localStorage.getItem('rodolfo-blog-theme');
-      if (theme === 'dark') {
-        const btn = document.getElementById('theme');
-        const body = document.getElementById('body');
-        body.setAttribute('data-theme', 'dark');
-        btn.innerText = 'light';
+      const theme = localStorage.getItem("rodolfo-blog-theme");
+      if (theme === "dark") {
+        const btn = document.getElementById("theme");
+        const body = document.getElementById("body");
+        body.setAttribute("data-theme", "dark");
+        btn.innerText = "light";
       }
     </script>
 
-    
-<section class="_404">
-  <h2 class="_404__title">404 Not Found</h2>
-  <p class="mark__start">&ctdot;</p>
-  <p>
-    The server has not found anything matching the Request-URI. No
-    indication is given of whether the condition is temporary or
-    permanent. The 410 (Gone) status code SHOULD be used if the server
-    knows, through some internally configurable mechanism, that an old
-    resource is permanently unavailable and has no forwarding address.
-    This status code is commonly used when the server does not wish to
-    reveal exactly why the request has been refused, or when no other
-    response is applicable.
-    <a
-      rel="noopener nofollow noreferrer"
-      target="_blank"
-      href="https://datatracker.ietf.org/doc/html/rfc2616#section-10.4.5"
-      >RFC 2616</a
-    >
-  </p>
-  <p class="mark__end">&smashp;</p>
-</section>
-
+    <section class="_404">
+      <h2 class="_404__title">404 Not Found</h2>
+      <p class="mark__start">&ctdot;</p>
+      <p>
+        The server has not found anything matching the Request-URI. No
+        indication is given of whether the condition is temporary or permanent.
+        The 410 (Gone) status code SHOULD be used if the server knows, through
+        some internally configurable mechanism, that an old resource is
+        permanently unavailable and has no forwarding address. This status code
+        is commonly used when the server does not wish to reveal exactly why the
+        request has been refused, or when no other response is applicable.
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://datatracker.ietf.org/doc/html/rfc2616#section-10.4.5"
+          >RFC 2616</a
+        >
+      </p>
+      <p class="mark__end">&smashp;</p>
+    </section>
 
     <nav class="nav">
       <ul class="nav__ul">
@@ -110,6 +105,7 @@
         </li>
       </ul>
     </nav>
+
     <footer class="footer">
       <ul class="footer__ul">
         <li class="footer__li">
@@ -141,6 +137,7 @@
         </li>
       </ul>
     </footer>
+
     <script type="text/javascript" src="/scripts/script.js"></script>
   </body>
 </html>

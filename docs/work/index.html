@@ -3,7 +3,7 @@
   <head>
     <!-- META TAGS -->
     <meta charset="utf-8" />
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="blog, programming" />
     <meta name="description" content="Rodolfo Moi&#x27;s work." />
@@ -27,7 +27,10 @@
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://rm-o.netlify.app/work" />
     <meta property="og:title" content="Work" />
-    <meta property="og:image" content="/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
+    <meta
+      property="og:image"
+      content="/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg"
+    />
     <meta property="og:description" content="Rodolfo Moi&#x27;s work." />
     <meta property="article:author" content="Rodolfo Mói" />
     <meta name="twitter:card" content="summary" />
@@ -35,16 +38,11 @@
     <meta name="twitter:title" content="Work" />
     <meta name="twitter:creator" content="@rodmoi" />
     <meta name="twitter:description" content="Rodolfo Moi&#x27;s work." />
-
     <title>Work</title>
 
     <!-- STYLES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&display=swap"
       rel="stylesheet"
@@ -64,121 +62,236 @@
     </header>
 
     <script>
-      const theme = localStorage.getItem('rodolfo-blog-theme');
-      if (theme === 'dark') {
-        const btn = document.getElementById('theme');
-        const body = document.getElementById('body');
-        body.setAttribute('data-theme', 'dark');
-        btn.innerText = 'light';
+      const theme = localStorage.getItem("rodolfo-blog-theme");
+      if (theme === "dark") {
+        const btn = document.getElementById("theme");
+        const body = document.getElementById("body");
+        body.setAttribute("data-theme", "dark");
+        btn.innerText = "light";
       }
     </script>
 
-    
     <section class="work">
-        <h2 class="work__title">Work</h2>
-        <p class="mark__start">&ctdot;</p>
-        
-            <p>Action is eloquence, right? Here it&#x27;s some of the action I got into:</p>
-        
-        
-            <section class="toc">
-                <p class="toc__title">Table of Content:</p>
-                <ul class="toc__ul">
-                    
-                        <li class="toc__li">
-                            <a class="toc__anchor" href="https://rm-o.netlify.app/work/#open-source">Open Source</a>
-                        </li>
-                    
-                        <li class="toc__li">
-                            <a class="toc__anchor" href="https://rm-o.netlify.app/work/#infographics">Infographics</a>
-                        </li>
-                    
-                        <li class="toc__li">
-                            <a class="toc__anchor" href="https://rm-o.netlify.app/work/#teaching">Teaching</a>
-                        </li>
-                    
-                </ul>
-            </section>
-        
-        <h3 id="open-source">Open Source</h3>
-<ul>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://crates.io/crates/funes">funes</a></li>
-<li>
-<ul>
-<li>funes is a server to mock HTTP responses.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/rodmoioliveira/myblog">rm-o</a></li>
-<li>
-<ul>
-<li>This is my blog.</li>
-</ul>
-</li>
-</ul>
-<h3 id="infographics">Infographics</h3>
-<ul>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://grafos-da-bola.netlify.app/">Football Passing Networks</a></li>
-<li>
-<ul>
-<li>An interactive web application to explore data visualizations on soccer passing networks.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://rodmoioliveira.github.io/soccer-knockout-standings/">Soccer Knockout Standings</a></li>
-<li>
-<ul>
-<li>Knockout standings implemented with a heap data structure.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://interativos.globoesporte.globo.com/futebol/materia/mata-mata-dos-campeoes-da-copa-do-mundo">Qual é o maior campeão mundial?</a></li>
-<li>
-<ul>
-<li>Mata-mata é bom, não é? De Copa do Mundo, então, melhor ainda. Agora imagina um mata-mata só com campeões mundiais?</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://interativos.globoesporte.globo.com/futebol/especial/maracana-70-anos">Maracanã 70 anos</a></li>
-<li>
-<ul>
-<li>No aniversário do estádio, faremos uma viagem ao longo das décadas que transformaram o templo do futebol em uma verdadeira casa para o torcedor.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://interativos.globoesporte.globo.com/futebol/times/flamengo/especial/ficou-marcado-na-historia">Ficou marcado na história</a></li>
-<li>
-<ul>
-<li>Nem o torcedor mais otimista imaginaria o desfecho da história do Brasileirão 2019.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/estadio-lujniki">Estádio Olímpico Lujniki</a></li>
-<li>
-<ul>
-<li>Este não é apenas mais um estádio da próxima Copa do Mundo. Principal palco da Olimpíada de 1980, sua história está repleta de memórias além do futebol.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/rota-dos-convocados">Rota dos Convocados</a></li>
-<li>
-<ul>
-<li>O técnico Tite já escolheu os 23 jogadores que vão defender a Seleção na Copa do Mundo da Rússia, em junho.</li>
-</ul>
-</li>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/toda-bola-e-quadrada">Toda Bola é Quadrada</a></li>
-<li>
-<ul>
-<li>O Globoesporte.com desmonta as bolas de todas as Copas e mostra como a tecnologia precisou voltar às origens para deixar a bola de futebol mais redonda e estável do que nunca para o Mundial de 2018.</li>
-</ul>
-</li>
-</ul>
-<h3 id="teaching">Teaching</h3>
-<ul>
-<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/rodmoioliveira/concept_maps">Concept Maps</a></li>
-<li>
-<ul>
-<li>Some concept maps that I made for teaching purposes back in the day when I was a history teacher.</li>
-</ul>
-</li>
-</ul>
+      <h2 class="work__title">Work</h2>
+      <p class="mark__start">&ctdot;</p>
 
-        <p class="mark__end">&smashp;</p>
+      <p>
+        Action is eloquence, right? Here it&#x27;s some of the action I got
+        into:
+      </p>
+
+      <section class="toc">
+        <p class="toc__title">Table of Content:</p>
+        <ul class="toc__ul">
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/work/#open-source"
+              >Open Source</a
+            >
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/work/#infographics"
+              >Infographics</a
+            >
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/work/#teaching"
+              >Teaching</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <h3 id="open-source">Open Source</h3>
+      <ul>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://crates.io/crates/funes"
+            >funes</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>funes is a server to mock HTTP responses.</li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://github.com/rodmoioliveira/myblog"
+            >rm-o</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>This is my blog.</li>
+          </ul>
+        </li>
+      </ul>
+      <h3 id="infographics">Infographics</h3>
+      <ul>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://grafos-da-bola.netlify.app/"
+            >Football Passing Networks</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              An interactive web application to explore data visualizations on
+              soccer passing networks.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://rodmoioliveira.github.io/soccer-knockout-standings/"
+            >Soccer Knockout Standings</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>Knockout standings implemented with a heap data structure.</li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://interativos.globoesporte.globo.com/futebol/materia/mata-mata-dos-campeoes-da-copa-do-mundo"
+            >Qual é o maior campeão mundial?</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              Mata-mata é bom, não é? De Copa do Mundo, então, melhor ainda.
+              Agora imagina um mata-mata só com campeões mundiais?
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://interativos.globoesporte.globo.com/futebol/especial/maracana-70-anos"
+            >Maracanã 70 anos</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              No aniversário do estádio, faremos uma viagem ao longo das décadas
+              que transformaram o templo do futebol em uma verdadeira casa para
+              o torcedor.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://interativos.globoesporte.globo.com/futebol/times/flamengo/especial/ficou-marcado-na-historia"
+            >Ficou marcado na história</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              Nem o torcedor mais otimista imaginaria o desfecho da história do
+              Brasileirão 2019.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/estadio-lujniki"
+            >Estádio Olímpico Lujniki</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              Este não é apenas mais um estádio da próxima Copa do Mundo.
+              Principal palco da Olimpíada de 1980, sua história está repleta de
+              memórias além do futebol.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/rota-dos-convocados"
+            >Rota dos Convocados</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              O técnico Tite já escolheu os 23 jogadores que vão defender a
+              Seleção na Copa do Mundo da Rússia, em junho.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://interativos.globoesporte.globo.com/futebol/copa-do-mundo/especial/toda-bola-e-quadrada"
+            >Toda Bola é Quadrada</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              O Globoesporte.com desmonta as bolas de todas as Copas e mostra
+              como a tecnologia precisou voltar às origens para deixar a bola de
+              futebol mais redonda e estável do que nunca para o Mundial de
+              2018.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3 id="teaching">Teaching</h3>
+      <ul>
+        <li>
+          <a
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            href="https://github.com/rodmoioliveira/concept_maps"
+            >Concept Maps</a
+          >
+        </li>
+        <li>
+          <ul>
+            <li>
+              Some concept maps that I made for teaching purposes back in the
+              day when I was a history teacher.
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p class="mark__end">&smashp;</p>
     </section>
-
 
     <nav class="nav">
       <ul class="nav__ul">
@@ -193,6 +306,7 @@
         </li>
       </ul>
     </nav>
+
     <footer class="footer">
       <ul class="footer__ul">
         <li class="footer__li">
@@ -224,6 +338,7 @@
         </li>
       </ul>
     </footer>
+
     <script type="text/javascript" src="/scripts/script.js"></script>
   </body>
 </html>

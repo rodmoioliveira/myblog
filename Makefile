@@ -1,7 +1,8 @@
 #!make
 
 build: ## Build blog
-	@zola build --output-dir docs
+	@zola build --output-dir docs && \
+	fd -e html --full-path './docs' | xargs npx prettier --write --loglevel=silent
 
 dev: ## Serve blog
 	@zola serve
