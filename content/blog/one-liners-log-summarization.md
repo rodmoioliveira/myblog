@@ -63,8 +63,8 @@ bat access.log -r 12345:12346 -n
 # 12346 23.101.169.3 - - [22/Jan/2019:04:45:29 +0330] "GET /image/12682/productTypeMenu HTTP/1.1" 200 11 "https://www.zanbil.ir/browse/air-conditioner-split/%DA%A9%D9%88%D9%84%D8%B1-%DA%AF%D8%A7%D8%B2%DB%8C" "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0;  Trident/5.0)" "-"
 ```
 
-You can, if you want, filter the logs by the entries that use the POST method
-and pipe the result into a file:
+You can, if you want, use the `rg` command to filter the logs by the entries
+that use the POST method and pipe the result into a file:
 
 ```sh
 rg POST access.log > post_access.log
@@ -75,8 +75,8 @@ wc -l post_access.log
 
 ### Summarizing
 
-Now is when the fun begins: summarizing the data. Let's count the HTTP methods
-most used in the first 100,000 entries:
+Now is when the fun begins: summarizing the data. Let's use `sd` to extract the
+HTTP methods most used in the first 100,000 entries:
 
 ```sh
 bat access.log -r 1:100000 | \

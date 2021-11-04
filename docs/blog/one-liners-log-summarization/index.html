@@ -256,8 +256,8 @@
 </span><span style="color:#65737e;"># 12346 23.101.169.3 - - [22/Jan/2019:04:45:29 +0330] &quot;GET /image/12682/productTypeMenu HTTP/1.1&quot; 200 11 &quot;https://www.zanbil.ir/browse/air-conditioner-split/%DA%A9%D9%88%D9%84%D8%B1-%DA%AF%D8%A7%D8%B2%DB%8C&quot; &quot;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0;  Trident/5.0)&quot; &quot;-&quot;
 </span></code></pre>
       <p>
-        You can, if you want, filter the logs by the entries that use the POST
-        method and pipe the result into a file:
+        You can, if you want, use the <code>rg</code> command to filter the logs
+        by the entries that use the POST method and pipe the result into a file:
       </p>
       <pre
         data-lang="sh"
@@ -270,8 +270,9 @@
 </span></code></pre>
       <h3 id="summarizing">Summarizing</h3>
       <p>
-        Now is when the fun begins: summarizing the data. Let's count the HTTP
-        methods most used in the first 100,000 entries:
+        Now is when the fun begins: summarizing the data. Let's use
+        <code>sd</code> to extract the HTTP methods most used in the first
+        100,000 entries:
       </p>
       <pre
         data-lang="sh"
@@ -606,6 +607,22 @@
             target="_blank"
             >ripgrep: ripgrep recursively searches directories for a regex
             pattern while respecting your gitignore</a
+          >.
+
+          <span class="reference__jornal">GitHub.</span>
+
+          <span class="reference__note">Accessed: 2021-11-26.</span>
+        </li>
+
+        <li class="reference__li">
+          <span class="reference__author" id="chmln">Chmln</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;github.com&#x2F;chmln&#x2F;sd"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >sd: Intuitive find &amp; replace CLI (sed alternative)</a
           >.
 
           <span class="reference__jornal">GitHub.</span>
