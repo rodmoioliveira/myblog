@@ -1,7 +1,8 @@
 #!make
 
 build: ## Build blog
-	@zola build --output-dir docs && \
+	@fd -e bibtex --full-path './content' | xargs npx bibtex-tidy --curly --align --sort=author,title,year --align=20 --tidy-comments --remove-empty-fields --space=2 --duplicates --no-escape && \
+	zola build --output-dir docs && \
 	fd -e html --full-path './docs' | xargs npx prettier --write --loglevel=silent
 
 dev: ## Serve blog

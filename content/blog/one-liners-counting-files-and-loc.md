@@ -4,6 +4,8 @@ description = "Sometimes it is useful to count the number of files and/or LOC a 
 date = 2021-10-25
 slug = "one-liners-counting-files-and-loc"
 draft = false
+[extra]
+references = "content/blog/one-liners-counting-files-and-loc.bibtex"
 +++
 
 Sometimes it is useful to count the number of files and/or LOC a project has.
@@ -23,3 +25,5 @@ fd -e scss | xargs wc -l | sort -n
 # count the number of files a project has.
 fd -t f | wc -l
 ```
+
+### References

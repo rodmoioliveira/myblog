@@ -4,6 +4,8 @@ description = "Let's demonstrate some useful techniques for peeking, summarizing
 date = 2021-11-27
 slug = "one-liners-log-summarization"
 draft = false
+[extra]
+references = "content/blog/one-liners-log-summarization.bibtex"
 +++
 
 We are going to use the
@@ -15,6 +17,7 @@ you must have installed in your machine:
 [fd](https://github.com/sharkdp/fd),
 [gnuplot](http://www.gnuplot.info/),
 [head](https://man7.org/linux/man-pages/man1/head.1.html),
+[rg](https://github.com/BurntSushi/ripgrep),
 [sort](https://man7.org/linux/man-pages/man1/sort.1.html),
 [tail](https://man7.org/linux/man-pages/man1/tail.1.html),
 [uniq](https://man7.org/linux/man-pages/man1/uniq.1.html) and
@@ -242,3 +245,5 @@ bat histogram_first_1000.dat | \
 ```
 
 Cool huh?
+
+### References
