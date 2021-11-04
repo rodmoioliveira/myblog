@@ -18,6 +18,7 @@
         <p class="mark__start">&ctdot;</p>
         {% include "toc.html" ignore missing %}
         {{ page.content | safe }}
+        {% include "reference.html" %}
         <p class="mark__end">&smashp;</p>
     </article>
 {% endblock content %}

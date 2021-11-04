@@ -1,5 +1,4 @@
-{% if type == "foot" %}
-<span class="reference__foot" id="{{ id }}">[{{ id }}]</span>
-{% else %}
-<a class="reference__text" href="#{{ id }}">[{{ id }}]</a>
-{% endif %}
+<blockquote class="reference__quote">
+  {{ body }}
+  <a class="reference__citationkey" href="#{{ citationKey }}">[{{ citationKey }}]</a>
+</blockquote>

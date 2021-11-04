@@ -16,7 +16,8 @@ li,
 small,
 button,
 p,
-a {
+a,
+blockquote {
   color: var(--primary-color);
 }
 
@@ -59,7 +60,8 @@ button {
   font-size: 0.8em;
 }
 
-p {
+p,
+blockquote {
   font-size: 1em;
   line-height: 1.7;
   margin: 1.2em 0;

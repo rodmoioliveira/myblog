@@ -1,0 +1,58 @@
+{% if page.extra.references %}
+{% set data = load_data(path=page.extra.references, required=false) %}
+{% if data %}
+<ul class="reference__ul">
+    {% for b in data.bibliographies | sort(attribute="entry_type") | sort(attribute="tags.author") %}
+    {% if b.entry_type == "article" or b.entry_type == "book" %}
+    <li class="reference__li">
+        {% if b.tags.author %}
+        <span class="reference__author" id={{b.citation_key}}>{{ b.tags.author }}</span>
+        {% endif %}
+        {% if b.tags.year %}
+        <span class="reference__year">({{ b.tags.year }}).</span>
+        {% endif %}
+        <a
+            class="reference__url"
+            href="{{ b.tags.url }}"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >{{ b.tags.title }}</a>.
+        {% if b.tags.journal %}
+        <span class="reference__jornal">{{ b.tags.journal }},</span>
+        {% endif %}
+        {% if b.tags.volume %}
+        <span class="reference__volume">{{ b.tags.volume }}:</span>
+        {% endif %}
+        {% if b.tags.pages %}
+        <span class="reference__pages">{{ b.tags.pages }}.</span>
+        {% endif %}
+        {% if b.tags.publisher %}
+        <span class="reference__publisher">{{ b.tags.publisher }}.</span>
+        {% endif %}
+    </li>
+    {% endif %}
+
+    {% if b.entry_type == "misc" %}
+    <li class="reference__li">
+        {% if b.tags.author %}
+        <span class="reference__author">{{ b.tags.author }}</span>
+        {% endif %}
+        {% if b.tags.year %}
+        <span class="reference__year">({{ b.tags.year }}).</span>
+        {% endif %}
+        <a
+            class="reference__url"
+            href="{{ b.tags.howpublished }}"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >{{ b.tags.title }}</a>.
+        {% if b.tags.note %}
+        <span class="reference__note">{{ b.tags.note }}.</span>
+        {% endif %}
+    </li>
+    {% endif %}
+
+    {% endfor %}
+</ul>
+{% endif %}
+{% endif %}

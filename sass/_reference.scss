@@ -1,4 +1,22 @@
-.reference__text,
-.reference__foot {
+.reference__ul {
+  list-style: disc;
+  margin: 0 !important;
+  padding: 0.3em 2em 1em !important;
+}
+.reference__li {
+  @media (max-width: 1200px) {
+    margin: 0.3em auto;
+  }
+}
+.reference__author {
   font-weight: 900;
+}
+.reference__quote {
+  padding: 0;
+  margin: 2em;
+  font-style: italic;
+}
+.reference__citationkey {
+  font-weight: 900;
+  font-style: normal;
 }
