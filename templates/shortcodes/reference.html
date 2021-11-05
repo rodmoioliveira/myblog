@@ -1,4 +1,12 @@
+{% if body %}
 <blockquote class="reference__quote">
   {{ body }}
-  <a class="reference__citationkey" href="#{{ citationKey }}">[{{ citationKey }}]</a>
+  <a class="reference__citationkey" href="#{{ citationKey }}">
+    {{ citationKey }}{% if p %}, p:{{ p }}{% endif %}
+  </a>
 </blockquote>
+{% else %}
+<a class="reference__citationkey" href="#{{ citationKey }}">
+  {{ citationKey }}{% if p %}, p:{{ p }}{% endif %}
+</a>
+{% endif %}
