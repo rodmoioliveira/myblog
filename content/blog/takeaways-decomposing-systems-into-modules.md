@@ -10,20 +10,21 @@ references = "content/blog/takeaways-decomposing-systems-into-modules.bibtex"
 
 There's a lot of discussion on why and how we should modularize our systems.
 Some provoke heated debates, often driven by personal preferences and subjective
-judgments about the right way of writing software. These, in many cases, are
+judgments about the right way of writing software which, in many cases, are
 presented as an objective truth about what is good software architecture.
 
-Often, these disagreements happen because the participants have failed to
-establish a common ground on what the process of modularization should do.
-Should simplify the code, improve the comprehensibility of the system, increase
-flexibility, speed development process, what? Sometimes the contenders engage in
-philosophical disputes about how much the things should be put together or
-separated. They are the same thing, they are related things, or they are
-separate things? Frequently, people have different opinions on that. Some people
-like to spread code across as many files as possible. Others tend to pile the
-code into a single file with thousands of lines of code. It's quite maddening.
+Disagreements normally happen because the participants have failed to establish
+a common ground on what the process of modularization should do. Should it
+simplify the code, improve the comprehensibility of the system, increase
+flexibility, speed development process, which one? Maybe all of them? Sometimes
+the contenders engage in philosophical disputes about how much things should be
+put together or separated. They are the same thing, they are related things, or
+they are separate things? Frequently, people have different opinions on that.
+Some people like to spread code across as many files as possible. Others tend to
+pile the code into a single file with thousands of lines of code. It's quite
+maddening.
 
-Hopefully, some bright people wrote good advice on the matter. The seminal
+Thankfully, some bright people wrote good advice on the matter. The seminal
 article [On the Criteria To Be Used in Decomposing Systems into
 Modules](https://doi.org/10.1145/361598.361623) from 1972, written by [David
 Lorge Parnas](https://en.wikipedia.org/wiki/David_Parnas), is a must-read and
@@ -45,21 +46,21 @@ better designed because it is better understood.
 
 ### Keyword In Context Indexes
 
-[H. P. Luhn](https://en.wikipedia.org/wiki/Hans_Peter_Luhn) and his colleges at
-IBM, striving for a speedy method of organizing specialized indexes to technical
-literature, proposed the utilization of keyword-in-context
+[H. P. Luhn](https://en.wikipedia.org/wiki/Hans_Peter_Luhn) and his colleagues
+at IBM, striving for a speedy method of organizing specialized indexes to
+technical literature, proposed the utilization of keyword-in-context
 ([KWIC](https://en.wikipedia.org/wiki/Key_Word_in_Context)) indexes in 1960. The
 idea was to improve the dissemination and retrieval of information among
 scientists and researchers. The broadcast of new information should be fast to
-diminish its perishable nature, and the KWIC method could readily be provided by
+mitigate its perishable nature, and the KWIC method could readily be provided by
 automatic processing. {{ reference(citationKey="Luhn1960", p="159-161") }}
 
 The KWIC is an index of selected keywords listed with their surrounding words in
-alphabetical order. KWIC indexing is grounded on three principles: (1) that
-titles are generally informative; (2) that the keywords selected from the title
-can guide the researcher to a publication likely to contain the desired
-information; and (3) that although the meaning of an isolated word may be
-ambiguous, the context surrounding the word aids to explain its meaning. {{
+alphabetical order. KWIC indexing is grounded on three principles: (1) titles
+are generally informative; (2) the keywords selected from the title can guide
+the researcher to a publication likely to contain the desired information; and
+(3) although the meaning of an isolated keyword may be ambiguous, the context
+words surrounding it aids to explain its meaning. {{
 reference(citationKey="Riaz1982", p="41") }}. Here is how a KWIC index is
 generated:
 
@@ -81,43 +82,38 @@ keywords assume a fixed position within the extracted portions and by arranging
 these portions in alphabetic order of the keywords, the KWIC Index is generated.
 {% end %}
 
-
-[input and output](https://users.cs.duke.edu/~ola/ipc/kwic.html)
+To produce a KWIC index, we must define a list of non-significant words and a
+list of titles. Let's present an example for clarification's sake. For instance,
+the following input:
 
 ```text
-# Sample Input
+IGNORE
+on, the, to, be, in, into, and, used, for
+--
+TITLES
+On the Criteria to Be Used in Decomposing Systems into Modules
+Advanced Indexing and Abstracting Practices
+Keyword-in-context index for technical literature (kwic index)
+```
 
-is
-the
-of
-and
-as
-a
-but
-::
-Descent of Man
-The Ascent of Man
-The Old Man and The Sea
-A Portrait of The Artist As a Young Man
-A Man is a Man but Bubblesort IS A DOG
+Might produce the following KWIC index:
 
-# Sample Output
-
-a portrait of the ARTIST as a young man
-the ASCENT of man
-a man is a man but BUBBLESORT is a dog
-DESCENT of man
-a man is a man but bubblesort is a DOG
-descent of MAN
-the ascent of MAN
-the old MAN and the sea
-a portrait of the artist as a young MAN
-a MAN is a man but bubblesort is a dog
-a man is a MAN but bubblesort is a dog
-the OLD man and the sea
-a PORTRAIT of the artist as a young man
-the old man and the SEA
-a portrait of the artist as a YOUNG man
+```text
+ABSTRACTING     Advanced Indexing and ABSTRACTING Practices
+ADVANCED        ADVANCED Indexing and Abstracting Practices
+CONTEXT         Keyword-in-CONTEXT index for technical literature (kwic index)
+CRITERIA        On the CRITERIA to Be Used in Decomposing Systems into Modules
+DECOMPOSING     On the Criteria to Be Used in DECOMPOSING Systems into Modules
+INDEX           Keyword-in-context INDEX for technical literature (kwic index)
+INDEX           Keyword-in-context index for technical literature (kwic INDEX)
+INDEXING        Advanced INDEXING and Abstracting Practices
+KEYWORD         KEYWORD-in-context index for technical literature (kwic index)
+KWIC            Keyword-in-context index for technical literature (KWIC index)
+LITERATURE      Keyword-in-context index for technical LITERATURE (kwic index)
+MODULES         On the Criteria to Be Used in Decomposing Systems into MODULES
+PRACTICES       Advanced Indexing and Abstracting PRACTICES
+SYSTEMS         On the Criteria to Be Used in Decomposing SYSTEMS into Modules
+TECHNICAL       Keyword-in-context index for TECHNICAL literature (kwic index)
 ```
 
 ### Two decomposition examples

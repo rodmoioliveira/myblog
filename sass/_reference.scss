@@ -13,8 +13,12 @@
 }
 .reference__quote {
   padding: 0;
-  margin: 2em;
+  margin: 2em 0em 2em 2em;
   font-style: italic;
+
+  @media (max-width: 1200px) {
+    margin: 2em auto;
+  }
 }
 .reference__citationkey {
   font-weight: 900;
