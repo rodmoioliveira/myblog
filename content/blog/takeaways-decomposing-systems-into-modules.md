@@ -83,8 +83,8 @@ these portions in alphabetic order of the keywords, the KWIC Index is generated.
 {% end %}
 
 To produce a KWIC index, we must define a list of non-significant words and a
-list of titles. Let's present an example for clarification's sake. For instance,
-the following input:
+list of titles. Let's introduce an example for clarification's sake. For
+instance, the following input:
 
 ```text
 IGNORE
