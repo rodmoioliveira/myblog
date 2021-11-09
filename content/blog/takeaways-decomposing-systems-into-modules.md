@@ -44,19 +44,18 @@ to study the system one module at a time. The whole system can therefore be
 better designed because it is better understood.
 {% end %}
 
-Whether of not these benefits are obtained is dependent upon the criteria used
-in dividing the system into modules. The process of deciding on how to slice the
-system into different parts is called *modularization*.
+Whether of not these benefits can be harvested is dependent upon the criteria
+used in dividing the system into modules. The process of deciding on how to
+slice the system into different parts is called *modularization*.
 
 ### Modularizations are not modules
 
-*Modularization* is defined as high-level description of a responsibility
-assignment and not a subprogram. It consists of all the design decisions that
-had to be made before the work on a module could begin. Two approaches were
-introduced for the modularization process: the first one represents the
-functional decomposition approach, with is the more common one; the second
-represents the information hiding approach. A KWIC Index Production System was
-the toy problem chosen to illustrate the modularization process.
+*Modularization* is a process that consists of all the design decisions that had
+to be made before the work on a module can begin. In the article, two approaches
+were introduced for the modularization process: the first one represents the
+functional approach, with is the more common one; the second represents the
+information hiding approach. A KWIC Index Production System was chosen as toy
+problem to illustrate the modularization process.
 
 ### Keyword In Context Indexes
 
