@@ -17,6 +17,8 @@ intro = "Here are many things that I do not know because I bookmarked a link and
 - - CTO and co-founder of Oxide Computer Company.
 - [Cliff L. Biffle](http://cliffle.com/)
 - - Top notch Rust content.
+- [Jessie Frazelle](https://blog.jessfraz.com/)
+- - Co-Founder and Chief Product Officer at Oxide Computer.
 - [Piotr Kołaczkowski](https://pkolaczk.github.io)
 - - Blog on programming, optimization and performance analysis.
 
