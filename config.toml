@@ -10,3 +10,5 @@ external_links_no_follow = true
 external_links_no_referrer =true
 
 [extra]
+katex_enable = true
+katex_auto_render = true

@@ -1,5 +1,5 @@
 +++
-title = "Takeaways: Decomposing Systems into Modules "
+title = "Takeaways: Decomposing Systems into Modules"
 description = ""
 date = 2021-11-30
 slug = "takeaways-decompose-systems-into-modules"
