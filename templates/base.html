@@ -27,7 +27,7 @@
         <meta property="og:type" content="page" />
         <meta property="og:url" content="{% block og_url %}{% endblock %}" />
         <meta property="og:title" content="{% block og_title %}{% endblock %}" />
-        <meta property="og:image" content="/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
+        <meta property="og:image" content="{{ config.base_url | safe }}images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg" />
         <meta property="og:description" content="{% block og_description %}{% endblock %}" />
         <meta property="article:author" content="Rodolfo Mói" />
         <meta name="twitter:card" content="summary" />
