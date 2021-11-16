@@ -58,7 +58,7 @@ func (s Set) ToString() string {
 }
 ```
 
-Now we can instantiate a new set and print its string representation like this:
+Now we can instantiate a new set and print its elements like this:
 
 ```go
 set := coll.MakeSet("cat", "cat", "frog", "dog", "cow")
@@ -101,14 +101,15 @@ Easy peasy. Let's move on to other important set operations.
 
 ### Union
 
-The union of sets \\( A \\) and \\( B \\), denoted \\( A \cup B \\), includes
-exactly the elements appearing in \\( A \\) or \\( B \\) or both. And could be
-defined in [set builder
+The union of sets \\( A \\) and \\( B \\), denoted by the expression \\( A \cup
+B \\), includes exactly the elements appearing in \\( A \\) or \\( B \\) or
+both. And could be written in [set builder
 notation](https://www.mathsisfun.com/sets/set-builder-notation.html) as:
 
-\\[ A \cup B = \\\{x \in U \ | \  x \in A \ \lor \  x \in B\\\} \\]
+\\[ A \cup B = \\\{x : x \in A \ \text{or} \  x \in B\\\} \\]
 
-Let's write an `Union` method for the `Set` type to compute the union of two sets:
+Let's create an `Union` method for the `Set` type to compute the union of two
+sets:
 
 ```go
 // Union returns the set of values that are in s or in other,
@@ -145,14 +146,14 @@ All good so far.
 
 ### Intersection
 
-The intersection of \\( A \\) and \\( B \\), denoted \\( A \cap B \\), consists
-of all elements that appear in both \\( A \\) and \\( B \\). And could be
-defined is set builder notation as:
+The intersection of \\( A \\) and \\( B \\), denoted by the expression \\( A
+\cap B \\), consists of all elements that appear in both \\( A \\) and \\( B
+\\). And could be written in set builder notation as:
 
-\\[ A \cap B = \\\{x \in U \ | \ x \in A\ \land x \in B\\\} \\]
+\\[ A \cap B = \\\{x : x \in A\ \text{and} \ x \in B\\\} \\]
 
-Let's write an `Intersection` method for the `Set` type to yield the elements of
-the intersection of two sets:
+Let's implement an `Intersection` method for the `Set` type to yield the
+elements of the intersection of two sets:
 
 ```go
 // Intersection returns the set of values that are both in s and other.
@@ -182,36 +183,18 @@ fmt.Println(I.ToString())
 // {cat}
 ```
 
-### Subset
-
-{% katex(block=true) %}
-$$ \text{(definition)}\ \newline A \subseteq B \iff A \cap B=A. $$
-$$ \text{(example)}\    \newline \{ 1,2 \} \subseteq \{ 1,2,3 \} $$
-{% end %}
-
-```go
-// SubsetOf returns true if s is a subset of other.
-func (s Set) SubsetOf(other Set) bool {
-	if s.Size() > other.Size() {
-		return false
-	}
-
-	for k := range s {
-		if _, exists := other[k]; !exists {
-			return false
-		}
-	}
-
-	return true
-}
-```
+It works just as expected.
 
 ### Difference
 
-{% katex(block=true) %}
-$$ \text{(definition)}\ \newline A \setminus B = \{x \, |\, x \in A\, \land x \notin B\} $$
-$$ \text{(example)}\    \newline \{ 1,2,3 \} \setminus \{ 3,4,5 \} = \{1,2\} $$
-{% end %}
+The difference of \\( A \\) and \\( B \\), denoted by the expression \\( A
+\setminus B \\), consists of all elements that appear in \\( A \\) but not in
+\\( B \\). And could be written in set builder notation as:
+
+\\[ A \setminus B = \\\{x : x \in A\ \text{and} \ x \notin B \\\} \\]
+
+Let's write a `Difference` method for the `Set` type to compute the difference
+between two sets:
 
 ```go
 // Difference returns the set of values that are in s but not in other.
@@ -227,6 +210,22 @@ func (s Set) Difference(other Set) (set Set) {
 	return
 }
 ```
+
+The result of the difference of the sets \\( A = \\\{ cat, dog, cow \\\} \\) and
+\\( B = \\\{ cat, duck, bull \\\} \\) can be defined as \\( A \setminus B =
+\\\{dog,cow \\\} \\). Let's check if out code is correct:
+
+
+```go
+A := coll.MakeSet("cat", "dog", "cow")
+B := coll.MakeSet("cat", "duck", "bull")
+
+D := A.Difference(B)
+fmt.Println(D.ToString())
+// {dog,cow}
+```
+
+Perfect.
 
 ### Symmetric Difference
 
@@ -256,6 +255,31 @@ func (s Set) SymmetricDifference(other Set) (set Set) {
 	return
 }
 ```
+
+### Subset
+
+{% katex(block=true) %}
+$$ \text{(definition)}\ \newline A \subseteq B \iff A \cap B=A. $$
+$$ \text{(example)}\    \newline \{ 1,2 \} \subseteq \{ 1,2,3 \} $$
+{% end %}
+
+```go
+// SubsetOf returns true if s is a subset of other.
+func (s Set) SubsetOf(other Set) bool {
+	if s.Size() > other.Size() {
+		return false
+	}
+
+	for k := range s {
+		if _, exists := other[k]; !exists {
+			return false
+		}
+	}
+
+	return true
+}
+```
+
 
 * [wikipedia](https://en.wikipedia.org/wiki/Set_(mathematics))
 * [set builder notation](https://www.mathsisfun.com/sets/set-builder-notation.html)
