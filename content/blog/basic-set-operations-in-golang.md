@@ -10,70 +10,69 @@ references = "content/blog/basic-set-operations-in-golang.bibtex"
 
 ### What are sets?
 
-In mathematics, a set is a collection of elements. The conventional way to write
-down a set is to list the elements inside curly-braces, like this \\( \\\{ 1,2,3
-\\\} \\). The elements inside a set should only appear once, because any element
-is either in the set or not. Also, the order of the elements inside a
-set is meaningless, so \\( \\\{ 1,2 \\\} \\) and \\( \\\{ 2,1 \\\} \\) are the
-same set written two different ways.
+In mathematics, a set is a collection of unique and unsorted elements. The
+conventional way to write down a set is to list the elements inside
+curly-braces, like this \\( \\\{ 1,2,3 \\\} \\). The elements inside a set
+should only appear once, because any element is either in the set or not. This
+mean that the set \\( \\\{ dog, dog, cat \\\} \\) and \\( \\\{ dog, cat \\\} \\)
+are equal. Also, the order of the elements inside a set is meaningless, so \\(
+\\\{ a,b,c \\\} \\) and \\( \\\{ c,b,a \\\} \\) are the same set written in two
+different ways.
+
+Sets are a fundamental mathematical construct and serve as a handy data
+structure when writing computer programs. In some languages, they are
+implemented by default which it's quite nice. But in others, like Go, you have
+to implement yourself.
 
 ### Abstract Data Type
 
 Sets, as an [abstract data
-type](https://en.wikipedia.org/wiki/Abstract_data_type), are a missing feature in
-the Go language, but they can be easily implemented using
+type](https://en.wikipedia.org/wiki/Abstract_data_type), are a missing feature
+in the Go language, but they can be easily implemented using
 [maps](https://tour.golang.org/moretypes/19). Let's implement the `Set` type
-with two methods: `MakeSet` to create new sets and, `ToString` to print its
-string representation:
+with three methods: `MakeSet` to create new sets, `Size` to get the set's
+cardinality and, `ToString` to print its string representation:
 
 ```go
 type (
-	// SetItem represent a item present in a Set.
 	SetItem interface{}
-	// SetSlice is a slice of items present in a Set.
 	SetSlice []SetItem
-	// Set is just a set.
 	Set map[SetItem]membership
-
 	membership struct{}
 )
 
-// MakeSet creates a new Set.
 func MakeSet(si ...SetItem) (s Set) {
 	s = make(map[SetItem]membership)
 	for _, v := range si {
 		s[v] = membership{}
 	}
-
 	return
 }
 
-// Size returns the set's cardinality.
 func (s Set) Size() int {
 	return len(s)
 }
 
-// ToString returns a string representation
-// of the set in arbitrary order.
 func (s Set) ToString() string {
 	r := make([]string, 0, s.Size())
 	for k := range s {
 		r = append(r, fmt.Sprintf("%v", k))
 	}
-
 	return fmt.Sprintf("{%v}", strings.Join(r, ","))
 }
 ```
 
-Now we can create a new set and print its elements like this:
+Now that we have a minimal implementation for the `Set` type, we can create a
+new set and print its elements like this:
 
 ```go
 set := MakeSet("cat", "cat", "frog", "dog", "cow")
 fmt.Println(set.ToString()) // {frog,dog,cow,cat}
+fmt.Println(set.ToString()) // {dog,cow,cat,frog}
 ```
 
 As you can see, all the duplicate elements were remove from the set, and its
-elements are printed out inside curly-braces.
+elements are printed out inside curly-braces in arbitrary order.
 
 ### Basic set operations
 
@@ -110,13 +109,13 @@ ok = set.Contains("buffalo")
 fmt.Println(ok) // false
 ```
 
-Easy peasy. Let's move on to other important set operations.
+Easy peasy, let's continue.
 
 #### Union
 
 The union of sets \\( A \\) and \\( B \\), denoted by the expression \\( A \cup
 B \\), is the set that includes exactly the elements appearing in \\( A \\) or
-\\( B \\) or both. And could be written in [set builder
+\\( B \\) or both. This could be written in [set builder
 notation](https://www.mathsisfun.com/sets/set-builder-notation.html) as:
 
 \\[ A \cup B = \\\{x : x \in A \ \text{or} \  x \in B\\\} \\]
@@ -195,11 +194,12 @@ fmt.Println(I.ToString())
 
 It works just as expected.
 
-#### Difference
+#### Difference and Complement
 
-The difference of \\( A \\) and \\( B \\), denoted by the expression \\( A
-\setminus B \\), is a set of all elements that appear in \\( A \\) but not in
-\\( B \\). And could be written in set builder notation as:
+The difference of \\( A \\) and \\( B \\), or the complement of \\( B \\) in \\(
+A \\), denoted by the expression \\( A \setminus B \\), is a set of all elements
+that appear in \\( A \\) but not in \\( B \\). And could be written in set
+builder notation as:
 
 \\[ A \setminus B = \\\{x : x \in A\ \text{and} \ x \notin B \\\} \\]
 
@@ -222,7 +222,7 @@ func (s Set) Difference(other Set) (set Set) {
 
 The result of the difference of the sets \\( A = \\\{ cat, dog, cow \\\} \\) and
 \\( B = \\\{ cat, duck, bull \\\} \\) can be written as \\( A \setminus B =
-\\\{dog,cow \\\} \\). Let's check if out code is correct:
+\\\{dog,cow \\\} \\). Let's check if our code is correct:
 
 
 ```go
@@ -306,7 +306,7 @@ func (s Set) SubsetOf(other Set) bool {
 }
 ```
 
-The for the sets \\( A = \\\{ cat, dog, cow \\\} \\) and \\( B = \\\{ cat, dog
+For the sets \\( A = \\\{ cat, dog, cow \\\} \\) and \\( B = \\\{ cat, dog
 \\\} \\), we can assert that \\( B \subseteq A \\) is \\( true \\), but \\( A
 \subseteq B \\) is \\( false \\). Let's test it:
 
@@ -320,11 +320,10 @@ fmt.Println(A.SubsetOf(B)) // false
 
 ### Set Identities
 
-There are many set equalities involving the operations of union, intersection,
-and difference that are true for all subsets of any given set. Because they are
-independent of the particular subsets used, these equalities are called set
-identities. Some basic set identities follow. The set \\( A \\), \\( B\\), \\( C
-\\) below are subsets of a universal set \\( U \\).
+Sets have some properties that hold true for all subsets of any given set. These
+properties are called set identities and are presented down below. In the
+examples, consider that the set \\( A \\), \\( B\\), \\( C \\) are subsets of an
+universal set \\( U \\).
 
 #### Identity
 
