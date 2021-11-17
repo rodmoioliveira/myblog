@@ -4,6 +4,8 @@ description = ""
 date = 2021-11-30
 slug = "basic-set-operations-in-golang"
 draft = true
+[extra]
+references = "content/blog/basic-set-operations-in-golang.bibtex"
 +++
 
 ### What are sets?
@@ -46,6 +48,11 @@ func MakeSet(si ...SetItem) (s Set) {
 	return
 }
 
+// Size returns the set's cardinality.
+func (s Set) Size() int {
+	return len(s)
+}
+
 // ToString returns a string representation
 // of the set in arbitrary order.
 func (s Set) ToString() string {
@@ -58,10 +65,10 @@ func (s Set) ToString() string {
 }
 ```
 
-Now we can instantiate a new set and print its elements like this:
+Now we can create a new set and print its elements like this:
 
 ```go
-set := coll.MakeSet("cat", "cat", "frog", "dog", "cow")
+set := MakeSet("cat", "cat", "frog", "dog", "cow")
 fmt.Println(set.ToString()) // {frog,dog,cow,cat}
 ```
 
@@ -85,10 +92,10 @@ func (s Set) Contains(si SetItem) (ok bool) {
 }
 ```
 
-Now let's create a new set and test for membership:
+Now let's build a new set and test for membership:
 
 ```go
-set := coll.MakeSet("cat", "dog", "cow")
+set := MakeSet("cat", "dog", "cow")
 
 ok := set.Contains("cat")
 fmt.Println(ok) // true
@@ -102,8 +109,8 @@ Easy peasy. Let's move on to other important set operations.
 ### Union
 
 The union of sets \\( A \\) and \\( B \\), denoted by the expression \\( A \cup
-B \\), includes exactly the elements appearing in \\( A \\) or \\( B \\) or
-both. And could be written in [set builder
+B \\), is the set that includes exactly the elements appearing in \\( A \\) or
+\\( B \\) or both. And could be written in [set builder
 notation](https://www.mathsisfun.com/sets/set-builder-notation.html) as:
 
 \\[ A \cup B = \\\{x : x \in A \ \text{or} \  x \in B\\\} \\]
@@ -130,12 +137,12 @@ func (s Set) Union(other Set) (set Set) {
 ```
 
 The result of the union of two sets \\( A = \\\{ cat, dog, cow \\\} \\) and \\(
-B = \\\{ cat, duck, bull \\\} \\) can be defined as \\( A \cup B = \\\{
+B = \\\{ cat, duck, bull \\\} \\) can be expressed as \\( A \cup B = \\\{
 cat,dog,cow,duck,bull \\\} \\). Let's test our implementation:
 
 ```go
-A := coll.MakeSet("cat", "dog", "cow")
-B := coll.MakeSet("cat", "duck", "bull")
+A := MakeSet("cat", "dog", "cow")
+B := MakeSet("cat", "duck", "bull")
 
 U := A.Union(B)
 fmt.Println(U.ToString())
@@ -147,7 +154,7 @@ All good so far.
 ### Intersection
 
 The intersection of \\( A \\) and \\( B \\), denoted by the expression \\( A
-\cap B \\), consists of all elements that appear in both \\( A \\) and \\( B
+\cap B \\), is a set of all elements that appear in both \\( A \\) and \\( B
 \\). And could be written in set builder notation as:
 
 \\[ A \cap B = \\\{x : x \in A\ \text{and} \ x \in B\\\} \\]
@@ -171,12 +178,12 @@ func (s Set) Intersection(other Set) (set Set) {
 ```
 
 The result of the intersection of the sets \\( A = \\\{ cat, dog, cow \\\} \\)
-and \\( B = \\\{ cat, duck, bull \\\} \\) can be defined as \\( A \cap B = \\\{
+and \\( B = \\\{ cat, duck, bull \\\} \\) can be presented as \\( A \cap B = \\\{
 cat \\\} \\). In our Go code, this operation is expressed as:
 
 ```go
-A := coll.MakeSet("cat", "dog", "cow")
-B := coll.MakeSet("cat", "duck", "bull")
+A := MakeSet("cat", "dog", "cow")
+B := MakeSet("cat", "duck", "bull")
 
 I := A.Intersection(B)
 fmt.Println(I.ToString())
@@ -188,7 +195,7 @@ It works just as expected.
 ### Difference
 
 The difference of \\( A \\) and \\( B \\), denoted by the expression \\( A
-\setminus B \\), consists of all elements that appear in \\( A \\) but not in
+\setminus B \\), is a set of all elements that appear in \\( A \\) but not in
 \\( B \\). And could be written in set builder notation as:
 
 \\[ A \setminus B = \\\{x : x \in A\ \text{and} \ x \notin B \\\} \\]
@@ -212,13 +219,13 @@ func (s Set) Difference(other Set) (set Set) {
 ```
 
 The result of the difference of the sets \\( A = \\\{ cat, dog, cow \\\} \\) and
-\\( B = \\\{ cat, duck, bull \\\} \\) can be defined as \\( A \setminus B =
+\\( B = \\\{ cat, duck, bull \\\} \\) can be written as \\( A \setminus B =
 \\\{dog,cow \\\} \\). Let's check if out code is correct:
 
 
 ```go
-A := coll.MakeSet("cat", "dog", "cow")
-B := coll.MakeSet("cat", "duck", "bull")
+A := MakeSet("cat", "dog", "cow")
+B := MakeSet("cat", "duck", "bull")
 
 D := A.Difference(B)
 fmt.Println(D.ToString())
@@ -229,10 +236,14 @@ Perfect.
 
 ### Symmetric Difference
 
-{% katex(block=true) %}
-$$ \text{(definition)}\ \newline A \triangle B = (A \setminus B) \cup (B \setminus A) $$
-$$ \text{(example)}\    \newline \{ 1,2,3 \} \triangle \{ 3,4,5 \} = \{1,2,4,5\} $$
-{% end %}
+The symmetric difference of \\( A \\) and \\( B \\), denoted by the expression
+\\( A \triangle B \\), is a set of all elements that appear in \\( A \\) or in
+\\( B \\) but not in both. And could be written in set builder notation as:
+
+\\[ A \triangle B = \\\{ x : x \in A \setminus B \text{ or} \in B \setminus A \\\} \\]
+
+Let's write a `SymmetricDifference` method for the `Set` type to compute the
+symmetric difference between two sets:
 
 ```go
 // SymmetricDifference returns the set of values that are in s or in other but
@@ -256,12 +267,28 @@ func (s Set) SymmetricDifference(other Set) (set Set) {
 }
 ```
 
+The result of the symmetric difference of the sets \\( A = \\\{ cat, dog, cow
+\\\} \\) and \\( B = \\\{ cat, duck, bull \\\} \\) can be defined as \\( A
+\triangle B = \\\{ dog, cow, duck, bull \\\} \\). Let's try it in our code:
+
+```go
+A := MakeSet("cat", "dog", "cow")
+B := MakeSet("cat", "duck", "bull")
+
+SD := A.SymmetricDifference(B)
+fmt.Println(SD.ToString())
+// {dog,cow,duck,bull}
+```
+
+Nice.
+
 ### Subset
 
-{% katex(block=true) %}
-$$ \text{(definition)}\ \newline A \subseteq B \iff A \cap B=A. $$
-$$ \text{(example)}\    \newline \{ 1,2 \} \subseteq \{ 1,2,3 \} $$
-{% end %}
+The expression \\( A \subseteq B \\) indicates that set A is a subset of set B,
+which means that every element of A is also an element of B. This could be
+written as:
+
+\\[ A \subseteq B \iff A \cap B = A \\]
 
 ```go
 // SubsetOf returns true if s is a subset of other.
@@ -280,11 +307,23 @@ func (s Set) SubsetOf(other Set) bool {
 }
 ```
 
+The for the sets \\( A = \\\{ cat, dog, cow \\\} \\) and \\( B = \\\{ cat, dog
+\\\} \\), we can assert that \\( B \subseteq A \\) is \\( true \\), but \\( A
+\subseteq B \\) is \\( false \\). Let's test it:
 
-* [wikipedia](https://en.wikipedia.org/wiki/Set_(mathematics))
-* [set builder notation](https://www.mathsisfun.com/sets/set-builder-notation.html)
-* [katex](https://katex.org/docs/supported.html)
-* [katex suport table](https://katex.org/docs/support_table.html)
-* [List of LaTeX mathematical symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols#Set_and.2For_logic_notation)
-* [symmetric-difference](https://www.landonlehman.com/post/symmetric-difference/)
+```go
+A := MakeSet("cat", "dog", "cow")
+B := MakeSet("cat", "dog")
 
+fmt.Println(B.SubsetOf(A)) // true
+fmt.Println(A.SubsetOf(B)) // false
+```
+
+> * [wikipedia](https://en.wikipedia.org/wiki/Set_(mathematics))
+> * [set builder notation](https://www.mathsisfun.com/sets/set-builder-notation.html)
+> * [katex](https://katex.org/docs/supported.html)
+> * [katex suport table](https://katex.org/docs/support_table.html)
+> * [List of LaTeX mathematical symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols#Set_and.2For_logic_notation)
+> * [symmetric-difference](https://www.landonlehman.com/post/symmetric-difference/)
+
+### References
