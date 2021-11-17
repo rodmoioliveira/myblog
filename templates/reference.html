@@ -32,6 +32,9 @@
         {% if b.tags.publisher %}
         <span class="reference__publisher">{{ b.tags.publisher }}.</span>
         {% endif %}
+        {% if b.tags.urldate %}
+        <span class="reference__urldate">Accessed: {{ b.tags.urldate }}.</span>
+        {% endif %}
         {% if b.tags.note %}
         <span class="reference__note">{{ b.tags.note }}.</span>
         {% endif %}
