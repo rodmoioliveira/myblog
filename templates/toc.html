@@ -7,6 +7,17 @@
       <a class="toc__anchor" href="{{ h3.permalink | safe }}">{{
         h3.title
       }}</a>
+      {% if h3.children %}
+      <ul class="toc__ul">
+        {% for h4 in h3.children %}
+        <li class="toc__li">
+          <a class="toc__anchor" href="{{ h4.permalink | safe }}">{{
+            h4.title
+          }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>

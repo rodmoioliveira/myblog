@@ -75,7 +75,14 @@ fmt.Println(set.ToString()) // {frog,dog,cow,cat}
 As you can see, all the duplicate elements were remove from the set, and its
 elements are printed out inside curly-braces.
 
-### Membership
+### Basic set operations
+
+We are going to implement some basic set operation in Golang, like: *membership
+assertion*, *union*, *intersection*, *difference*, *symmetric difference* and *subset
+assertion*. Besides that, we'll provide the mathematical definition and formula for each
+one of these operations to better understand them.
+
+#### Membership
 
 The most simple set operation is to assert element membership. The expression
 \\( e \in A \\) asserts that \\(e\\) is an element of the set \\(A\\). The
@@ -84,7 +91,6 @@ expression \\(y \notin A \\) means that \\(y\\) is not an element of the set
 any given element belong to it:
 
 ```go
-// Contains returns true if the set contains a value.
 func (s Set) Contains(si SetItem) (ok bool) {
 	_, ok = s[si]
 
@@ -106,7 +112,7 @@ fmt.Println(ok) // false
 
 Easy peasy. Let's move on to other important set operations.
 
-### Union
+#### Union
 
 The union of sets \\( A \\) and \\( B \\), denoted by the expression \\( A \cup
 B \\), is the set that includes exactly the elements appearing in \\( A \\) or
@@ -119,8 +125,6 @@ Let's create an `Union` method for the `Set` type to compute the union of two
 sets:
 
 ```go
-// Union returns the set of values that are in s or in other,
-// without duplicates.
 func (s Set) Union(other Set) (set Set) {
 	set = MakeSet()
 
@@ -151,7 +155,7 @@ fmt.Println(U.ToString())
 
 All good so far.
 
-### Intersection
+#### Intersection
 
 The intersection of \\( A \\) and \\( B \\), denoted by the expression \\( A
 \cap B \\), is a set of all elements that appear in both \\( A \\) and \\( B
@@ -163,7 +167,6 @@ Let's implement an `Intersection` method for the `Set` type to yield the
 elements of the intersection of two sets:
 
 ```go
-// Intersection returns the set of values that are both in s and other.
 func (s Set) Intersection(other Set) (set Set) {
 	set = MakeSet()
 
@@ -192,7 +195,7 @@ fmt.Println(I.ToString())
 
 It works just as expected.
 
-### Difference
+#### Difference
 
 The difference of \\( A \\) and \\( B \\), denoted by the expression \\( A
 \setminus B \\), is a set of all elements that appear in \\( A \\) but not in
@@ -204,7 +207,6 @@ Let's write a `Difference` method for the `Set` type to compute the difference
 between two sets:
 
 ```go
-// Difference returns the set of values that are in s but not in other.
 func (s Set) Difference(other Set) (set Set) {
 	set = MakeSet()
 
@@ -234,20 +236,18 @@ fmt.Println(D.ToString())
 
 Perfect.
 
-### Symmetric Difference
+#### Symmetric Difference
 
 The symmetric difference of \\( A \\) and \\( B \\), denoted by the expression
-\\( A \triangle B \\), is a set of all elements that appear in \\( A \\) or in
+\\( A \ominus B \\), is a set of all elements that appear in \\( A \\) or in
 \\( B \\) but not in both. And could be written in set builder notation as:
 
-\\[ A \triangle B = \\\{ x : x \in A \setminus B \text{ or} \in B \setminus A \\\} \\]
+\\[ A \ominus B = \\\{ x : x \in A \setminus B \text{ or} \in B \setminus A \\\} \\]
 
 Let's write a `SymmetricDifference` method for the `Set` type to compute the
 symmetric difference between two sets:
 
 ```go
-// SymmetricDifference returns the set of values that are in s or in other but
-// not in both.
 func (s Set) SymmetricDifference(other Set) (set Set) {
 	set = MakeSet()
 
@@ -269,7 +269,7 @@ func (s Set) SymmetricDifference(other Set) (set Set) {
 
 The result of the symmetric difference of the sets \\( A = \\\{ cat, dog, cow
 \\\} \\) and \\( B = \\\{ cat, duck, bull \\\} \\) can be defined as \\( A
-\triangle B = \\\{ dog, cow, duck, bull \\\} \\). Let's try it in our code:
+\ominus B = \\\{ dog, cow, duck, bull \\\} \\). Let's try it in our code:
 
 ```go
 A := MakeSet("cat", "dog", "cow")
@@ -282,16 +282,15 @@ fmt.Println(SD.ToString())
 
 Nice.
 
-### Subset
+#### Subset
 
-The expression \\( A \subseteq B \\) indicates that set A is a subset of set B,
-which means that every element of A is also an element of B. This could be
-written as:
+The expression \\( A \subseteq B \\) indicates that set \\( A \\) is a subset of
+set \\( B \\), which means that every element of \\( A \\) is also an element of
+\\( B \\). This could be written as:
 
 \\[ A \subseteq B \iff A \cap B = A \\]
 
 ```go
-// SubsetOf returns true if s is a subset of other.
 func (s Set) SubsetOf(other Set) bool {
 	if s.Size() > other.Size() {
 		return false
@@ -319,11 +318,63 @@ fmt.Println(B.SubsetOf(A)) // true
 fmt.Println(A.SubsetOf(B)) // false
 ```
 
-> * [wikipedia](https://en.wikipedia.org/wiki/Set_(mathematics))
-> * [set builder notation](https://www.mathsisfun.com/sets/set-builder-notation.html)
-> * [katex](https://katex.org/docs/supported.html)
-> * [katex suport table](https://katex.org/docs/support_table.html)
-> * [List of LaTeX mathematical symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols#Set_and.2For_logic_notation)
-> * [symmetric-difference](https://www.landonlehman.com/post/symmetric-difference/)
+### Set Identities
+
+There are many set equalities involving the operations of union, intersection,
+and difference that are true for all subsets of any given set. Because they are
+independent of the particular subsets used, these equalities are called set
+identities. Some basic set identities follow. The set \\( A \\), \\( B\\), \\( C
+\\) below are subsets of a universal set \\( U \\).
+
+#### Identity
+
+\\( A \cup \varnothing = A \newline A \cap U = A \\)
+
+#### Idempotent
+
+\\( A \cup A = A \newline A \cap A = A \\)
+
+#### Complement
+
+\\( A \cup {A^c} = U \newline A \cap {A^c} = \varnothing \newline
+{U^c} = \varnothing \newline {\varnothing^c} = U \\)
+
+#### Double Complement
+
+\\( {\left( {{A^c}} \right)^c} = A \\)
+
+#### Commutative
+
+A binary operation is commutative if changing the order of the operands does not
+change the result. Union and intersection are commutative operations.
+
+\\[ A \cup B = B \cup A \newline A \cap B = B \cap A \\]
+
+#### Associative
+
+Associativity is a property of some binary operations, which means that
+rearranging the parentheses in an expression will not change the result.
+
+\\[ A \cup \left( {B \cup C} \right) = \left( {A \cup B} \right) \cup C \newline A \cap \left( {B \cap C} \right) = \left( {A \cap B} \right) \cap C \\]
+
+#### Distributive
+
+\\( A \cup \left( {B \cap C} \right) = \left( {A \cup B} \right) \cap \left( {A \cup
+C} \right) \newline A \cap \left( {B \cup C} \right) = \left( {A \cap B} \right) \cup
+\left( {A \cap C} \right) \\)
+
+#### De Morgan's
+
+\\( {\left( {A \cup B} \right)^c} = {A^c} \cap {B^c} \newline {\left( {A \cap B}
+\right)^c} = {A^c} \cup {B^c} \\)
+
+#### Absorption
+
+\\( A \cup \left( {A \cap B} \right) = A \newline A \cap \left( {A \cup B}
+\right) = A \\)
+
+#### Set Difference
+
+\\( A \backslash B = A \cap {B^c} \\)
 
 ### References
