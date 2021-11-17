@@ -322,8 +322,8 @@ fmt.Println(A.SubsetOf(B)) // false
 
 Sets have some properties that hold true for all subsets of any given set. These
 properties are called set identities and are presented down below. In the
-examples, consider that the set \\( A \\), \\( B\\), \\( C \\) are subsets of an
-universal set \\( U \\).
+examples, consider that the sets \\( A \\), \\( B\\), \\( C \\) are subsets of
+an universal set \\( U \\).
 
 #### Identity
 
@@ -335,8 +335,8 @@ universal set \\( U \\).
 
 #### Complement
 
-\\( A \cup {A^c} = U \newline A \cap {A^c} = \varnothing \newline
-{U^c} = \varnothing \newline {\varnothing^c} = U \\)
+\\( A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing \newline {U ^ c} =
+\varnothing \newline {\varnothing ^ c} = U \\)
 
 #### Double Complement
 
@@ -354,7 +354,8 @@ change the result. Union and intersection are commutative operations.
 Associativity is a property of some binary operations, which means that
 rearranging the parentheses in an expression will not change the result.
 
-\\[ A \cup \left( {B \cup C} \right) = \left( {A \cup B} \right) \cup C \newline A \cap \left( {B \cap C} \right) = \left( {A \cap B} \right) \cap C \\]
+\\[ A \cup \left( {B \cup C} \right) = \left( {A \cup B} \right) \cup C \newline
+A \cap \left( {B \cap C} \right) = \left( {A \cap B} \right) \cap C \\]
 
 #### Distributive
 
