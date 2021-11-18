@@ -3,9 +3,9 @@
 {% if data %}
 <ul class="reference__ul">
     {% for b in data.bibliographies %}
-    <li class="reference__li">
+    <li class="reference__li" id={{b.citation_key}}>
         {% if b.tags.author %}
-        <span class="reference__author" id={{b.citation_key}}>{{ b.tags.author }}</span>
+        <span class="reference__author">{{ b.tags.author }}</span>
         {% endif %}
         {% if b.tags.year %}
         <span class="reference__year">({{ b.tags.year }}).</span>

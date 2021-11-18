@@ -290,6 +290,9 @@ set \\( B \\), which means that every element of \\( A \\) is also an element of
 
 \\[ A \subseteq B \iff A \cap B = A \\]
 
+Let's implement a `SubsetOf` method for the `Set` type to assert if a given set
+is a subset of another set:
+
 ```go
 func (s Set) SubsetOf(other Set) bool {
 	if s.Size() > other.Size() {
@@ -318,36 +321,28 @@ fmt.Println(B.SubsetOf(A)) // true
 fmt.Println(A.SubsetOf(B)) // false
 ```
 
+Good. With that we had implemented the basic set operations supported for sets
+as an abstract data type. Now we can get familiar with some fundamental set
+properties that we should know about.
+
 ### Set Identities
 
 Sets have some properties that hold true for all subsets of any given set. These
-properties are called set identities and are presented down below. In the
+properties are called set identities and are presented down below. In the follow
 examples, consider that the sets \\( A \\), \\( B\\), \\( C \\) are subsets of
 an universal set \\( U \\).
 
-#### Identity
+#### Antisymmetric
 
-\\( A \cup \varnothing = A \newline A \cap U = A \\)
+A binary relation \\(R\\) on a set \\(A\\) is antisymmetric if there is no pair
+of distinct elements of \\(A\\) each of which is related by \\(R\\) to the
+other. More formally, \\(R\\) is antisymmetric precisely if:
 
-#### Idempotent
+\\[ \forall x,y \in A:(xRy \text{ and } yRx) \Rightarrow x = y \\]
 
-\\( A \cup A = A \newline A \cap A = A \\)
+For sets, the subset relation is antisymmetric:
 
-#### Complement
-
-\\( A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing \newline {U ^ c} =
-\varnothing \newline {\varnothing ^ c} = U \\)
-
-#### Double Complement
-
-\\( {\left( {{A^c}} \right)^c} = A \\)
-
-#### Commutative
-
-A binary operation is commutative if changing the order of the operands does not
-change the result. Union and intersection are commutative operations.
-
-\\[ A \cup B = B \cup A \newline A \cap B = B \cap A \\]
+\\[ A \subseteq B \text{ and }  B \subseteq A \Rightarrow A = B \\]
 
 #### Associative
 
@@ -357,24 +352,85 @@ rearranging the parentheses in an expression will not change the result.
 \\[ A \cup \left( {B \cup C} \right) = \left( {A \cup B} \right) \cup C \newline
 A \cap \left( {B \cap C} \right) = \left( {A \cap B} \right) \cap C \\]
 
-#### Distributive
+#### Commutative
 
-\\( A \cup \left( {B \cap C} \right) = \left( {A \cup B} \right) \cap \left( {A \cup
-C} \right) \newline A \cap \left( {B \cup C} \right) = \left( {A \cap B} \right) \cup
-\left( {A \cap C} \right) \\)
+A binary operation is commutative if changing the order of the operands does not
+change the result. Union and intersection are commutative operations.
+
+\\[ A \cup B = B \cup A \newline A \cap B = B \cap A \\]
+
+#### Complement
+
+In set theory, the complement of a set \\( A \\), denoted by \\( A^c \\), are
+all the elements that aren't in \\( A \\):
+
+\\[ A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing \newline {U ^ c} =
+\varnothing \newline {\varnothing ^ c} = U \\]
 
 #### De Morgan's
 
-\\( {\left( {A \cup B} \right)^c} = {A^c} \cap {B^c} \newline {\left( {A \cap B}
-\right)^c} = {A^c} \cup {B^c} \\)
+De Morgan's Laws describe how mathematical statements and concepts are related
+through their opposites, which explain how to distribute NOT's(\\(\neg\\)) over
+AND's(\\(\\land\\)) and OR's(\\(\lor\\)):
 
-#### Absorption
+\\[ \neg (P \land Q) \iff  (\neg P) \lor (\neg Q) \newline \neg (P \lor Q) \iff
+(\neg P) \land (\neg Q) \\]
 
-\\( A \cup \left( {A \cap B} \right) = A \newline A \cap \left( {A \cup B}
-\right) = A \\)
+In set theory, De Morgan's Laws relate the intersection and union of sets
+through complements.
 
-#### Set Difference
+\\[ ( A \cup B )^c = A^c \cap B^c \newline ( A \cap B )^c = A^c \cup B^c \\]
 
-\\( A \backslash B = A \cap {B^c} \\)
+#### Distributive
+
+The distributive property tells us how to solve expressions where more than one
+binary relation is involved. For example, given a set \\( A \\) and two binary
+operators \\( * \\) and \\( + \\) on \\( A \\), the distributive law asserts
+that multiplication (\\( * \\)) distributes over addition (\\( + \\)) in
+elementary arithmetic:
+
+\\[ x * (y + z) = x * y + x * z \\]
+
+For sets, intersection distributes over union and vice-versa:
+
+\\[ A \cup \left( {B \cap C} \right) = \left( {A \cup B} \right) \cap \left( {A
+\cup C} \right) \newline A \cap \left( {B \cup C} \right) = \left( {A \cap B}
+\right) \cup \left( {A \cap C} \right) \\]
+
+#### Double Complement
+
+The complement of the complement of a set \\( A \\) is itself \\( A \\):
+
+\\[ ( A^c )^c = A \\]
+
+#### Idempotent
+
+Idempotence is the property of certain operations in mathematics whereby they
+can be applied multiple times without changing the result beyond the initial
+value:
+
+\\[ A \cup A = A \newline A \cap A = A \\]
+
+#### Identity
+
+The empty set (\\( \varnothing \\)) is an identity operand for unions, and the
+universal set (\\( U \\)) is the identity operand for intersections:
+
+\\[ A \cup \varnothing = A \newline A \cap U = A \\]
+
+#### Transitive
+
+In mathematics, a relation \\(R\\) on a set \\(A\\) is transitive if, for all
+elements \\(a\\), \\(b\\), \\(c\\) in \\(A\\), whenever \\(R\\) relates \\(a\\)
+to \\(b\\) and \\(b\\) to \\(c\\), then \\(R\\) also relates \\(a\\) to \\(c\\):
+
+\\[ \forall a,b,c \in A:(aRb \text{ and } bRc) \Rightarrow aRc \\]
+
+For sets, the subset relation is transitive:
+
+\\[ ( A \subseteq B ) \text{ and } ( B \subseteq C ) \Rightarrow  ( A \subseteq
+C ) \\]
+
+### Solving problems with sets
 
 ### References
