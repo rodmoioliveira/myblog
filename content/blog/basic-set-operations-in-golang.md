@@ -3,7 +3,7 @@ title = "Basic set operations in Golang"
 description = "As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
 date = 2021-11-30
 slug = "basic-set-operations-in-golang"
-draft = false
+draft = true
 [extra]
 references = "content/blog/basic-set-operations-in-golang.bibtex"
 katex_enable = true
@@ -119,7 +119,7 @@ Easy peasy, let's continue.
 
 The union of sets \\( A \\) and \\( B \\), denoted by the expression \\( A \cup
 B \\), is the set that includes exactly the elements appearing in \\( A \\) or
-\\( B \\) or both. This could be written in [set builder
+\\( B \\) or both. This could be written in [set-builder
 notation](https://www.mathsisfun.com/sets/set-builder-notation.html) as:
 
 \\[ A \cup B = \\\{x : x \in A \ \text{or} \  x \in B\\\} \\]
@@ -162,7 +162,7 @@ All is good so far.
 
 The intersection of \\( A \\) and \\( B \\), denoted by the expression \\( A
 \cap B \\), is a set of all elements that appear in both \\( A \\) and \\( B
-\\). And could be written in set builder notation as:
+\\). And could be written in set-builder notation as:
 
 \\[ A \cap B = \\\{x : x \in A\ \text{and} \ x \in B\\\} \\]
 
@@ -202,8 +202,8 @@ It works just as expected.
 
 The difference of \\( A \\) and \\( B \\), or the complement of \\( B \\) in \\(
 A \\), denoted by the expression \\( A \setminus B \\), is a set of all elements
-that appear in \\( A \\) but not in \\( B \\). And could be written in set
-builder notation as:
+that appear in \\( A \\) but not in \\( B \\). And could be written in
+set-builder notation as:
 
 \\[ A \setminus B = \\\{x : x \in A\ \text{and} \ x \notin B \\\} \\]
 
@@ -244,7 +244,7 @@ Perfect.
 
 The symmetric difference of \\( A \\) and \\( B \\), denoted by the expression
 \\( A \ominus B \\), is a set of all elements that appear in \\( A \\) or in
-\\( B \\) but not in both. And could be written in set builder notation as:
+\\( B \\) but not in both. And could be written in set-builder notation as:
 
 \\[ A \ominus B = \\\{ x : x \in A \setminus B \text{ or} \in B \setminus A \\\} \\]
 
@@ -443,28 +443,47 @@ the size of the other one. For instance, set theory establish a cool way to
 count the number of binary sequences that can be made using a certain number of
 bits.
 
-There is a cool relation between the number of elements in a [power
-set](https://www.mathsisfun.com/sets/power-set.html) and the [cartesian
-product](https://math24.net/cartesian-product-sets.html) of sets.
+#### Product of sets
 
-The power set
-of the set \\(A = \\\{a,b\\\}\\), denoted \\( \text{pow}(A) \\), is the set of
-all the subsets of the set \\(A\\):
+The product of two sets \\(A\\) and \\(B\\), denoted \\(A \times B\\), is the set of
+all ordered pairs of elements in \\(A\\) and elements in \\(B\\). In set-builder
+notation it is:
 
-\\[ \text{pow}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b \\} \\\}
-\\]
+\\[ A \times B = \\\{(a,b) : a \in A \text{ and } b \in B\\\} \\]
 
-The cartesian product of sets, \\(A_1 \times A_2 \times \text{...} \times A_n
-\\) , is a new set consisting of all sequences where the first component is
-drawn from \\(A_1\\), the second from \\(A_2\\), and so forth. A product of
-\\(n\\) copies of a set \\(A = \\\{0,1\\\}\\) is denoted \\(A^n\\). For example:
+A product of \\(n\\) copies of a set \\(A\\) is denoted \\(A^n\\):
 
-\\[ \\\{0,1\\\}^2 = \\\{(0,0),(0,1),(1,0),(1,1)\\\} \\]
+\\[ A^n = \underbrace{A \times \cdots	\times A}_{n\text{ times}} = \\\{(a_1,
+\cdots, a_n) : a_i \in A \text{ for every } i \\\} \\]
 
-The cardinality of a set \\(A = \\\{0,1\\\}\\), denoted \\(|A|\\), is the number
-of elements in the set \\(A\\):
+Here is an example:
 
-\\[ |\\\{0,1\\\}| = 2 \\]
+\\[ \\\{0,1\\\}^2 = \\\{0,1\\\} \times \\\{0,1\\\} = \\\{(0,0),(0,1),(1,0),(1,1)\\\} \\]
+
+#### Power Set
+
+The power set of the set \\(A\\), denoted \\( \mathcal{P}(A) \\),
+is the set of all the subsets \\(B\\) in the set \\(A\\):
+
+\\[ \mathcal{P}(A) = \\\{B : B \subseteq A  \\\} \\]
+
+For example:
+
+\\[ \mathcal{P}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b
+\\} \\\} \\]
+
+#### Cardinality
+
+The cardinality or size of a set \\(A\\), denoted \\(|A|\\), is the number of
+elements in \\(A\\) when that number is finite:
+
+\\[ A = \\\{0,1\\\} \Rightarrow |A| = 2 \\]
+
+#### Bijection
+
+...
+
+#### Relation
 
 This means that we can write the set of all n-bit sequences as a product of
 sets, because there is a
@@ -472,13 +491,13 @@ sets, because there is a
 between the number of subsets in \\(\text{pow}(A)\\) and the cartesian product
 of the length-n bit-strings sequences \\( \\\{0,1\\\}^n \\):
 
-\\[ |A| = n \Rightarrow | \text{pow}(A) | = | \\\{0,1\\\}^{n}
+\\[ |A| = n \Rightarrow | \mathcal{P}(A) | = | \\\{0,1\\\}^{n}
 | = 2^{n} \\]
 
 For instance, how many binary sequences we can get if we use \\(\text{3-bit}\\) only? The
 answer is \\(2^3 = 8\\). Here is the relation:
 
-| \\(\text{pow}(\\\{a,b,c\\\})\\) | \\( \\\{0,1\\\}^3 \\) | binary | decimal |
+| \\(\mathcal{P}(\\\{a,b,c\\\})\\) | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
 |-|-|-|-|
 | \\( \varnothing \\) | \\( (0,0,0) \\) | \\( 000_2 \\)| \\(0_{10}\\)
 | \\(\\\{c\\\}\\)			| \\( (0,0,1) \\) | \\( 001_2 \\)| \\(1_{10}\\)
@@ -489,4 +508,11 @@ answer is \\(2^3 = 8\\). Here is the relation:
 | \\(\\\{a,b\\\}\\)		| \\( (1,1,0) \\) | \\( 110_2 \\)| \\(6_{10}\\)
 | \\(\\\{a,b,c\\\}\\) | \\( (1,1,1) \\) | \\( 111_2 \\)| \\(7_{10}\\)
 
+#### Bitsets
+
 ### References
+
+There is a cool relation between the number of elements in a [power
+set](https://www.mathsisfun.com/sets/power-set.html) and the [cartesian
+product](https://math24.net/cartesian-product-sets.html) of sets.
+
