@@ -6,7 +6,10 @@
     <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="blog, programming" />
-    <meta name="description" content="" />
+    <meta
+      name="description"
+      content="As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
+    />
     <meta name="language" content="en-US" />
     <meta name="author" content="Rodolfo Mói, rodmoi.oliveira@gmail.com" />
     <meta name="designer" content="Rodolfo Mói" />
@@ -37,13 +40,19 @@
       property="og:image"
       content="https://rm-o.netlify.app/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg"
     />
-    <meta property="og:description" content="" />
+    <meta
+      property="og:description"
+      content="As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
+    />
     <meta property="article:author" content="Rodolfo Mói" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@rodmoi" />
     <meta name="twitter:title" content="Basic set operations in golang" />
     <meta name="twitter:creator" content="@rodmoi" />
-    <meta name="twitter:description" content="" />
+    <meta
+      name="twitter:description"
+      content="As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
+    />
     <title>Basic set operations in golang</title>
 
     <!-- STYLES -->
@@ -283,28 +292,27 @@
       <p>
         In mathematics, a set is a collection of unique and unsorted elements.
         The conventional way to write down a set is to list the elements inside
-        curly-braces, like this \( \{ 1,2,3 \} \). The elements inside a set
+        curly braces, like this \( \{ 1,2,3 \} \). The elements inside a set
         should only appear once, because any element is either in the set or
-        not. This mean that the set \( \{ dog, dog, cat \} \) and \( \{ dog, cat
-        \} \) are equal. Also, the order of the elements inside a set is
+        not. This mean that the sets \( \{ dog, dog, cat \} \) and \( \{ dog,
+        cat \} \) are equal. Also, the order of the elements inside a set is
         meaningless, so \( \{ a,b,c \} \) and \( \{ c,b,a \} \) are the same set
         written in two different ways.
       </p>
       <p>
         Sets are a fundamental mathematical construct and serve as a handy data
-        structure when writing computer programs. In some languages, they are
-        implemented by default which it's quite nice. But in others, like Go,
-        you have to implement yourself.
+        structure when writing computer programs. Some languages implement sets
+        by default. But in others, like Go, you have to implement yourself.
       </p>
       <h3 id="abstract-data-type">Abstract Data Type</h3>
       <p>
-        Sets, as an
+        As an
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
           href="https://en.wikipedia.org/wiki/Abstract_data_type"
           >abstract data type</a
-        >, are a missing feature in the Go language, but they can be easily
+        >, sets are a missing feature in the Go language. But can be easily
         implemented using
         <a
           rel="noopener nofollow noreferrer"
@@ -329,9 +337,11 @@
 </span><span>
 </span><span style="color:#b48ead;">func </span><span style="color:#8fa1b3;">MakeSet</span><span>(</span><span style="color:#bf616a;">si </span><span>...</span><span style="color:#b48ead;">SetItem</span><span>) (</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) {
 </span><span>	</span><span style="color:#bf616a;">s </span><span>= </span><span style="color:#96b5b4;">make</span><span>(</span><span style="color:#b48ead;">map</span><span>[</span><span style="color:#b48ead;">SetItem</span><span>]</span><span style="color:#b48ead;">membership</span><span>)
+</span><span>
 </span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">_</span><span>, </span><span style="color:#bf616a;">v </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">si </span><span>{
 </span><span>		</span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">v</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
 </span><span>	}
+</span><span>
 </span><span>	</span><span style="color:#b48ead;">return
 </span><span>}
 </span><span>
@@ -341,9 +351,11 @@
 </span><span>
 </span><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">ToString</span><span>() </span><span style="color:#b48ead;">string </span><span>{
 </span><span>	</span><span style="color:#bf616a;">r </span><span>:= </span><span style="color:#96b5b4;">make</span><span>([]</span><span style="color:#b48ead;">string</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#bf616a;">Size</span><span>())
+</span><span>
 </span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">s </span><span>{
 </span><span>		</span><span style="color:#bf616a;">r </span><span>= </span><span style="color:#96b5b4;">append</span><span>(</span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Sprintf</span><span>(&quot;</span><span style="color:#d08770;">%v</span><span>&quot;, </span><span style="color:#bf616a;">k</span><span>))
 </span><span>	}
+</span><span>
 </span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Sprintf</span><span>(&quot;</span><span style="color:#a3be8c;">{</span><span style="color:#d08770;">%v</span><span style="color:#a3be8c;">}</span><span>&quot;, </span><span style="color:#bf616a;">strings</span><span>.</span><span style="color:#bf616a;">Join</span><span>(</span><span style="color:#bf616a;">r</span><span>, &quot;</span><span style="color:#a3be8c;">,</span><span>&quot;))
 </span><span>}
 </span></code></pre>
@@ -360,17 +372,16 @@
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#bf616a;">ToString</span><span>()) </span><span style="color:#65737e;">// {dog,cow,cat,frog}
 </span></code></pre>
       <p>
-        As you can see, all the duplicate elements were remove from the set, and
-        its elements are printed out inside curly-braces in arbitrary order.
+        As you can see, all the duplicate elements were removed from the set,
+        and its elements were printed out inside curly braces in arbitrary
+        order.
       </p>
       <h3 id="basic-set-operations">Basic set operations</h3>
       <p>
-        We are going to implement some basic set operation in Golang, like:
-        <em>membership assertion</em>, <em>union</em>, <em>intersection</em>,
-        <em>difference</em>, <em>symmetric difference</em> and
-        <em>subset assertion</em>. Besides that, we'll provide the mathematical
-        definition and formula for each one of these operations to better
-        understand them.
+        We'll implement some basic set operations in Golang, like membership
+        assertion, union, intersection, difference, symmetric difference, and
+        subset assertion. Along the way, we'll provide the mathematical
+        definition for each one of these operations to better understand them.
       </p>
       <h4 id="membership">Membership</h4>
       <p>
@@ -378,7 +389,7 @@
         expression \( e \in A \) asserts that \(e\) is an element of the set
         \(A\). The expression \(y \notin A \) means that \(y\) is not an element
         of the set \(A\). Let's write a method called <code>Contains</code> for
-        the <code>Set</code> type to verify if any given element belong to it:
+        the <code>Set</code> type to verify if any given element belongs to it:
       </p>
       <pre
         data-lang="go"
@@ -419,7 +430,7 @@
       </p>
       <p>\[ A \cup B = \{x : x \in A \ \text{or} \ x \in B\} \]</p>
       <p>
-        Let's create an <code>Union</code> method for the <code>Set</code> type
+        Let's create a <code>Union</code> method for the <code>Set</code> type
         to compute the union of two sets:
       </p>
       <pre
@@ -456,7 +467,7 @@
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">U</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
 </span><span style="color:#65737e;">// {cat,dog,cow,duck,bull}
 </span></code></pre>
-      <p>All good so far.</p>
+      <p>All is good so far.</p>
       <h4 id="intersection">Intersection</h4>
       <p>
         The intersection of \( A \) and \( B \), denoted by the expression \( A
@@ -648,7 +659,7 @@
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">SubsetOf</span><span>(</span><span style="color:#bf616a;">B</span><span>)) </span><span style="color:#65737e;">// false
 </span></code></pre>
       <p>
-        Good. With that we had implemented the basic set operations supported
+        Good. With that, we had implemented the basic set operations supported
         for sets as an abstract data type. Now we can get familiar with some
         fundamental set properties that we should know about.
       </p>
@@ -656,8 +667,8 @@
       <p>
         Sets have some properties that hold true for all subsets of any given
         set. These properties are called set identities and are presented down
-        below. In the follow examples, consider that the sets \( A \), \( B\),
-        \( C \) are subsets of an universal set \( U \).
+        below. In the following examples, consider that the sets \( A \), \(
+        B\), \( C \) are subsets of a universal set \( U \).
       </p>
       <h4 id="antisymmetric">Antisymmetric</h4>
       <p>
@@ -665,7 +676,7 @@
         pair of distinct elements of \(A\) each of which is related by \(R\) to
         the other. More formally, \(R\) is antisymmetric precisely if:
       </p>
-      <p>\[ \forall x,y \in A:(xRy \text{ and } yRx) \Rightarrow x = y \]</p>
+      <p>\[ \forall (x,y) \in A:(xRy \text{ and } yRx) \Rightarrow x = y \]</p>
       <p>For sets, the subset relation is antisymmetric:</p>
       <p>\[ A \subseteq B \text{ and } B \subseteq A \Rightarrow A = B \]</p>
       <h4 id="associative">Associative</h4>
@@ -751,7 +762,7 @@
         all elements \(a\), \(b\), \(c\) in \(A\), whenever \(R\) relates \(a\)
         to \(b\) and \(b\) to \(c\), then \(R\) also relates \(a\) to \(c\):
       </p>
-      <p>\[ \forall a,b,c \in A:(aRb \text{ and } bRc) \Rightarrow aRc \]</p>
+      <p>\[ \forall (a,b,c) \in A:(aRb \text{ and } bRc) \Rightarrow aRc \]</p>
       <p>For sets, the subset relation is transitive:</p>
       <p>
         \[ ( A \subseteq B ) \text{ and } ( B \subseteq C ) \Rightarrow ( A

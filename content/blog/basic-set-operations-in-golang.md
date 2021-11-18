@@ -1,6 +1,6 @@
 +++
 title = "Basic set operations in Golang"
-description = ""
+description = "As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
 date = 2021-11-30
 slug = "basic-set-operations-in-golang"
 draft = false
@@ -14,25 +14,23 @@ katex_auto_render = true
 
 In mathematics, a set is a collection of unique and unsorted elements. The
 conventional way to write down a set is to list the elements inside
-curly-braces, like this \\( \\\{ 1,2,3 \\\} \\). The elements inside a set
+curly braces, like this \\( \\\{ 1,2,3 \\\} \\). The elements inside a set
 should only appear once, because any element is either in the set or not. This
-mean that the set \\( \\\{ dog, dog, cat \\\} \\) and \\( \\\{ dog, cat \\\} \\)
+mean that the sets \\( \\\{ dog, dog, cat \\\} \\) and \\( \\\{ dog, cat \\\} \\)
 are equal. Also, the order of the elements inside a set is meaningless, so \\(
 \\\{ a,b,c \\\} \\) and \\( \\\{ c,b,a \\\} \\) are the same set written in two
 different ways.
 
 Sets are a fundamental mathematical construct and serve as a handy data
-structure when writing computer programs. In some languages, they are
-implemented by default which it's quite nice. But in others, like Go, you have
-to implement yourself.
+structure when writing computer programs. Some languages implement sets by
+default. But in others, like Go, you have to implement yourself.
 
 ### Abstract Data Type
 
-Sets, as an [abstract data
-type](https://en.wikipedia.org/wiki/Abstract_data_type), are a missing feature
-in the Go language, but they can be easily implemented using
-[maps](https://tour.golang.org/moretypes/19). Let's implement the `Set` type
-with three methods: `MakeSet` to create new sets, `Size` to get the set's
+As an [abstract data type](https://en.wikipedia.org/wiki/Abstract_data_type),
+sets are a missing feature in the Go language. But can be easily implemented
+using [maps](https://tour.golang.org/moretypes/19). Let's implement the `Set`
+type with three methods: `MakeSet` to create new sets, `Size` to get the set's
 cardinality and, `ToString` to print its string representation:
 
 ```go
@@ -45,9 +43,11 @@ type (
 
 func MakeSet(si ...SetItem) (s Set) {
 	s = make(map[SetItem]membership)
+
 	for _, v := range si {
 		s[v] = membership{}
 	}
+
 	return
 }
 
@@ -57,9 +57,11 @@ func (s Set) Size() int {
 
 func (s Set) ToString() string {
 	r := make([]string, 0, s.Size())
+
 	for k := range s {
 		r = append(r, fmt.Sprintf("%v", k))
 	}
+
 	return fmt.Sprintf("{%v}", strings.Join(r, ","))
 }
 ```
@@ -73,15 +75,15 @@ fmt.Println(set.ToString()) // {frog,dog,cow,cat}
 fmt.Println(set.ToString()) // {dog,cow,cat,frog}
 ```
 
-As you can see, all the duplicate elements were remove from the set, and its
-elements are printed out inside curly-braces in arbitrary order.
+As you can see, all the duplicate elements were removed from the set, and its
+elements were printed out inside curly braces in arbitrary order.
 
 ### Basic set operations
 
-We are going to implement some basic set operation in Golang, like: *membership
-assertion*, *union*, *intersection*, *difference*, *symmetric difference* and *subset
-assertion*. Besides that, we'll provide the mathematical definition and formula for each
-one of these operations to better understand them.
+We'll implement some basic set operations in Golang, like membership assertion,
+union, intersection, difference, symmetric difference, and subset assertion.
+Along the way, we'll provide the mathematical definition for each one of these
+operations to better understand them.
 
 #### Membership
 
@@ -89,7 +91,7 @@ The most simple set operation is to assert element membership. The expression
 \\( e \in A \\) asserts that \\(e\\) is an element of the set \\(A\\). The
 expression \\(y \notin A \\) means that \\(y\\) is not an element of the set
 \\(A\\). Let's write a method called `Contains` for the `Set` type to verify if
-any given element belong to it:
+any given element belongs to it:
 
 ```go
 func (s Set) Contains(si SetItem) (ok bool) {
@@ -122,7 +124,7 @@ notation](https://www.mathsisfun.com/sets/set-builder-notation.html) as:
 
 \\[ A \cup B = \\\{x : x \in A \ \text{or} \  x \in B\\\} \\]
 
-Let's create an `Union` method for the `Set` type to compute the union of two
+Let's create a `Union` method for the `Set` type to compute the union of two
 sets:
 
 ```go
@@ -154,7 +156,7 @@ fmt.Println(U.ToString())
 // {cat,dog,cow,duck,bull}
 ```
 
-All good so far.
+All is good so far.
 
 #### Intersection
 
@@ -323,16 +325,16 @@ fmt.Println(B.SubsetOf(A)) // true
 fmt.Println(A.SubsetOf(B)) // false
 ```
 
-Good. With that we had implemented the basic set operations supported for sets
+Good. With that, we had implemented the basic set operations supported for sets
 as an abstract data type. Now we can get familiar with some fundamental set
 properties that we should know about.
 
 ### Set Identities
 
 Sets have some properties that hold true for all subsets of any given set. These
-properties are called set identities and are presented down below. In the follow
-examples, consider that the sets \\( A \\), \\( B\\), \\( C \\) are subsets of
-an universal set \\( U \\).
+properties are called set identities and are presented down below. In the
+following examples, consider that the sets \\( A \\), \\( B\\), \\( C \\) are
+subsets of a universal set \\( U \\).
 
 #### Antisymmetric
 
@@ -340,7 +342,7 @@ A binary relation \\(R\\) on a set \\(A\\) is antisymmetric if there is no pair
 of distinct elements of \\(A\\) each of which is related by \\(R\\) to the
 other. More formally, \\(R\\) is antisymmetric precisely if:
 
-\\[ \forall x,y \in A:(xRy \text{ and } yRx) \Rightarrow x = y \\]
+\\[ \forall (x,y) \in A:(xRy \text{ and } yRx) \Rightarrow x = y \\]
 
 For sets, the subset relation is antisymmetric:
 
@@ -426,7 +428,7 @@ In mathematics, a relation \\(R\\) on a set \\(A\\) is transitive if, for all
 elements \\(a\\), \\(b\\), \\(c\\) in \\(A\\), whenever \\(R\\) relates \\(a\\)
 to \\(b\\) and \\(b\\) to \\(c\\), then \\(R\\) also relates \\(a\\) to \\(c\\):
 
-\\[ \forall a,b,c \in A:(aRb \text{ and } bRc) \Rightarrow aRc \\]
+\\[ \forall (a,b,c) \in A:(aRb \text{ and } bRc) \Rightarrow aRc \\]
 
 For sets, the subset relation is transitive:
 
