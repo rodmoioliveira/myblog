@@ -1,0 +1,9 @@
+<script>
+  const theme = localStorage.getItem('rodolfo-blog-theme');
+  if (theme === 'dark') {
+    const btn = document.getElementById('theme');
+    const body = document.getElementById('body');
+    body.setAttribute('data-theme', 'dark');
+    btn.innerText = 'light';
+  }
+</script>

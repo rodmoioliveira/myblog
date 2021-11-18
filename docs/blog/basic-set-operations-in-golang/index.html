@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META TAGS -->
+    <meta charset="utf-8" />
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="blog, programming" />
+    <meta name="description" content="" />
+    <meta name="language" content="en-US" />
+    <meta name="author" content="Rodolfo Mói, rodmoi.oliveira@gmail.com" />
+    <meta name="designer" content="Rodolfo Mói" />
+    <meta name="copyright" content="Rodolfo Mói" />
+    <meta name="reply-to" content="rodmoi.oliveira@gmail.com" />
+    <meta name="owner" content="Rodolfo Mói" />
+    <meta
+      name="url"
+      content="https://rm-o.netlify.app/basic-set-operations-in-golang"
+    />
+    <meta name="date" content="2021-11-30" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="distribution" content="Global" />
+    <meta name="rating" content="General" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- OG AND TWITTER META TAGS -->
+    <meta property="og:type" content="page" />
+    <meta
+      property="og:url"
+      content="https://rm-o.netlify.app/basic-set-operations-in-golang"
+    />
+    <meta property="og:title" content="Basic set operations in golang" />
+    <meta
+      property="og:image"
+      content="https://rm-o.netlify.app/images/ryoji-iwata-DZ5qYLvWsHw-unsplash.jpg"
+    />
+    <meta property="og:description" content="" />
+    <meta property="article:author" content="Rodolfo Mói" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@rodmoi" />
+    <meta name="twitter:title" content="Basic set operations in golang" />
+    <meta name="twitter:creator" content="@rodmoi" />
+    <meta name="twitter:description" content="" />
+    <title>Basic set operations in golang</title>
+
+    <!-- STYLES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" media="all" />
+  </head>
+  <body id="body" data-theme="light">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link" href="/">rm-o</a>
+      </h1>
+      <button class="header__btn" id="theme">dark</button>
+    </header>
+
+    <script>
+      const theme = localStorage.getItem("rodolfo-blog-theme");
+      if (theme === "dark") {
+        const btn = document.getElementById("theme");
+        const body = document.getElementById("body");
+        body.setAttribute("data-theme", "dark");
+        btn.innerText = "light";
+      }
+    </script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs"
+      crossorigin="anonymous"
+    />
+
+    <article class="post">
+      <h2 class="post__title">Basic set operations in Golang</h2>
+      <p class="post__date">&#8226;&nbsp;2021-11-30&nbsp;&#8226;</p>
+      <p class="mark__start">&ctdot;</p>
+
+      <section class="toc">
+        <p class="toc__title">Table of Content:</p>
+        <ul class="toc__ul">
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#what-are-sets"
+              >What are sets?</a
+            >
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#abstract-data-type"
+              >Abstract Data Type</a
+            >
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#basic-set-operations"
+              >Basic set operations</a
+            >
+
+            <ul class="toc__ul">
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#membership"
+                  >Membership</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#union"
+                  >Union</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#intersection"
+                  >Intersection</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#difference-and-complement"
+                  >Difference and Complement</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#symmetric-difference"
+                  >Symmetric Difference</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#subset"
+                  >Subset</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#set-identities"
+              >Set Identities</a
+            >
+
+            <ul class="toc__ul">
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#antisymmetric"
+                  >Antisymmetric</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#associative"
+                  >Associative</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#commutative"
+                  >Commutative</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#complement"
+                  >Complement</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#de-morgan-s"
+                  >De Morgan&#x27;s</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#distributive"
+                  >Distributive</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#double-complement"
+                  >Double Complement</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#idempotent"
+                  >Idempotent</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#identity"
+                  >Identity</a
+                >
+              </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#transitive"
+                  >Transitive</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#solving-problems-with-sets"
+              >Solving problems with sets</a
+            >
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#references"
+              >References</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <h3 id="what-are-sets">What are sets?</h3>
+      <p>
+        In mathematics, a set is a collection of unique and unsorted elements.
+        The conventional way to write down a set is to list the elements inside
+        curly-braces, like this \( \{ 1,2,3 \} \). The elements inside a set
+        should only appear once, because any element is either in the set or
+        not. This mean that the set \( \{ dog, dog, cat \} \) and \( \{ dog, cat
+        \} \) are equal. Also, the order of the elements inside a set is
+        meaningless, so \( \{ a,b,c \} \) and \( \{ c,b,a \} \) are the same set
+        written in two different ways.
+      </p>
+      <p>
+        Sets are a fundamental mathematical construct and serve as a handy data
+        structure when writing computer programs. In some languages, they are
+        implemented by default which it's quite nice. But in others, like Go,
+        you have to implement yourself.
+      </p>
+      <h3 id="abstract-data-type">Abstract Data Type</h3>
+      <p>
+        Sets, as an
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://en.wikipedia.org/wiki/Abstract_data_type"
+          >abstract data type</a
+        >, are a missing feature in the Go language, but they can be easily
+        implemented using
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://tour.golang.org/moretypes/19"
+          >maps</a
+        >. Let's implement the <code>Set</code> type with three methods:
+        <code>MakeSet</code> to create new sets, <code>Size</code> to get the
+        set's cardinality and, <code>ToString</code> to print its string
+        representation:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">type </span><span>(
+</span><span>	SetItem </span><span style="color:#b48ead;">interface</span><span>{}
+</span><span>	SetSlice []</span><span style="color:#b48ead;">SetItem
+</span><span>	Set </span><span style="color:#b48ead;">map</span><span>[</span><span style="color:#b48ead;">SetItem</span><span>]</span><span style="color:#b48ead;">membership
+</span><span>	membership </span><span style="color:#b48ead;">struct</span><span>{}
+</span><span>)
+</span><span>
+</span><span style="color:#b48ead;">func </span><span style="color:#8fa1b3;">MakeSet</span><span>(</span><span style="color:#bf616a;">si </span><span>...</span><span style="color:#b48ead;">SetItem</span><span>) (</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) {
+</span><span>	</span><span style="color:#bf616a;">s </span><span>= </span><span style="color:#96b5b4;">make</span><span>(</span><span style="color:#b48ead;">map</span><span>[</span><span style="color:#b48ead;">SetItem</span><span>]</span><span style="color:#b48ead;">membership</span><span>)
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">_</span><span>, </span><span style="color:#bf616a;">v </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">si </span><span>{
+</span><span>		</span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">v</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
+</span><span>	}
+</span><span>	</span><span style="color:#b48ead;">return
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">Size</span><span>() </span><span style="color:#b48ead;">int </span><span>{
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#96b5b4;">len</span><span>(</span><span style="color:#bf616a;">s</span><span>)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">ToString</span><span>() </span><span style="color:#b48ead;">string </span><span>{
+</span><span>	</span><span style="color:#bf616a;">r </span><span>:= </span><span style="color:#96b5b4;">make</span><span>([]</span><span style="color:#b48ead;">string</span><span>, </span><span style="color:#d08770;">0</span><span>, </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#bf616a;">Size</span><span>())
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">s </span><span>{
+</span><span>		</span><span style="color:#bf616a;">r </span><span>= </span><span style="color:#96b5b4;">append</span><span>(</span><span style="color:#bf616a;">r</span><span>, </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Sprintf</span><span>(&quot;</span><span style="color:#d08770;">%v</span><span>&quot;, </span><span style="color:#bf616a;">k</span><span>))
+</span><span>	}
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Sprintf</span><span>(&quot;</span><span style="color:#a3be8c;">{</span><span style="color:#d08770;">%v</span><span style="color:#a3be8c;">}</span><span>&quot;, </span><span style="color:#bf616a;">strings</span><span>.</span><span style="color:#bf616a;">Join</span><span>(</span><span style="color:#bf616a;">r</span><span>, &quot;</span><span style="color:#a3be8c;">,</span><span>&quot;))
+</span><span>}
+</span></code></pre>
+      <p>
+        Now that we have a minimal implementation for the <code>Set</code> type,
+        we can create a new set and print its elements like this:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">set </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">frog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#bf616a;">ToString</span><span>()) </span><span style="color:#65737e;">// {frog,dog,cow,cat}
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#bf616a;">ToString</span><span>()) </span><span style="color:#65737e;">// {dog,cow,cat,frog}
+</span></code></pre>
+      <p>
+        As you can see, all the duplicate elements were remove from the set, and
+        its elements are printed out inside curly-braces in arbitrary order.
+      </p>
+      <h3 id="basic-set-operations">Basic set operations</h3>
+      <p>
+        We are going to implement some basic set operation in Golang, like:
+        <em>membership assertion</em>, <em>union</em>, <em>intersection</em>,
+        <em>difference</em>, <em>symmetric difference</em> and
+        <em>subset assertion</em>. Besides that, we'll provide the mathematical
+        definition and formula for each one of these operations to better
+        understand them.
+      </p>
+      <h4 id="membership">Membership</h4>
+      <p>
+        The most simple set operation is to assert element membership. The
+        expression \( e \in A \) asserts that \(e\) is an element of the set
+        \(A\). The expression \(y \notin A \) means that \(y\) is not an element
+        of the set \(A\). Let's write a method called <code>Contains</code> for
+        the <code>Set</code> type to verify if any given element belong to it:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">Contains</span><span>(</span><span style="color:#bf616a;">si </span><span style="color:#b48ead;">SetItem</span><span>) (</span><span style="color:#bf616a;">ok </span><span style="color:#b48ead;">bool</span><span>) {
+</span><span>	</span><span style="color:#bf616a;">_</span><span>, </span><span style="color:#bf616a;">ok </span><span>= </span><span style="color:#bf616a;">s</span><span>[</span><span style="color:#bf616a;">si</span><span>]
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return
+</span><span>}
+</span></code></pre>
+      <p>Now let's build a new set and test for membership:</p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">set </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span>
+</span><span style="color:#bf616a;">ok </span><span>:= </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#bf616a;">Contains</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;)
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">ok</span><span>) </span><span style="color:#65737e;">// true
+</span><span>
+</span><span style="color:#bf616a;">ok </span><span>= </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#bf616a;">Contains</span><span>(&quot;</span><span style="color:#a3be8c;">buffalo</span><span>&quot;)
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">ok</span><span>) </span><span style="color:#65737e;">// false
+</span></code></pre>
+      <p>Easy peasy, let's continue.</p>
+      <h4 id="union">Union</h4>
+      <p>
+        The union of sets \( A \) and \( B \), denoted by the expression \( A
+        \cup B \), is the set that includes exactly the elements appearing in \(
+        A \) or \( B \) or both. This could be written in
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://www.mathsisfun.com/sets/set-builder-notation.html"
+          >set builder notation</a
+        >
+        as:
+      </p>
+      <p>\[ A \cup B = \{x : x \in A \ \text{or} \ x \in B\} \]</p>
+      <p>
+        Let's create an <code>Union</code> method for the <code>Set</code> type
+        to compute the union of two sets:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">Union</span><span>(</span><span style="color:#bf616a;">other </span><span style="color:#b48ead;">Set</span><span>) (</span><span style="color:#bf616a;">set </span><span style="color:#b48ead;">Set</span><span>) {
+</span><span>	</span><span style="color:#bf616a;">set </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>()
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">s </span><span>{
+</span><span>		</span><span style="color:#bf616a;">set</span><span>[</span><span style="color:#bf616a;">k</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">other </span><span>{
+</span><span>		</span><span style="color:#bf616a;">set</span><span>[</span><span style="color:#bf616a;">k</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return
+</span><span>}
+</span></code></pre>
+      <p>
+        The result of the union of two sets \( A = \{ cat, dog, cow \} \) and \(
+        B = \{ cat, duck, bull \} \) can be expressed as \( A \cup B = \{
+        cat,dog,cow,duck,bull \} \). Let's test our implementation:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
+</span><span>
+</span><span style="color:#bf616a;">U </span><span>:= </span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">Union</span><span>(</span><span style="color:#bf616a;">B</span><span>)
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">U</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
+</span><span style="color:#65737e;">// {cat,dog,cow,duck,bull}
+</span></code></pre>
+      <p>All good so far.</p>
+      <h4 id="intersection">Intersection</h4>
+      <p>
+        The intersection of \( A \) and \( B \), denoted by the expression \( A
+        \cap B \), is a set of all elements that appear in both \( A \) and \( B
+        \). And could be written in set builder notation as:
+      </p>
+      <p>\[ A \cap B = \{x : x \in A\ \text{and} \ x \in B\} \]</p>
+      <p>
+        Let's implement an <code>Intersection</code> method for the
+        <code>Set</code> type to yield the elements of the intersection of two
+        sets:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">Intersection</span><span>(</span><span style="color:#bf616a;">other </span><span style="color:#b48ead;">Set</span><span>) (</span><span style="color:#bf616a;">set </span><span style="color:#b48ead;">Set</span><span>) {
+</span><span>	</span><span style="color:#bf616a;">set </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>()
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">s </span><span>{
+</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">ok </span><span>:= </span><span style="color:#bf616a;">other</span><span>.</span><span style="color:#bf616a;">Contains</span><span>(</span><span style="color:#bf616a;">k</span><span>); </span><span style="color:#bf616a;">ok </span><span>{
+</span><span>			</span><span style="color:#bf616a;">set</span><span>[</span><span style="color:#bf616a;">k</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
+</span><span>		}
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return
+</span><span>}
+</span></code></pre>
+      <p>
+        The result of the intersection of the sets \( A = \{ cat, dog, cow \} \)
+        and \( B = \{ cat, duck, bull \} \) can be presented as \( A \cap B = \{
+        cat \} \). In our Go code, this operation is expressed as:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
+</span><span>
+</span><span style="color:#bf616a;">I </span><span>:= </span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">Intersection</span><span>(</span><span style="color:#bf616a;">B</span><span>)
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">I</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
+</span><span style="color:#65737e;">// {cat}
+</span></code></pre>
+      <p>It works just as expected.</p>
+      <h4 id="difference-and-complement">Difference and Complement</h4>
+      <p>
+        The difference of \( A \) and \( B \), or the complement of \( B \) in
+        \( A \), denoted by the expression \( A \setminus B \), is a set of all
+        elements that appear in \( A \) but not in \( B \). And could be written
+        in set builder notation as:
+      </p>
+      <p>\[ A \setminus B = \{x : x \in A\ \text{and} \ x \notin B \} \]</p>
+      <p>
+        Let's write a <code>Difference</code> method for the
+        <code>Set</code> type to compute the difference between two sets:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">Difference</span><span>(</span><span style="color:#bf616a;">other </span><span style="color:#b48ead;">Set</span><span>) (</span><span style="color:#bf616a;">set </span><span style="color:#b48ead;">Set</span><span>) {
+</span><span>	</span><span style="color:#bf616a;">set </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>()
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">s </span><span>{
+</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">ok </span><span>:= </span><span style="color:#bf616a;">other</span><span>.</span><span style="color:#bf616a;">Contains</span><span>(</span><span style="color:#bf616a;">k</span><span>); !</span><span style="color:#bf616a;">ok </span><span>{
+</span><span>			</span><span style="color:#bf616a;">set</span><span>[</span><span style="color:#bf616a;">k</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
+</span><span>		}
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return
+</span><span>}
+</span></code></pre>
+      <p>
+        The result of the difference of the sets \( A = \{ cat, dog, cow \} \)
+        and \( B = \{ cat, duck, bull \} \) can be written as \( A \setminus B =
+        \{dog,cow \} \). Let's check if our code is correct:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
+</span><span>
+</span><span style="color:#bf616a;">D </span><span>:= </span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">Difference</span><span>(</span><span style="color:#bf616a;">B</span><span>)
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">D</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
+</span><span style="color:#65737e;">// {dog,cow}
+</span></code></pre>
+      <p>Perfect.</p>
+      <h4 id="symmetric-difference">Symmetric Difference</h4>
+      <p>
+        The symmetric difference of \( A \) and \( B \), denoted by the
+        expression \( A \ominus B \), is a set of all elements that appear in \(
+        A \) or in \( B \) but not in both. And could be written in set builder
+        notation as:
+      </p>
+      <p>
+        \[ A \ominus B = \{ x : x \in A \setminus B \text{ or} \in B \setminus A
+        \} \]
+      </p>
+      <p>
+        Let's write a <code>SymmetricDifference</code> method for the
+        <code>Set</code> type to compute the symmetric difference between two
+        sets:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">SymmetricDifference</span><span>(</span><span style="color:#bf616a;">other </span><span style="color:#b48ead;">Set</span><span>) (</span><span style="color:#bf616a;">set </span><span style="color:#b48ead;">Set</span><span>) {
+</span><span>	</span><span style="color:#bf616a;">set </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>()
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">s </span><span>{
+</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">ok </span><span>:= </span><span style="color:#bf616a;">other</span><span>.</span><span style="color:#bf616a;">Contains</span><span>(</span><span style="color:#bf616a;">k</span><span>); !</span><span style="color:#bf616a;">ok </span><span>{
+</span><span>			</span><span style="color:#bf616a;">set</span><span>[</span><span style="color:#bf616a;">k</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
+</span><span>		}
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">other </span><span>{
+</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">ok </span><span>:= </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#bf616a;">Contains</span><span>(</span><span style="color:#bf616a;">k</span><span>); !</span><span style="color:#bf616a;">ok </span><span>{
+</span><span>			</span><span style="color:#bf616a;">set</span><span>[</span><span style="color:#bf616a;">k</span><span>] = </span><span style="color:#bf616a;">membership</span><span>{}
+</span><span>		}
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return
+</span><span>}
+</span></code></pre>
+      <p>
+        The result of the symmetric difference of the sets \( A = \{ cat, dog,
+        cow \} \) and \( B = \{ cat, duck, bull \} \) can be defined as \( A
+        \ominus B = \{ dog, cow, duck, bull \} \). Let's try it in our code:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
+</span><span>
+</span><span style="color:#bf616a;">SD </span><span>:= </span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">SymmetricDifference</span><span>(</span><span style="color:#bf616a;">B</span><span>)
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">SD</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
+</span><span style="color:#65737e;">// {dog,cow,duck,bull}
+</span></code></pre>
+      <p>Nice.</p>
+      <h4 id="subset">Subset</h4>
+      <p>
+        The expression \( A \subseteq B \) indicates that set \( A \) is a
+        subset of set \( B \), which means that every element of \( A \) is also
+        an element of \( B \). This could be written as:
+      </p>
+      <p>\[ A \subseteq B \iff A \cap B = A \]</p>
+      <p>
+        Let's implement a <code>SubsetOf</code> method for the
+        <code>Set</code> type to assert if a given set is a subset of another
+        set:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">func </span><span>(</span><span style="color:#bf616a;">s </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#8fa1b3;">SubsetOf</span><span>(</span><span style="color:#bf616a;">other </span><span style="color:#b48ead;">Set</span><span>) </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>	</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">s</span><span>.</span><span style="color:#bf616a;">Size</span><span>() &gt; </span><span style="color:#bf616a;">other</span><span>.</span><span style="color:#bf616a;">Size</span><span>() {
+</span><span>		</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">k </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">s </span><span>{
+</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">_</span><span>, </span><span style="color:#bf616a;">exists </span><span>:= </span><span style="color:#bf616a;">other</span><span>[</span><span style="color:#bf616a;">k</span><span>]; !</span><span style="color:#bf616a;">exists </span><span>{
+</span><span>			</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">false
+</span><span>		}
+</span><span>	}
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">true
+</span><span>}
+</span></code></pre>
+      <p>
+        For the sets \( A = \{ cat, dog, cow \} \) and \( B = \{ cat, dog \} \),
+        we can assert that \( B \subseteq A \) is \( true \), but \( A \subseteq
+        B \) is \( false \). Let's test it:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;)
+</span><span>
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">B</span><span>.</span><span style="color:#bf616a;">SubsetOf</span><span>(</span><span style="color:#bf616a;">A</span><span>)) </span><span style="color:#65737e;">// true
+</span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">SubsetOf</span><span>(</span><span style="color:#bf616a;">B</span><span>)) </span><span style="color:#65737e;">// false
+</span></code></pre>
+      <p>
+        Good. With that we had implemented the basic set operations supported
+        for sets as an abstract data type. Now we can get familiar with some
+        fundamental set properties that we should know about.
+      </p>
+      <h3 id="set-identities">Set Identities</h3>
+      <p>
+        Sets have some properties that hold true for all subsets of any given
+        set. These properties are called set identities and are presented down
+        below. In the follow examples, consider that the sets \( A \), \( B\),
+        \( C \) are subsets of an universal set \( U \).
+      </p>
+      <h4 id="antisymmetric">Antisymmetric</h4>
+      <p>
+        A binary relation \(R\) on a set \(A\) is antisymmetric if there is no
+        pair of distinct elements of \(A\) each of which is related by \(R\) to
+        the other. More formally, \(R\) is antisymmetric precisely if:
+      </p>
+      <p>\[ \forall x,y \in A:(xRy \text{ and } yRx) \Rightarrow x = y \]</p>
+      <p>For sets, the subset relation is antisymmetric:</p>
+      <p>\[ A \subseteq B \text{ and } B \subseteq A \Rightarrow A = B \]</p>
+      <h4 id="associative">Associative</h4>
+      <p>
+        Associativity is a property of some binary operations, which means that
+        rearranging the parentheses in an expression will not change the result.
+      </p>
+      <p>
+        \[ A \cup \left( {B \cup C} \right) = \left( {A \cup B} \right) \cup C
+        \newline A \cap \left( {B \cap C} \right) = \left( {A \cap B} \right)
+        \cap C \]
+      </p>
+      <h4 id="commutative">Commutative</h4>
+      <p>
+        A binary operation is commutative if changing the order of the operands
+        does not change the result. Union and intersection are commutative
+        operations.
+      </p>
+      <p>\[ A \cup B = B \cup A \newline A \cap B = B \cap A \]</p>
+      <h4 id="complement">Complement</h4>
+      <p>
+        In set theory, the complement of a set \( A \), denoted by \( A^c \),
+        are all the elements that aren't in \( A \):
+      </p>
+      <p>
+        \[ A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing \newline {U
+        ^ c} = \varnothing \newline {\varnothing ^ c} = U \]
+      </p>
+      <h4 id="de-morgan-s">De Morgan's</h4>
+      <p>
+        De Morgan's Laws describe how mathematical statements and concepts are
+        related through their opposites, which explain how to distribute
+        NOT's(\(\neg\)) over AND's(\(\land\)) and OR's(\(\lor\)):
+      </p>
+      <p>
+        \[ \neg (P \land Q) \iff (\neg P) \lor (\neg Q) \newline \neg (P \lor Q)
+        \iff (\neg P) \land (\neg Q) \]
+      </p>
+      <p>
+        In set theory, De Morgan's Laws relate the intersection and union of
+        sets through complements.
+      </p>
+      <p>
+        \[ ( A \cup B )^c = A^c \cap B^c \newline ( A \cap B )^c = A^c \cup B^c
+        \]
+      </p>
+      <h4 id="distributive">Distributive</h4>
+      <p>
+        The distributive property tells us how to solve expressions where more
+        than one binary relation is involved. For example, given a set \( A \)
+        and two binary operators \( * \) and \( + \) on \( A \), the
+        distributive law asserts that multiplication (\( * \)) distributes over
+        addition (\( + \)) in elementary arithmetic:
+      </p>
+      <p>\[ x * (y + z) = x * y + x * z \]</p>
+      <p>For sets, intersection distributes over union and vice-versa:</p>
+      <p>
+        \[ A \cup \left( {B \cap C} \right) = \left( {A \cup B} \right) \cap
+        \left( {A \cup C} \right) \newline A \cap \left( {B \cup C} \right) =
+        \left( {A \cap B} \right) \cup \left( {A \cap C} \right) \]
+      </p>
+      <h4 id="double-complement">Double Complement</h4>
+      <p>
+        The complement of the complement of a set \( A \) is itself \( A \):
+      </p>
+      <p>\[ ( A^c )^c = A \]</p>
+      <h4 id="idempotent">Idempotent</h4>
+      <p>
+        Idempotence is the property of certain operations in mathematics whereby
+        they can be applied multiple times without changing the result beyond
+        the initial value:
+      </p>
+      <p>\[ A \cup A = A \newline A \cap A = A \]</p>
+      <h4 id="identity">Identity</h4>
+      <p>
+        The empty set (\( \varnothing \)) is an identity operand for unions, and
+        the universal set (\( U \)) is the identity operand for intersections:
+      </p>
+      <p>\[ A \cup \varnothing = A \newline A \cap U = A \]</p>
+      <h4 id="transitive">Transitive</h4>
+      <p>
+        In mathematics, a relation \(R\) on a set \(A\) is transitive if, for
+        all elements \(a\), \(b\), \(c\) in \(A\), whenever \(R\) relates \(a\)
+        to \(b\) and \(b\) to \(c\), then \(R\) also relates \(a\) to \(c\):
+      </p>
+      <p>\[ \forall a,b,c \in A:(aRb \text{ and } bRc) \Rightarrow aRc \]</p>
+      <p>For sets, the subset relation is transitive:</p>
+      <p>
+        \[ ( A \subseteq B ) \text{ and } ( B \subseteq C ) \Rightarrow ( A
+        \subseteq C ) \]
+      </p>
+      <h3 id="solving-problems-with-sets">Solving problems with sets</h3>
+      <p>...</p>
+      <h3 id="references">References</h3>
+
+      <ul class="reference__ul">
+        <li class="reference__li" id="mathsisfun.com:complement-set-definition">
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;www.mathsisfun.com&#x2F;definitions&#x2F;complement-set-.html"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Complement Set Definition</a
+          >.
+
+          <span class="reference__jornal">Math is Fun.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="brilliant.org:de-morgans-laws">
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;brilliant.org&#x2F;wiki&#x2F;de-morgans-laws&#x2F;"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >De Morgan&#x27;s Laws</a
+          >.
+
+          <span class="reference__jornal">Brilliant.org.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="mathsisfun.com:set-builder-notation">
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;www.mathsisfun.com&#x2F;sets&#x2F;set-builder-notation.html"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Set-Builder Notation</a
+          >.
+
+          <span class="reference__jornal">Math is Fun.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="Gersting2002">
+          <span class="reference__author">Gersting, Judith L.</span>
+
+          <span class="reference__year">(2002).</span>
+
+          <span>Mathematical Structures for Computer Science</span>.
+
+          <span class="reference__publisher">W. H. Freeman and Company.</span>
+        </li>
+
+        <li class="reference__li" id="Kun2018">
+          <span class="reference__author">Kun, Jeremy.</span>
+
+          <span class="reference__year">(2018).</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;jeremykun.com&#x2F;2018&#x2F;12&#x2F;01&#x2F;a-programmers-introduction-to-mathematics&#x2F;"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >A Programmer&#x27;s Introduction to Mathematics</a
+          >.
+
+          <span class="reference__publisher"
+            >CreateSpace Independent Publishing Platform.</span
+          >
+        </li>
+
+        <li class="reference__li" id="Lehman2010">
+          <span class="reference__author"
+            >Lehman, E; Leighton, T; Meyer, Albert R.</span
+          >
+
+          <span class="reference__year">(2017).</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;courses.csail.mit.edu&#x2F;6.042&#x2F;spring17&#x2F;mcs.pdf"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Mathematics for computer science</a
+          >.
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="Lehman2018">
+          <span class="reference__author">Lehman, Landon.</span>
+
+          <span class="reference__year">(2018).</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;www.landonlehman.com&#x2F;post&#x2F;symmetric-difference&#x2F;"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Symmetric Difference</a
+          >.
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="WikipediaAlgebraOfSets">
+          <span class="reference__author">Wikipedia.</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Algebra_of_sets"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Algebra of sets</a
+          >.
+
+          <span class="reference__urldate">Accessed: 2021-11-05.</span>
+        </li>
+      </ul>
+
+      <p class="mark__end">&smashp;</p>
+    </article>
+
+    <script>
+      window.WebFontConfig = {
+        custom: {
+          families: [
+            "KaTeX_AMS",
+            "KaTeX_Caligraphic:n4,n7",
+            "KaTeX_Fraktur:n4,n7",
+            "KaTeX_Main:n4,n7,i4,i7",
+            "KaTeX_Math:i4,i7",
+            "KaTeX_Script",
+            "KaTeX_SansSerif:n4,n7,i4",
+            "KaTeX_Size1",
+            "KaTeX_Size2",
+            "KaTeX_Size3",
+            "KaTeX_Size4",
+            "KaTeX_Typewriter",
+          ],
+        },
+      };
+    </script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js"
+      integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc="
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"
+      integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js"
+      integrity="sha384-Ep9Es0VCjVn9dFeaN2uQxgGcGmG+pfZ4eBaHxUpxXDORrrVACZVOpywyzvFRGbmv"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js"
+      integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"
+      crossorigin="anonymous"
+      onload="renderMathInElement(document.body);"
+    ></script>
+
+    <nav class="nav">
+      <ul class="nav__ul">
+        <li class="nav__li">
+          <a class="nav__link" href="/blog">blog</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/bookmarks">bookmarks</a>
+        </li>
+        <li class="nav__li">
+          <a class="nav__link" href="/work">work</a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer class="footer">
+      <ul class="footer__ul">
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://www.linkedin.com/in/rodmoi/"
+            >linkedin</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://github.com/rodmoioliveira"
+            >github</a
+          >
+        </li>
+        <li class="footer__li">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer__link"
+            href="https://twitter.com/rodmoi"
+            >twitter</a
+          >
+        </li>
+      </ul>
+    </footer>
+
+    <script type="text/javascript" src="/scripts/script.js"></script>
+  </body>
+</html>

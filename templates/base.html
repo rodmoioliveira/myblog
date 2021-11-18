@@ -43,51 +43,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/style.css" media="all" />
-        {% if config.extra.katex_enable %}
-            <link href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
-        {% endif %}
     </head>
     <body id="body" data-theme="light">
         {% include "header.html" ignore missing %}
-        <script>
-            const theme = localStorage.getItem('rodolfo-blog-theme');
-            if (theme === 'dark') {
-                const btn = document.getElementById('theme');
-                const body = document.getElementById('body');
-                body.setAttribute('data-theme', 'dark');
-                btn.innerText = 'light';
-            }
-        </script>
+        {% include "theme_script.html" %}
         {% block content %} {% endblock content %}
         {% include "nav.html" ignore missing %}
         {% include "footer.html" ignore missing %}
-
         <script type="text/javascript" src="/scripts/script.js"></script>
-
-        {% if config.extra.katex_enable %}
-            <script>
-                window.WebFontConfig = {
-                    custom: {
-                        families: ['KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
-                            'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
-                            'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
-                            'KaTeX_Size4', 'KaTeX_Typewriter'],
-                    },
-                };
-            </script>
-
-            <script defer src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
-
-            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
-
-            <script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" integrity="sha384-Ep9Es0VCjVn9dFeaN2uQxgGcGmG+pfZ4eBaHxUpxXDORrrVACZVOpywyzvFRGbmv" crossorigin="anonymous"></script>
-
-            {% if config.extra.katex_auto_render %}
-                <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-            {% endif %}
-        {% endif %}
-
-
     </body>
 </html>

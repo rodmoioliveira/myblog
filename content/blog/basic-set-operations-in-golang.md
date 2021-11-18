@@ -3,9 +3,11 @@ title = "Basic set operations in Golang"
 description = ""
 date = 2021-11-30
 slug = "basic-set-operations-in-golang"
-draft = true
+draft = false
 [extra]
 references = "content/blog/basic-set-operations-in-golang.bibtex"
+katex_enable = true
+katex_auto_render = true
 +++
 
 ### What are sets?
