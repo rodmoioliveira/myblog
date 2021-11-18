@@ -437,11 +437,20 @@ C ) \\]
 
 ### Counting bit sequences
 
-Sets are great for counting things because we can establish clever relationship
-between different sets. And if you know the size of one set, you can discover
-the size of the other one. For instance, set theory establish a cool way to
-count the number of binary sequences that can be made using a certain number of
-bits.
+Sets are great for counting things because we can establish a clever
+relationship between different sets. If you know the size of one set, you can
+discover the size of the other one, which is useful to count infinite sets. For
+instance, the set theory presents a clever way to count the number of binary
+sequences that can be made using a certain number of bits. To understand how it
+works, we have to comprehend the following mathematical concepts of set theory:
+*cardinality*, *product of sets*, *power sets*, and *bijections*.
+
+#### Cardinality
+
+The cardinality or size of a set \\(A\\), denoted \\(|A|\\), is the number of
+elements in \\(A\\) when that number is finite:
+
+\\[ A = \\\{0,1\\\} \Rightarrow |A| = 2 \\]
 
 #### Product of sets
 
@@ -453,12 +462,7 @@ notation it is:
 
 A product of \\(n\\) copies of a set \\(A\\) is denoted \\(A^n\\):
 
-\\[ A^n = \underbrace{A \times \cdots	\times A}_{n\text{ times}} = \\\{(a_1,
-\cdots, a_n) : a_i \in A \text{ for every } i \\\} \\]
-
-Here is an example:
-
-\\[ \\\{0,1\\\}^2 = \\\{0,1\\\} \times \\\{0,1\\\} = \\\{(0,0),(0,1),(1,0),(1,1)\\\} \\]
+\\[ A^n = \\\{(a_1, \cdots, a_n) : a_i \in A \text{ for every } i \\\} \\]
 
 #### Power Set
 
@@ -472,41 +476,50 @@ For example:
 \\[ \mathcal{P}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b
 \\} \\\} \\]
 
-#### Cardinality
-
-The cardinality or size of a set \\(A\\), denoted \\(|A|\\), is the number of
-elements in \\(A\\) when that number is finite:
-
-\\[ A = \\\{0,1\\\} \Rightarrow |A| = 2 \\]
-
 #### Bijection
 
-...
+A bijection or bijective function is a function between the elements of two
+sets, where each element of one set is paired with exactly one element of the
+other set, and vice-versa. A bijective function mean that the sets being mapped
+have the same cardinality:
 
-#### Relation
+\\[ \text{if } f : A \rightarrow B \text{ is a bijection } \Rightarrow |A| = |B|
+\\]
 
-This means that we can write the set of all n-bit sequences as a product of
-sets, because there is a
-[bijection](ttps://www.mathsisfun.com/sets/injective-surjective-bijective.html)
-between the number of subsets in \\(\text{pow}(A)\\) and the cartesian product
-of the length-n bit-strings sequences \\( \\\{0,1\\\}^n \\):
+#### Counting subsets of a finite set
 
-\\[ |A| = n \Rightarrow | \mathcal{P}(A) | = | \\\{0,1\\\}^{n}
-| = 2^{n} \\]
+As an application of the bijection rule above, we can prove that there are
+\\(2^n\\) subsets of an n-element set:
 
-For instance, how many binary sequences we can get if we use \\(\text{3-bit}\\) only? The
-answer is \\(2^3 = 8\\). Here is the relation:
+\\[ |A| = n \ \ \text{ implies } \ \  | \mathcal{P}(A) | = 2^{n} \\]
+
+For example, the two-elements set \\( \\\{a,b \\\} \\) has four different
+subsets:
+
+\\[ \mathcal{P}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b
+\\} \\\} \\]
+
+We can establish a bijection from the set of subsets of \\(A\\) to \\(
+\\\{0,1\\\}^n \\), the product set of n-bit sequences. To prove that, let \\(
+a_1,a_2, \cdots, a_n \\) be the elements of \\(A\\). The bijection maps each
+subset of \\(S \subseteq A \\) to the bit sequence \\( (b_1, \cdots, b_n) \\)
+defined by the rule that:
+
+\\[ b_i = 1 \iff a_i \in S \\]
+
+Here is the map between the subsets of the set \\(\\\{a,b,c\\\}\\) to a 3-bit
+sequences:
 
 | \\(\mathcal{P}(\\\{a,b,c\\\})\\) | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
 |-|-|-|-|
-| \\( \varnothing \\) | \\( (0,0,0) \\) | \\( 000_2 \\)| \\(0_{10}\\)
-| \\(\\\{c\\\}\\)			| \\( (0,0,1) \\) | \\( 001_2 \\)| \\(1_{10}\\)
-| \\(\\\{b\\\}\\)			| \\( (0,1,0) \\) | \\( 010_2 \\)| \\(2_{10}\\)
-| \\(\\\{b,c\\\}\\)		| \\( (0,1,1) \\) | \\( 011_2 \\)| \\(3_{10}\\)
-| \\(\\\{a\\\}\\)			| \\( (1,0,0) \\) | \\( 100_2 \\)| \\(4_{10}\\)
-| \\(\\\{a,c\\\}\\)		| \\( (1,0,1) \\) | \\( 101_2 \\)| \\(5_{10}\\)
-| \\(\\\{a,b\\\}\\)		| \\( (1,1,0) \\) | \\( 110_2 \\)| \\(6_{10}\\)
-| \\(\\\{a,b,c\\\}\\) | \\( (1,1,1) \\) | \\( 111_2 \\)| \\(7_{10}\\)
+| \\( \varnothing \\)              | \\( (0,0,0) \\)       | \\( 000_2 \\)       | \\(0_{10}\\)         |
+| \\(\\\{c\\\}\\)			             | \\( (0,0,1) \\)       | \\( 001_2 \\)       | \\(1_{10}\\)         |
+| \\(\\\{b\\\}\\)			             | \\( (0,1,0) \\)       | \\( 010_2 \\)       | \\(2_{10}\\)         |
+| \\(\\\{b,c\\\}\\)		             | \\( (0,1,1) \\)       | \\( 011_2 \\)       | \\(3_{10}\\)         |
+| \\(\\\{a\\\}\\)			             | \\( (1,0,0) \\)       | \\( 100_2 \\)       | \\(4_{10}\\)         |
+| \\(\\\{a,c\\\}\\)		             | \\( (1,0,1) \\)       | \\( 101_2 \\)       | \\(5_{10}\\)         |
+| \\(\\\{a,b\\\}\\)		             | \\( (1,1,0) \\)       | \\( 110_2 \\)       | \\(6_{10}\\)         |
+| \\(\\\{a,b,c\\\}\\)              | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
 
 #### Bitsets
 
