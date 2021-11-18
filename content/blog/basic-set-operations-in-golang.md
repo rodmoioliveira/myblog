@@ -435,8 +435,58 @@ For sets, the subset relation is transitive:
 \\[ ( A \subseteq B ) \text{ and } ( B \subseteq C ) \Rightarrow  ( A \subseteq
 C ) \\]
 
-### Solving problems with sets
+### Counting bit sequences
 
-...
+Sets are great for counting things because we can establish clever relationship
+between different sets. And if you know the size of one set, you can discover
+the size of the other one. For instance, set theory establish a cool way to
+count the number of binary sequences that can be made using a certain number of
+bits.
+
+There is a cool relation between the number of elements in a [power
+set](https://www.mathsisfun.com/sets/power-set.html) and the [cartesian
+product](https://math24.net/cartesian-product-sets.html) of sets.
+
+The power set
+of the set \\(A = \\\{a,b\\\}\\), denoted \\( \text{pow}(A) \\), is the set of
+all the subsets of the set \\(A\\):
+
+\\[ \text{pow}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b \\} \\\}
+\\]
+
+The cartesian product of sets, \\(A_1 \times A_2 \times \text{...} \times A_n
+\\) , is a new set consisting of all sequences where the first component is
+drawn from \\(A_1\\), the second from \\(A_2\\), and so forth. A product of
+\\(n\\) copies of a set \\(A = \\\{0,1\\\}\\) is denoted \\(A^n\\). For example:
+
+\\[ \\\{0,1\\\}^2 = \\\{(0,0),(0,1),(1,0),(1,1)\\\} \\]
+
+The cardinality of a set \\(A = \\\{0,1\\\}\\), denoted \\(|A|\\), is the number
+of elements in the set \\(A\\):
+
+\\[ |\\\{0,1\\\}| = 2 \\]
+
+This means that we can write the set of all n-bit sequences as a product of
+sets, because there is a
+[bijection](ttps://www.mathsisfun.com/sets/injective-surjective-bijective.html)
+between the number of subsets in \\(\text{pow}(A)\\) and the cartesian product
+of the length-n bit-strings sequences \\( \\\{0,1\\\}^n \\):
+
+\\[ |A| = n \Rightarrow | \text{pow}(A) | = | \\\{0,1\\\}^{n}
+| = 2^{n} \\]
+
+For instance, how many binary sequences we can get if we use \\(\text{3-bit}\\) only? The
+answer is \\(2^3 = 8\\). Here is the relation:
+
+| \\(\text{pow}(\\\{a,b,c\\\})\\) | \\( \\\{0,1\\\}^3 \\) | binary | decimal |
+|-|-|-|-|
+| \\( \varnothing \\) | \\( (0,0,0) \\) | \\( 000_2 \\)| \\(0_{10}\\)
+| \\(\\\{c\\\}\\)			| \\( (0,0,1) \\) | \\( 001_2 \\)| \\(1_{10}\\)
+| \\(\\\{b\\\}\\)			| \\( (0,1,0) \\) | \\( 010_2 \\)| \\(2_{10}\\)
+| \\(\\\{b,c\\\}\\)		| \\( (0,1,1) \\) | \\( 011_2 \\)| \\(3_{10}\\)
+| \\(\\\{a\\\}\\)			| \\( (1,0,0) \\) | \\( 100_2 \\)| \\(4_{10}\\)
+| \\(\\\{a,c\\\}\\)		| \\( (1,0,1) \\) | \\( 101_2 \\)| \\(5_{10}\\)
+| \\(\\\{a,b\\\}\\)		| \\( (1,1,0) \\) | \\( 110_2 \\)| \\(6_{10}\\)
+| \\(\\\{a,b,c\\\}\\) | \\( (1,1,1) \\) | \\( 111_2 \\)| \\(7_{10}\\)
 
 ### References

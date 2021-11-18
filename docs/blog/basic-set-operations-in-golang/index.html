@@ -273,8 +273,8 @@
           <li class="toc__li">
             <a
               class="toc__anchor"
-              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#solving-problems-with-sets"
-              >Solving problems with sets</a
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#counting-bit-sequences"
+              >Counting bit sequences</a
             >
           </li>
 
@@ -768,11 +768,145 @@
         \[ ( A \subseteq B ) \text{ and } ( B \subseteq C ) \Rightarrow ( A
         \subseteq C ) \]
       </p>
-      <h3 id="solving-problems-with-sets">Solving problems with sets</h3>
-      <p>...</p>
+      <h3 id="counting-bit-sequences">Counting bit sequences</h3>
+      <p>
+        Sets are great for counting things because we can establish clever
+        relationship between different sets. And if you know the size of one
+        set, you can discover the size of the other one. For instance, set
+        theory establish a cool way to count the number of binary sequences that
+        can be made using a certain number of bits.
+      </p>
+      <p>
+        There is a cool relation between the number of elements in a
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://www.mathsisfun.com/sets/power-set.html"
+          >power set</a
+        >
+        and the
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://math24.net/cartesian-product-sets.html"
+          >cartesian product</a
+        >
+        of sets.
+      </p>
+      <p>
+        The power set of the set \(A = \{a,b\}\), denoted \( \text{pow}(A) \),
+        is the set of all the subsets of the set \(A\):
+      </p>
+      <p>
+        \[ \text{pow}(\{a,b\}) = \{ \varnothing, \{a \}, \{b \}, \{a,b \} \} \]
+      </p>
+      <p>
+        The cartesian product of sets, \(A_1 \times A_2 \times \text{...} \times
+        A_n \) , is a new set consisting of all sequences where the first
+        component is drawn from \(A_1\), the second from \(A_2\), and so forth.
+        A product of \(n\) copies of a set \(A = \{0,1\}\) is denoted \(A^n\).
+        For example:
+      </p>
+      <p>\[ \{0,1\}^2 = \{(0,0),(0,1),(1,0),(1,1)\} \]</p>
+      <p>
+        The cardinality of a set \(A = \{0,1\}\), denoted \(|A|\), is the number
+        of elements in the set \(A\):
+      </p>
+      <p>\[ |\{0,1\}| = 2 \]</p>
+      <p>
+        This means that we can write the set of all n-bit sequences as a product
+        of sets, because there is a
+        <a
+          href="ttps://www.mathsisfun.com/sets/injective-surjective-bijective.html"
+          >bijection</a
+        >
+        between the number of subsets in \(\text{pow}(A)\) and the cartesian
+        product of the length-n bit-strings sequences \( \{0,1\}^n \):
+      </p>
+      <p>
+        \[ |A| = n \Rightarrow | \text{pow}(A) | = | \{0,1\}^{n} | = 2^{n} \]
+      </p>
+      <p>
+        For instance, how many binary sequences we can get if we use
+        \(\text{3-bit}\) only? The answer is \(2^3 = 8\). Here is the relation:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>\(\text{pow}(\{a,b,c\})\)</th>
+            <th>\( \{0,1\}^3 \)</th>
+            <th>binary</th>
+            <th>decimal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\( \varnothing \)</td>
+            <td>\( (0,0,0) \)</td>
+            <td>\( 000_2 \)</td>
+            <td>\(0_{10}\)</td>
+          </tr>
+          <tr>
+            <td>\(\{c\}\)</td>
+            <td>\( (0,0,1) \)</td>
+            <td>\( 001_2 \)</td>
+            <td>\(1_{10}\)</td>
+          </tr>
+          <tr>
+            <td>\(\{b\}\)</td>
+            <td>\( (0,1,0) \)</td>
+            <td>\( 010_2 \)</td>
+            <td>\(2_{10}\)</td>
+          </tr>
+          <tr>
+            <td>\(\{b,c\}\)</td>
+            <td>\( (0,1,1) \)</td>
+            <td>\( 011_2 \)</td>
+            <td>\(3_{10}\)</td>
+          </tr>
+          <tr>
+            <td>\(\{a\}\)</td>
+            <td>\( (1,0,0) \)</td>
+            <td>\( 100_2 \)</td>
+            <td>\(4_{10}\)</td>
+          </tr>
+          <tr>
+            <td>\(\{a,c\}\)</td>
+            <td>\( (1,0,1) \)</td>
+            <td>\( 101_2 \)</td>
+            <td>\(5_{10}\)</td>
+          </tr>
+          <tr>
+            <td>\(\{a,b\}\)</td>
+            <td>\( (1,1,0) \)</td>
+            <td>\( 110_2 \)</td>
+            <td>\(6_{10}\)</td>
+          </tr>
+          <tr>
+            <td>\(\{a,b,c\}\)</td>
+            <td>\( (1,1,1) \)</td>
+            <td>\( 111_2 \)</td>
+            <td>\(7_{10}\)</td>
+          </tr>
+        </tbody>
+      </table>
       <h3 id="references">References</h3>
 
       <ul class="reference__ul">
+        <li class="reference__li" id="math24:cartesian-product-of-sets">
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;math24.net&#x2F;cartesian-product-sets.html"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Cartesian Product of Sets</a
+          >.
+
+          <span class="reference__jornal">Math24.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
         <li class="reference__li" id="mathsisfun.com:complement-set-definition">
           <a
             class="reference__url"
@@ -797,6 +931,37 @@
           >.
 
           <span class="reference__jornal">Brilliant.org.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li
+          class="reference__li"
+          id="mathsisfun.com:injective-surjective-bijective"
+        >
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;www.mathsisfun.com&#x2F;sets&#x2F;injective-surjective-bijective.html"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Injective, Surjective and Bijective</a
+          >.
+
+          <span class="reference__jornal">Math is Fun.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="mathsisfun.com:power-set">
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;www.mathsisfun.com&#x2F;sets&#x2F;power-set.html"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Power Set</a
+          >.
+
+          <span class="reference__jornal">Math is Fun.</span>
 
           <span class="reference__urldate">Accessed: 2021-11-17.</span>
         </li>
