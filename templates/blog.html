@@ -18,7 +18,7 @@
             {% for page in section.pages %}
                 <li class="blog__li">
                     <span class="blog__date">{{ page.date | replace(from="-",
-                        to="/") }}</span>&nbsp;&#8226;&nbsp;
+                        to="/") | safe }}</span>&nbsp;&#8226;&nbsp;
                     <a class="link blog__link" href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
             {% endfor %}
         </ul>

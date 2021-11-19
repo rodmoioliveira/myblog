@@ -1,7 +1,7 @@
 +++
 title = "One-Liners: Log Summarization"
 description = "Let's demonstrate some useful techniques for peeking, summarizing, and plotting logs data."
-date = 2021-11-27
+date = 2021-10-27
 slug = "one-liners-log-summarization"
 draft = false
 [extra]
