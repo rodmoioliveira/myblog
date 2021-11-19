@@ -582,7 +582,9 @@ together. This problem can be easily solved using bit sets.
 First, let's define a set \\(W\\) which each of its elements representing a day
 of the week:
 
-\\[W = \\\{ sun, mon, tue, wed, thu, fri, sat \\\} \\]
+\\[W = \\\{
+\text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat}
+\\\} \\]
 
 The power set of \\(W\\), denoted \\( \mathcal{P}(W) \\), is the set of all the
 possible subsets of \\(W\\). Let \\(S = \mathcal{P}(W) \\), which is our
