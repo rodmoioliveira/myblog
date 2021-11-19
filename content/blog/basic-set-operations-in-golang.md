@@ -13,13 +13,13 @@ katex_auto_render = true
 ### What are sets?
 
 In mathematics, a set is a collection of unique and unsorted elements. The
-conventional way to write down a set is to list the elements inside
-curly braces, like this \\( \\\{ 1,2,3 \\\} \\). The elements inside a set
-should only appear once, because any element is either in the set or not. This
-mean that the sets \\( \\\{ dog, dog, cat \\\} \\) and \\( \\\{ dog, cat \\\} \\)
-are equal. Also, the order of the elements inside a set is meaningless, so \\(
-\\\{ a,b,c \\\} \\) and \\( \\\{ c,b,a \\\} \\) are the same set written in two
-different ways.
+conventional way to write down a set is to list the elements inside curly
+braces, like this \\( \\\{ 1,2,3 \\\} \\). The elements inside a set should only
+appear once, because any element is either in the set or not. This mean that the
+sets \\( \\\{ \text{dog}, \text{dog}, \text{cat} \\\} \\) and \\( \\\{
+\text{dog}, \text{cat} \\\} \\) are equal. Also, the order of the elements
+inside a set is meaningless, so \\( \\\{ a,b,c \\\} \\) and \\( \\\{ c,b,a \\\}
+\\) are the same set written in two different ways.
 
 Sets are a fundamental mathematical construct and serve as a handy data
 structure when writing computer programs. Some languages implement sets by
@@ -356,7 +356,8 @@ For sets, the subset relation is antisymmetric:
 #### Associative
 
 Associativity is a property of some binary operations, which means that
-rearranging the parentheses in an expression will not change the result.
+rearranging the parentheses in an expression will not change the result. Union
+and intersection are associative:
 
 \\[ A \cup \left( {B \cup C} \right) = \left( {A \cup B} \right) \cup C \newline
 A \cap \left( {B \cap C} \right) = \left( {A \cap B} \right) \cap C \\]
@@ -364,7 +365,7 @@ A \cap \left( {B \cap C} \right) = \left( {A \cap B} \right) \cap C \\]
 #### Commutative
 
 A binary operation is commutative if changing the order of the operands does not
-change the result. Union and intersection are commutative operations.
+change the result. Union and intersection are commutative:
 
 \\[ A \cup B = B \cup A \newline A \cap B = B \cap A \\]
 
@@ -479,12 +480,13 @@ all the subsets \\(B\\) in the set \\(A\\). In set-builder notation it is:
 
 \\[ \mathcal{P}(A) = \\\{B : B \subseteq A  \\\} \\]
 
-Here's an example for the set \\( \\\{ \text{bat}, \text{frog} \\\} \\):
+Here's an example for the set \\( L = \\\{ \text{bat}, \text{frog} \\\} \\):
 
-\\[ \mathcal{P}(\\\{\text{bat},\text{frog}\\\}) = \\\{ \varnothing, \\\{\text{bat} \\\}, \\\{\text{frog} \\\},
+\\[ \mathcal{P}(L) = \\\{ \varnothing, \\\{\text{bat} \\\}, \\\{\text{frog} \\\},
 \\\{\text{bat}, \text{frog} \\} \\\} \\]
 
-The cardinality of power sets is defined as \\(|\mathcal{P}(A)| = 2^{|A|}\\).
+The cardinality of the power sets of any given set \\(A\\) is defined as
+\\(|\mathcal{P}(A)| = 2^{|A|}\\).
 
 #### Bijection
 
