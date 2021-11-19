@@ -1049,6 +1049,33 @@
         rely on when we use a bit set data structure.
       </p>
       <h4 id="bit-set">Bit set</h4>
+      <p>
+        A bit set is just a n-bit sequence. They can be used in Golang with
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://yourbasic.org/golang/bitwise-operator-cheat-sheet/"
+          >bitwise operators</a
+        >
+        to represent several set operations. To see them in action, we'll
+        propose a simple problem. Let's suppose that we have \(n\) workers
+        within a company, and we would like to known, for any two workers, how
+        many days of the week they work together. This problem can be easily
+        solved using bit sets.
+      </p>
+      <p>
+        First, let's define a set \(W\) which each of its elements representing
+        a day of the week:
+      </p>
+      <p>\[W = \{ sun, mon, tue, wed, thu, fri, sat \} \]</p>
+      <p>
+        The power set of \(W\), denoted \( \mathcal{P}(W) \), is the set of all
+        the possible subsets of \(W\). Let be \(S = \mathcal{P}(W) \), which is
+        our schedule set, with all possible sequences of work schedules derived
+        from the seven days of the week. What's the cardinality of \(S\)? The
+        answer is:
+      </p>
+      <p>\[ |W| = 7 \ \ \text{ implies } \ \ |S| = 2^7 = 128 \]</p>
       <h3 id="references">References</h3>
 
       <ul class="reference__ul">
@@ -1215,6 +1242,39 @@
           <span class="reference__jornal">GitHub.</span>
 
           <span class="reference__note">2021-11-19.</span>
+        </li>
+
+        <li class="reference__li" id="Bitssets35:online">
+          <span class="reference__author">Mói, Rodolfo.</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;gist.github.com&#x2F;rodmoioliveira&#x2F;ac0cf7e41aca59c83cce4b4f8f1efe76"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Bit sets in Golang</a
+          >.
+
+          <span class="reference__jornal">GitHub.</span>
+
+          <span class="reference__note">2021-11-19.</span>
+        </li>
+
+        <li
+          class="reference__li"
+          id="yourbasic.com:bitwise-operators-cheat-sheet"
+        >
+          <span class="reference__author">Nilsson, Stefan.</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;yourbasic.org&#x2F;golang&#x2F;bitwise-operator-cheat-sheet&#x2F;"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Bitwise operators cheat sheet</a
+          >.
+
+          <span class="reference__urldate">Accessed: 2021-11-19.</span>
         </li>
 
         <li class="reference__li" id="youtube:discret-math-1">
