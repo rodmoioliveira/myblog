@@ -34,10 +34,17 @@ type with three methods: `MakeSet` to create new sets, `Size` to get the set's
 cardinality and, `ToString` to print its string representation:
 
 ```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
 type (
-	SetItem interface{}
-	SetSlice []SetItem
-	Set map[SetItem]membership
+	SetItem    interface{}
+	SetSlice   []SetItem
+	Set        map[SetItem]membership
 	membership struct{}
 )
 
@@ -105,7 +112,7 @@ func (s Set) Contains(si SetItem) (ok bool) {
 Now let's build a new set and test for membership:
 
 ```go
-set := MakeSet("cat", "dog", "cow")
+set = MakeSet("cat", "dog", "cow")
 
 ok := set.Contains("cat")
 fmt.Println(ok) // true
@@ -192,8 +199,8 @@ The result of the intersection of the sets \\( A = \\\{ \text{cat}, \text{dog},
 this operation is expressed as:
 
 ```go
-A := MakeSet("cat", "dog", "cow")
-B := MakeSet("cat", "duck", "bull")
+A = MakeSet("cat", "dog", "cow")
+B = MakeSet("cat", "duck", "bull")
 
 I := A.Intersection(B)
 fmt.Println(I.ToString())
@@ -234,8 +241,8 @@ The result of the difference of the sets \\( A = \\\{ \text{cat}, \text{dog},
 Let's check if our code is correct:
 
 ```go
-A := MakeSet("cat", "dog", "cow")
-B := MakeSet("cat", "duck", "bull")
+A = MakeSet("cat", "dog", "cow")
+B = MakeSet("cat", "duck", "bull")
 
 D := A.Difference(B)
 fmt.Println(D.ToString())
@@ -282,8 +289,8 @@ The result of the symmetric difference of the sets \\( A = \\\{ \text{cat},
 \text{cow}, \text{duck}, \text{bull} \\\} \\). Let's try it in our code:
 
 ```go
-A := MakeSet("cat", "dog", "cow")
-B := MakeSet("cat", "duck", "bull")
+A = MakeSet("cat", "dog", "cow")
+B = MakeSet("cat", "duck", "bull")
 
 SD := A.SymmetricDifference(B)
 fmt.Println(SD.ToString())
@@ -324,16 +331,19 @@ For the sets \\( A = \\\{ \text{cat}, \text{dog}, \text{cow} \\\} \\) and \\( B
 is \\( \text{true} \\), but \\( A \subseteq B \\) is \\( \text{false} \\). Let's test it:
 
 ```go
-A := MakeSet("cat", "dog", "cow")
-B := MakeSet("cat", "dog")
+A = MakeSet("cat", "dog", "cow")
+B = MakeSet("cat", "dog")
 
 fmt.Println(B.SubsetOf(A)) // true
 fmt.Println(A.SubsetOf(B)) // false
 ```
 
 Good. With that, we had implemented the basic set operations supported for sets
-as an abstract data type. Now we can get familiar with some fundamental set
-properties that we should know about.
+as an abstract data type. All the code for this implementation can be found in
+this
+[gist](https://gist.github.com/rodmoioliveira/65281facd4117c37957a2373c5323892).
+Now we can get familiar with some fundamental set properties that we should know
+about.
 
 ### Set Identities
 

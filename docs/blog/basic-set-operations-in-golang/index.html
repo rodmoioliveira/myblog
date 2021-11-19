@@ -378,10 +378,17 @@
         data-lang="go"
         style="background-color: #2b303b; color: #c0c5ce"
         class="language-go"
-      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">type </span><span>(
-</span><span>	SetItem </span><span style="color:#b48ead;">interface</span><span>{}
-</span><span>	SetSlice []</span><span style="color:#b48ead;">SetItem
-</span><span>	Set </span><span style="color:#b48ead;">map</span><span>[</span><span style="color:#b48ead;">SetItem</span><span>]</span><span style="color:#b48ead;">membership
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">package </span><span style="color:#bf616a;">main
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>(
+</span><span>	&quot;</span><span style="color:#a3be8c;">fmt</span><span>&quot;
+</span><span>	&quot;</span><span style="color:#a3be8c;">strings</span><span>&quot;
+</span><span>)
+</span><span>
+</span><span style="color:#b48ead;">type </span><span>(
+</span><span>	SetItem    </span><span style="color:#b48ead;">interface</span><span>{}
+</span><span>	SetSlice   []</span><span style="color:#b48ead;">SetItem
+</span><span>	Set        </span><span style="color:#b48ead;">map</span><span>[</span><span style="color:#b48ead;">SetItem</span><span>]</span><span style="color:#b48ead;">membership
 </span><span>	membership </span><span style="color:#b48ead;">struct</span><span>{}
 </span><span>)
 </span><span>
@@ -459,7 +466,7 @@
         data-lang="go"
         style="background-color: #2b303b; color: #c0c5ce"
         class="language-go"
-      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">set </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">set </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
 </span><span>
 </span><span style="color:#bf616a;">ok </span><span>:= </span><span style="color:#bf616a;">set</span><span>.</span><span style="color:#bf616a;">Contains</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;)
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">ok</span><span>) </span><span style="color:#65737e;">// true
@@ -561,8 +568,8 @@
         data-lang="go"
         style="background-color: #2b303b; color: #c0c5ce"
         class="language-go"
-      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
-</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
 </span><span>
 </span><span style="color:#bf616a;">I </span><span>:= </span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">Intersection</span><span>(</span><span style="color:#bf616a;">B</span><span>)
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">I</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
@@ -607,8 +614,8 @@
         data-lang="go"
         style="background-color: #2b303b; color: #c0c5ce"
         class="language-go"
-      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
-</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
 </span><span>
 </span><span style="color:#bf616a;">D </span><span>:= </span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">Difference</span><span>(</span><span style="color:#bf616a;">B</span><span>)
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">D</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
@@ -663,8 +670,8 @@
         data-lang="go"
         style="background-color: #2b303b; color: #c0c5ce"
         class="language-go"
-      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
-</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">duck</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">bull</span><span>&quot;)
 </span><span>
 </span><span style="color:#bf616a;">SD </span><span>:= </span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">SymmetricDifference</span><span>(</span><span style="color:#bf616a;">B</span><span>)
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">SD</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
@@ -711,16 +718,23 @@
         data-lang="go"
         style="background-color: #2b303b; color: #c0c5ce"
         class="language-go"
-      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
-</span><span style="color:#bf616a;">B </span><span>:= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;)
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">A </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">cow</span><span>&quot;)
+</span><span style="color:#bf616a;">B </span><span>= </span><span style="color:#bf616a;">MakeSet</span><span>(&quot;</span><span style="color:#a3be8c;">cat</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">dog</span><span>&quot;)
 </span><span>
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">B</span><span>.</span><span style="color:#bf616a;">SubsetOf</span><span>(</span><span style="color:#bf616a;">A</span><span>)) </span><span style="color:#65737e;">// true
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">SubsetOf</span><span>(</span><span style="color:#bf616a;">B</span><span>)) </span><span style="color:#65737e;">// false
 </span></code></pre>
       <p>
         Good. With that, we had implemented the basic set operations supported
-        for sets as an abstract data type. Now we can get familiar with some
-        fundamental set properties that we should know about.
+        for sets as an abstract data type. All the code for this implementation
+        can be found in this
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://gist.github.com/rodmoioliveira/65281facd4117c37957a2373c5323892"
+          >gist</a
+        >. Now we can get familiar with some fundamental set properties that we
+        should know about.
       </p>
       <h3 id="set-identities">Set Identities</h3>
       <p>
@@ -1185,6 +1199,22 @@
           >.
 
           <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="Basicset35:online">
+          <span class="reference__author">Mói, Rodolfo.</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;gist.github.com&#x2F;rodmoioliveira&#x2F;65281facd4117c37957a2373c5323892"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Basic set operations in Golang</a
+          >.
+
+          <span class="reference__jornal">GitHub.</span>
+
+          <span class="reference__note">2021-11-19.</span>
         </li>
 
         <li class="reference__li" id="youtube:discret-math-1">
