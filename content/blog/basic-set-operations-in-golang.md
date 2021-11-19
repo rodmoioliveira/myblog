@@ -560,12 +560,12 @@ product set of 3-bit sequences:
 With this knowledge, it's very easy to count the number of values that can be
 represented by any given `int` type in Golang:
 
-| \\(\text{type}\\)|\\( \| \\\{0,1\\\}^n \| \\) | \\(\text{n-bit sequences}\\)
+| \\(\text{type}\\)      |\\( \| \\\{0,1\\\}^n \| \\) | \\(\text{n-bit sequences}\\)
 |-|-|-|
-| int8	           |\\( 2^8 \\)                 | \\( 256 \\)
-| int16	           |\\( 2^{16} \\)              | \\( 65536\\)
-| int32	           |\\( 2^{32} \\)              | \\( 4294967296 \\)
-| int64            |\\( 2^{64} \\)              | \\( 1.8446744e+19 \\)
+| \\(\text{int8}	\\)    |\\( 2^8 \\)                 | \\( 256 \\)
+| \\(\text{int16} \\)    |\\( 2^{16} \\)              | \\( 65536\\)
+| \\(\text{int32} \\)    |\\( 2^{32} \\)              | \\( 4294967296 \\)
+| \\(\text{int64} \\)    |\\( 2^{64} \\)              | \\( 1.8446744e+19 \\)
 
 It's precisely in this bijection from product sets to power sets that we rely on
 when we use a bit set data structure.
