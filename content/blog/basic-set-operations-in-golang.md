@@ -1,7 +1,7 @@
 +++
 title = "Basic set operations in Golang"
 description = "As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
-date = 2021-11-30
+date = 2021-11-19
 slug = "basic-set-operations-in-golang"
 draft = false
 [extra]
@@ -80,10 +80,11 @@ elements were printed out inside curly braces in arbitrary order.
 
 ### Basic set operations
 
-We'll implement some basic set operations in Golang, like membership assertion,
-union, intersection, difference, symmetric difference, and subset assertion.
-Along the way, we'll provide the mathematical definition for each one of these
-operations to better understand them.
+We'll implement some basic set operations in Golang, like **membership**
+assertion, **union**, **intersection**, **difference**, **symmetric
+difference**, and **subset** assertion.  Along the way, we'll provide the
+mathematical definition for each one of these operations to better understand
+them.
 
 #### Membership
 
@@ -444,11 +445,12 @@ C ) \\]
 ### Counting bit sequences
 
 Sets are great for counting things because we can establish relations between
-different sets, which can be useful to count infinite sets. For instance,
-there's a clever way to count the number of n-bit sequences that can be yielded
-from a n-bit unit of data used. To understand how it works, we have to comprehend
-the following mathematical concepts within set theory: **cardinality**, **product
-of sets**, **power sets**, and **bijections**.
+different sets, which can be useful to count infinite sets. If we could find
+these relations, we can transform otherwise hard problems into trivial
+operations. For instance, there's a clever way to count the number of n-bit
+sequences that can be yielded from an n-bit unit of data used. To understand how
+it works, we have to comprehend the following mathematical concepts within set
+theory: **cardinality**, **product of sets**, **power sets**, and **bijections**.
 
 #### Cardinality
 
