@@ -2,6 +2,18 @@
   margin: auto;
   max-width: var(--article-max-width);
   padding: var(--article-padding);
+
+  & > table {
+    border-collapse: collapse;
+    margin: 2em auto;
+  }
+
+  & > table th,
+  & > table td {
+    border: 1px solid var(--primary-color);
+    padding: 0.2em 0.3em;
+    text-align: center;
+  }
 }
 .post__title {
   text-align: center;
@@ -13,15 +25,3 @@
 }
 // .post__link {
 // }
-
-.post > table {
-  border-collapse: collapse;
-  margin: 2em auto;
-}
-
-.post > table th,
-.post > table td {
-  border: 1px solid var(--primary-color);
-  padding: 0.2em 0.3em;
-  text-align: center;
-}

@@ -317,6 +317,14 @@
                   >Counting subsets of a finite set</a
                 >
               </li>
+
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#bit-set"
+                  >Bit set</a
+                >
+              </li>
             </ul>
           </li>
 
@@ -494,9 +502,11 @@
 </span><span>}
 </span></code></pre>
       <p>
-        The result of the union of two sets \( A = \{ cat, dog, cow \} \) and \(
-        B = \{ cat, duck, bull \} \) can be expressed as \( A \cup B = \{
-        cat,dog,cow,duck,bull \} \). Let's test our implementation:
+        The result of the union of two sets \( A = \{ \text{cat}, \text{dog},
+        \text{cow} \} \) and \( B = \{ \text{cat}, \text{duck}, \text{bull} \}
+        \) can be expressed as \( A \cup B = \{
+        \text{cat},\text{dog},\text{cow},\text{duck},\text{bull} \} \). Let's
+        test our implementation:
       </p>
       <pre
         data-lang="go"
@@ -539,9 +549,10 @@
 </span><span>}
 </span></code></pre>
       <p>
-        The result of the intersection of the sets \( A = \{ cat, dog, cow \} \)
-        and \( B = \{ cat, duck, bull \} \) can be presented as \( A \cap B = \{
-        cat \} \). In our Go code, this operation is expressed as:
+        The result of the intersection of the sets \( A = \{ \text{cat},
+        \text{dog}, \text{cow} \} \) and \( B = \{ \text{cat}, \text{duck},
+        \text{bull} \} \) can be presented as \( A \cap B = \{ \text{cat} \} \).
+        In our Go code, this operation is expressed as:
       </p>
       <pre
         data-lang="go"
@@ -584,9 +595,10 @@
 </span><span>}
 </span></code></pre>
       <p>
-        The result of the difference of the sets \( A = \{ cat, dog, cow \} \)
-        and \( B = \{ cat, duck, bull \} \) can be written as \( A \setminus B =
-        \{dog,cow \} \). Let's check if our code is correct:
+        The result of the difference of the sets \( A = \{ \text{cat},
+        \text{dog}, \text{cow} \} \) and \( B = \{ \text{cat}, \text{duck},
+        \text{bull} \} \) can be written as \( A \setminus B = \{\text{dog},
+        \text{cow} \} \). Let's check if our code is correct:
       </p>
       <pre
         data-lang="go"
@@ -639,9 +651,10 @@
 </span><span>}
 </span></code></pre>
       <p>
-        The result of the symmetric difference of the sets \( A = \{ cat, dog,
-        cow \} \) and \( B = \{ cat, duck, bull \} \) can be defined as \( A
-        \ominus B = \{ dog, cow, duck, bull \} \). Let's try it in our code:
+        The result of the symmetric difference of the sets \( A = \{ \text{cat},
+        \text{dog}, \text{cow} \} \) and \( B = \{ \text{cat}, \text{duck},
+        \text{bull} \} \) can be defined as \( A \ominus B = \{ \text{dog},
+        \text{cow}, \text{duck}, \text{bull} \} \). Let's try it in our code:
       </p>
       <pre
         data-lang="go"
@@ -686,9 +699,10 @@
 </span><span>}
 </span></code></pre>
       <p>
-        For the sets \( A = \{ cat, dog, cow \} \) and \( B = \{ cat, dog \} \),
-        we can assert that \( B \subseteq A \) is \( true \), but \( A \subseteq
-        B \) is \( false \). Let's test it:
+        For the sets \( A = \{ \text{cat}, \text{dog}, \text{cow} \} \) and \( B
+        = \{ \text{cat}, \text{dog} \} \), we can assert that \( B \subseteq A
+        \) is \( \text{true} \), but \( A \subseteq B \) is \( \text{false} \).
+        Let's test it:
       </p>
       <pre
         data-lang="go"
@@ -814,11 +828,12 @@
       <p>
         Sets are great for counting things because we can establish relations
         between different sets, which can be useful to count infinite sets. For
-        instance, there's a clever way to count the number of binary sequences
-        that can be yielded from a certain number of bits. To understand how it
+        instance, there's a clever way to count the number of n-bit sequences
+        that can be yielded from a n-bit unit of data used. To understand how it
         works, we have to comprehend the following mathematical concepts within
-        set theory: <em>cardinality</em>, <em>product of sets</em>,
-        <em>power sets</em>, and <em>bijections</em>.
+        set theory: <strong>cardinality</strong>,
+        <strong>product of sets</strong>, <strong>power sets</strong>, and
+        <strong>bijections</strong>.
       </p>
       <h4 id="cardinality">Cardinality</h4>
       <p>
@@ -851,9 +866,10 @@
         is:
       </p>
       <p>\[ \mathcal{P}(A) = \{B : B \subseteq A \} \]</p>
-      <p>Here's an example for the set \( \{ a,b \} \):</p>
+      <p>Here's an example for the set \( \{ \text{bat}, \text{frog} \} \):</p>
       <p>
-        \[ \mathcal{P}(\{a,b\}) = \{ \varnothing, \{a \}, \{b \}, \{a,b \} \} \]
+        \[ \mathcal{P}(\{\text{bat},\text{frog}\}) = \{ \varnothing,
+        \{\text{bat} \}, \{\text{frog} \}, \{\text{bat}, \text{frog} \} \} \]
       </p>
       <p>
         The cardinality of power sets is defined as \(|\mathcal{P}(A)| =
@@ -973,7 +989,10 @@
           </tr>
         </tbody>
       </table>
-      <p>Now ...</p>
+      <p>
+        With this knowledge, it's very easy to count the number of values that
+        can be represented by any given <code>int</code> type in Golang:
+      </p>
       <table>
         <thead>
           <tr>
@@ -1005,6 +1024,11 @@
           </tr>
         </tbody>
       </table>
+      <p>
+        It's precisely in this bijection from product sets to power sets that we
+        rely on when we use a bit set data structure.
+      </p>
+      <h4 id="bit-set">Bit set</h4>
       <h3 id="references">References</h3>
 
       <ul class="reference__ul">
@@ -1155,6 +1179,38 @@
           >.
 
           <span class="reference__urldate">Accessed: 2021-11-17.</span>
+        </li>
+
+        <li class="reference__li" id="youtube:discret-math-1">
+          <span class="reference__author">TrevTutor,</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;www.youtube.com&#x2F;playlist?list=PLDDGPdw7e6Ag1EIznZ-m-qXu4XX3A0cIz"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Discrete Math 1</a
+          >.
+
+          <span class="reference__organization">Youtube.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-19.</span>
+        </li>
+
+        <li class="reference__li" id="youtube:discret-math-2">
+          <span class="reference__author">TrevTutor,</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;www.youtube.com&#x2F;playlist?list=PLDDGPdw7e6Aj0amDsYInT_8p6xTSTGEi2"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Discrete Math 2</a
+          >.
+
+          <span class="reference__organization">Youtube.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-19.</span>
         </li>
 
         <li class="reference__li" id="WikipediaAlgebraOfSets">

@@ -20,6 +20,9 @@
         {% else %}
         <span>{{ b.tags.title }}</span>.
         {% endif %}
+        {% if b.tags.organization %}
+        <span class="reference__organization">{{ b.tags.organization }}.</span>
+        {% endif %}
         {% if b.tags.journal %}
         <span class="reference__jornal">{{ b.tags.journal }}.</span>
         {% endif %}

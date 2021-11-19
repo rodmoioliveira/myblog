@@ -143,9 +143,11 @@ func (s Set) Union(other Set) (set Set) {
 }
 ```
 
-The result of the union of two sets \\( A = \\\{ cat, dog, cow \\\} \\) and \\(
-B = \\\{ cat, duck, bull \\\} \\) can be expressed as \\( A \cup B = \\\{
-cat,dog,cow,duck,bull \\\} \\). Let's test our implementation:
+The result of the union of two sets \\( A = \\\{ \text{cat}, \text{dog},
+\text{cow} \\\} \\) and \\( B = \\\{ \text{cat}, \text{duck}, \text{bull} \\\}
+\\) can be expressed as \\( A \cup B = \\\{
+\text{cat},\text{dog},\text{cow},\text{duck},\text{bull} \\\} \\). Let's test
+our implementation:
 
 ```go
 A := MakeSet("cat", "dog", "cow")
@@ -183,9 +185,10 @@ func (s Set) Intersection(other Set) (set Set) {
 }
 ```
 
-The result of the intersection of the sets \\( A = \\\{ cat, dog, cow \\\} \\)
-and \\( B = \\\{ cat, duck, bull \\\} \\) can be presented as \\( A \cap B = \\\{
-cat \\\} \\). In our Go code, this operation is expressed as:
+The result of the intersection of the sets \\( A = \\\{ \text{cat}, \text{dog},
+\text{cow} \\\} \\) and \\( B = \\\{ \text{cat}, \text{duck}, \text{bull} \\\}
+\\) can be presented as \\( A \cap B = \\\{ \text{cat} \\\} \\). In our Go code,
+this operation is expressed as:
 
 ```go
 A := MakeSet("cat", "dog", "cow")
@@ -224,10 +227,10 @@ func (s Set) Difference(other Set) (set Set) {
 }
 ```
 
-The result of the difference of the sets \\( A = \\\{ cat, dog, cow \\\} \\) and
-\\( B = \\\{ cat, duck, bull \\\} \\) can be written as \\( A \setminus B =
-\\\{dog,cow \\\} \\). Let's check if our code is correct:
-
+The result of the difference of the sets \\( A = \\\{ \text{cat}, \text{dog},
+\text{cow} \\\} \\) and \\( B = \\\{ \text{cat}, \text{duck}, \text{bull} \\\}
+\\) can be written as \\( A \setminus B = \\\{\text{dog}, \text{cow} \\\} \\).
+Let's check if our code is correct:
 
 ```go
 A := MakeSet("cat", "dog", "cow")
@@ -246,7 +249,8 @@ The symmetric difference of \\( A \\) and \\( B \\), denoted by the expression
 \\( A \ominus B \\), is a set of all elements that appear in \\( A \\) or in
 \\( B \\) but not in both. And could be written in set-builder notation as:
 
-\\[ A \ominus B = \\\{ x : x \in A \setminus B \text{ or} \in B \setminus A \\\} \\]
+\\[ A \ominus B = \\\{ x : x \in A \setminus B \text{ or} \in B \setminus A \\\}
+\\]
 
 Let's write a `SymmetricDifference` method for the `Set` type to compute the
 symmetric difference between two sets:
@@ -271,9 +275,10 @@ func (s Set) SymmetricDifference(other Set) (set Set) {
 }
 ```
 
-The result of the symmetric difference of the sets \\( A = \\\{ cat, dog, cow
-\\\} \\) and \\( B = \\\{ cat, duck, bull \\\} \\) can be defined as \\( A
-\ominus B = \\\{ dog, cow, duck, bull \\\} \\). Let's try it in our code:
+The result of the symmetric difference of the sets \\( A = \\\{ \text{cat},
+\text{dog}, \text{cow} \\\} \\) and \\( B = \\\{ \text{cat}, \text{duck},
+\text{bull} \\\} \\) can be defined as \\( A \ominus B = \\\{ \text{dog},
+\text{cow}, \text{duck}, \text{bull} \\\} \\). Let's try it in our code:
 
 ```go
 A := MakeSet("cat", "dog", "cow")
@@ -313,9 +318,9 @@ func (s Set) SubsetOf(other Set) bool {
 }
 ```
 
-For the sets \\( A = \\\{ cat, dog, cow \\\} \\) and \\( B = \\\{ cat, dog
-\\\} \\), we can assert that \\( B \subseteq A \\) is \\( true \\), but \\( A
-\subseteq B \\) is \\( false \\). Let's test it:
+For the sets \\( A = \\\{ \text{cat}, \text{dog}, \text{cow} \\\} \\) and \\( B
+= \\\{ \text{cat}, \text{dog} \\\} \\), we can assert that \\( B \subseteq A \\)
+is \\( \text{true} \\), but \\( A \subseteq B \\) is \\( \text{false} \\). Let's test it:
 
 ```go
 A := MakeSet("cat", "dog", "cow")
@@ -439,10 +444,10 @@ C ) \\]
 
 Sets are great for counting things because we can establish relations between
 different sets, which can be useful to count infinite sets. For instance,
-there's a clever way to count the number of binary sequences that can be yielded
-from a certain number of bits. To understand how it works, we have to comprehend
-the following mathematical concepts within set theory: *cardinality*, *product
-of sets*, *power sets*, and *bijections*.
+there's a clever way to count the number of n-bit sequences that can be yielded
+from a n-bit unit of data used. To understand how it works, we have to comprehend
+the following mathematical concepts within set theory: **cardinality**, **product
+of sets**, **power sets**, and **bijections**.
 
 #### Cardinality
 
@@ -474,10 +479,10 @@ all the subsets \\(B\\) in the set \\(A\\). In set-builder notation it is:
 
 \\[ \mathcal{P}(A) = \\\{B : B \subseteq A  \\\} \\]
 
-Here's an example for the set \\( \\\{ a,b \\\} \\):
+Here's an example for the set \\( \\\{ \text{bat}, \text{frog} \\\} \\):
 
-\\[ \mathcal{P}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b
-\\} \\\} \\]
+\\[ \mathcal{P}(\\\{\text{bat},\text{frog}\\\}) = \\\{ \varnothing, \\\{\text{bat} \\\}, \\\{\text{frog} \\\},
+\\\{\text{bat}, \text{frog} \\} \\\} \\]
 
 The cardinality of power sets is defined as \\(|\mathcal{P}(A)| = 2^{|A|}\\).
 
@@ -538,7 +543,8 @@ product set of 3-bit sequences:
 | \\(\\\{a_1,a_2\\\}\\)		  | \\( (1,1,0) \\)       | \\( 110_2 \\)       | \\(6_{10}\\)         |
 | \\(\\\{a_1,a_2,a_3\\\}\\) | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
 
-Now ...
+With this knowledge, it's very easy to count the number of values that can be
+represented by any given `int` type in Golang:
 
 | \\(\text{type}\\)|\\( \| \\\{0,1\\\}^n \| \\) | \\(\text{n-bit sequences}\\)
 |-|-|-|
@@ -546,5 +552,10 @@ Now ...
 | int16	           |\\( 2^{16} \\)              | \\( 65536\\)
 | int32	           |\\( 2^{32} \\)              | \\( 4294967296 \\)
 | int64            |\\( 2^{64} \\)              | \\( 1.8446744e+19 \\)
+
+It's precisely in this bijection from product sets to power sets that we rely on
+when we use a bit set data structure.
+
+#### Bit set
 
 ### References
