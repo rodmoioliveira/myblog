@@ -223,8 +223,8 @@
               <li class="toc__li">
                 <a
                   class="toc__anchor"
-                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#de-morgan-s"
-                  >De Morgan&#x27;s</a
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#de-morgan-s-laws"
+                  >De Morgan&#x27;s Laws</a
                 >
               </li>
 
@@ -344,10 +344,10 @@
         The conventional way to write down a set is to list the elements inside
         curly braces, like this \( \{ 1,2,3 \} \). The elements inside a set
         should only appear once, because any element is either in the set or
-        not. This mean that the sets \( \{ \text{dog}, \text{dog}, \text{cat} \}
-        \) and \( \{ \text{dog}, \text{cat} \} \) are equal. Also, the order of
-        the elements inside a set is meaningless, so \( \{ a,b,c \} \) and \( \{
-        c,b,a \} \) are the same set written in two different ways.
+        not. This means that the sets \( \{ \text{dog}, \text{dog}, \text{cat}
+        \} \) and \( \{ \text{dog}, \text{cat} \} \) are equal. Also, the order
+        of the elements inside a set is meaningless, so \( \{ a,b,c \} \) and \(
+        \{ c,b,a \} \) are the same set written in two different ways.
       </p>
       <p>
         Sets are a fundamental mathematical construct and serve as a handy data
@@ -362,8 +362,8 @@
           target="_blank"
           href="https://en.wikipedia.org/wiki/Abstract_data_type"
           >abstract data type</a
-        >, sets are a missing feature in the Go language. But can be easily
-        implemented using
+        >, sets are a missing feature in the Go language. However they can be
+        easily implemented by using
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
@@ -440,7 +440,7 @@
         <strong>intersection</strong>, <strong>difference</strong>,
         <strong>symmetric difference</strong>, and
         <strong>subset</strong> assertion. Along the way, we'll provide the
-        mathematical definition for each one of these operations to better
+        mathematical definition for each one of those operations to better
         understand them.
       </p>
       <h4 id="membership">Membership</h4>
@@ -479,7 +479,7 @@
       <p>
         The union of sets \( A \) and \( B \), denoted by the expression \( A
         \cup B \), is the set that includes exactly the elements appearing in \(
-        A \) or \( B \) or both. This could be written in
+        A \) or \( B \) or both. And it could be written in
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
@@ -529,12 +529,12 @@
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">U</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
 </span><span style="color:#65737e;">// {cat,dog,cow,duck,bull}
 </span></code></pre>
-      <p>All is good so far.</p>
+      <p>So far so good?</p>
       <h4 id="intersection">Intersection</h4>
       <p>
         The intersection of \( A \) and \( B \), denoted by the expression \( A
         \cap B \), is a set of all elements that appear in both \( A \) and \( B
-        \). And could be written in set-builder notation as:
+        \). And it could be written in set-builder notation as:
       </p>
       <p>\[ A \cap B = \{x : x \in A\ \text{and} \ x \in B\} \]</p>
       <p>
@@ -562,7 +562,7 @@
         The result of the intersection of the sets \( A = \{ \text{cat},
         \text{dog}, \text{cow} \} \) and \( B = \{ \text{cat}, \text{duck},
         \text{bull} \} \) can be presented as \( A \cap B = \{ \text{cat} \} \).
-        In our Go code, this operation is expressed as:
+        In our Go code, that operation is expressed as follows:
       </p>
       <pre
         data-lang="go"
@@ -580,8 +580,8 @@
       <p>
         The difference of \( A \) and \( B \), or the complement of \( B \) in
         \( A \), denoted by the expression \( A \setminus B \), is a set of all
-        elements that appear in \( A \) but not in \( B \). And could be written
-        in set-builder notation as:
+        elements that appear in \( A \) but not in \( B \). And it could be
+        written in set-builder notation as:
       </p>
       <p>\[ A \setminus B = \{x : x \in A\ \text{and} \ x \notin B \} \]</p>
       <p>
@@ -621,13 +621,13 @@
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">D</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
 </span><span style="color:#65737e;">// {dog,cow}
 </span></code></pre>
-      <p>Perfect.</p>
+      <p>Perfect!</p>
       <h4 id="symmetric-difference">Symmetric Difference</h4>
       <p>
         The symmetric difference of \( A \) and \( B \), denoted by the
         expression \( A \ominus B \), is a set of all elements that appear in \(
-        A \) or in \( B \) but not in both. And could be written in set-builder
-        notation as:
+        A \) or in \( B \) but not in both. And it could be written in
+        set-builder notation as:
       </p>
       <p>
         \[ A \ominus B = \{ x : x \in A \setminus B \text{ or} \in B \setminus A
@@ -677,12 +677,12 @@
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">SD</span><span>.</span><span style="color:#bf616a;">ToString</span><span>())
 </span><span style="color:#65737e;">// {dog,cow,duck,bull}
 </span></code></pre>
-      <p>Nice.</p>
+      <p>Great!</p>
       <h4 id="subset">Subset</h4>
       <p>
         The expression \( A \subseteq B \) indicates that set \( A \) is a
-        subset of set \( B \), which means that every element of \( A \) is also
-        an element of \( B \). This could be written as:
+        subset of set \( B \), which means every element of \( A \) is also an
+        element of \( B \). It could be written in set-builder notation as:
       </p>
       <p>\[ A \subseteq B \iff A \cap B = A \]</p>
       <p>
@@ -725,16 +725,16 @@
 </span><span style="color:#bf616a;">fmt</span><span>.</span><span style="color:#bf616a;">Println</span><span>(</span><span style="color:#bf616a;">A</span><span>.</span><span style="color:#bf616a;">SubsetOf</span><span>(</span><span style="color:#bf616a;">B</span><span>)) </span><span style="color:#65737e;">// false
 </span></code></pre>
       <p>
-        Good. With that, we had implemented the basic set operations supported
-        for sets as an abstract data type. All the code for this implementation
-        can be found in this
+        Mission accomplished! Due to that, we had implemented the basic set
+        operations supported for sets as an abstract data type. All the code for
+        this implementation can be found in this
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
           href="https://gist.github.com/rodmoioliveira/65281facd4117c37957a2373c5323892"
           >gist</a
         >. Now we can get familiar with some fundamental set properties that we
-        should know about.
+        should be aware of.
       </p>
       <h3 id="set-identities">Set Identities</h3>
       <p>
@@ -771,14 +771,14 @@
       <p>\[ A \cup B = B \cup A \newline A \cap B = B \cap A \]</p>
       <h4 id="complement">Complement</h4>
       <p>
-        In set theory, the complement of a set \( A \), denoted by \( A^c \),
-        are all the elements that aren't in \( A \):
+        In set theory, the complement of a set \( A \), denoted by \( A^c \), is
+        a set of all the elements that aren't in \( A \):
       </p>
       <p>
         \[ A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing \newline {U
         ^ c} = \varnothing \newline {\varnothing ^ c} = U \]
       </p>
-      <h4 id="de-morgan-s">De Morgan's</h4>
+      <h4 id="de-morgan-s-laws">De Morgan's Laws</h4>
       <p>
         De Morgan's Laws describe how mathematical statements and concepts are
         related through their opposites, which explain how to distribute
@@ -798,9 +798,9 @@
       </p>
       <h4 id="distributive">Distributive</h4>
       <p>
-        The distributive property tells us how to solve expressions where more
-        than one binary relation is involved. For example, given a set \( A \)
-        and two binary operators \( * \) and \( + \) on \( A \), the
+        The distributive property tells us how to solve expressions in which
+        more than one binary relation is involved. For example, given a set \( A
+        \) and two binary operators \( * \) and \( + \) on \( A \), the
         distributive law asserts that multiplication (\( * \)) distributes over
         addition (\( + \)) in elementary arithmetic:
       </p>

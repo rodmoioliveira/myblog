@@ -15,7 +15,7 @@ katex_auto_render = true
 In mathematics, a set is a collection of unique and unsorted elements. The
 conventional way to write down a set is to list the elements inside curly
 braces, like this \\( \\\{ 1,2,3 \\\} \\). The elements inside a set should only
-appear once, because any element is either in the set or not. This mean that the
+appear once, because any element is either in the set or not. This means that the
 sets \\( \\\{ \text{dog}, \text{dog}, \text{cat} \\\} \\) and \\( \\\{
 \text{dog}, \text{cat} \\\} \\) are equal. Also, the order of the elements
 inside a set is meaningless, so \\( \\\{ a,b,c \\\} \\) and \\( \\\{ c,b,a \\\}
@@ -28,10 +28,11 @@ default. But in others, like Go, you have to implement yourself.
 ### Abstract Data Type
 
 As an [abstract data type](https://en.wikipedia.org/wiki/Abstract_data_type),
-sets are a missing feature in the Go language. But can be easily implemented
-using [maps](https://tour.golang.org/moretypes/19). Let's implement the `Set`
-type with three methods: `MakeSet` to create new sets, `Size` to get the set's
-cardinality and, `ToString` to print its string representation:
+sets are a missing feature in the Go language. However they can be easily
+implemented by using [maps](https://tour.golang.org/moretypes/19). Let's
+implement the `Set` type with three methods: `MakeSet` to create new sets,
+`Size` to get the set's cardinality and, `ToString` to print its string
+representation:
 
 ```go
 package main
@@ -90,7 +91,7 @@ elements were printed out inside curly braces in arbitrary order.
 We'll implement some basic set operations in Golang, like **membership**
 assertion, **union**, **intersection**, **difference**, **symmetric
 difference**, and **subset** assertion.  Along the way, we'll provide the
-mathematical definition for each one of these operations to better understand
+mathematical definition for each one of those operations to better understand
 them.
 
 #### Membership
@@ -127,7 +128,7 @@ Easy peasy, let's continue.
 
 The union of sets \\( A \\) and \\( B \\), denoted by the expression \\( A \cup
 B \\), is the set that includes exactly the elements appearing in \\( A \\) or
-\\( B \\) or both. This could be written in [set-builder
+\\( B \\) or both. And it could be written in [set-builder
 notation](https://www.mathsisfun.com/sets/set-builder-notation.html) as:
 
 \\[ A \cup B = \\\{x : x \in A \ \text{or} \  x \in B\\\} \\]
@@ -166,13 +167,13 @@ fmt.Println(U.ToString())
 // {cat,dog,cow,duck,bull}
 ```
 
-All is good so far.
+So far so good?
 
 #### Intersection
 
 The intersection of \\( A \\) and \\( B \\), denoted by the expression \\( A
 \cap B \\), is a set of all elements that appear in both \\( A \\) and \\( B
-\\). And could be written in set-builder notation as:
+\\). And it could be written in set-builder notation as:
 
 \\[ A \cap B = \\\{x : x \in A\ \text{and} \ x \in B\\\} \\]
 
@@ -196,7 +197,7 @@ func (s Set) Intersection(other Set) (set Set) {
 The result of the intersection of the sets \\( A = \\\{ \text{cat}, \text{dog},
 \text{cow} \\\} \\) and \\( B = \\\{ \text{cat}, \text{duck}, \text{bull} \\\}
 \\) can be presented as \\( A \cap B = \\\{ \text{cat} \\\} \\). In our Go code,
-this operation is expressed as:
+that operation is expressed as follows:
 
 ```go
 A = MakeSet("cat", "dog", "cow")
@@ -213,7 +214,7 @@ It works just as expected.
 
 The difference of \\( A \\) and \\( B \\), or the complement of \\( B \\) in \\(
 A \\), denoted by the expression \\( A \setminus B \\), is a set of all elements
-that appear in \\( A \\) but not in \\( B \\). And could be written in
+that appear in \\( A \\) but not in \\( B \\). And it could be written in
 set-builder notation as:
 
 \\[ A \setminus B = \\\{x : x \in A\ \text{and} \ x \notin B \\\} \\]
@@ -249,13 +250,13 @@ fmt.Println(D.ToString())
 // {dog,cow}
 ```
 
-Perfect.
+Perfect!
 
 #### Symmetric Difference
 
 The symmetric difference of \\( A \\) and \\( B \\), denoted by the expression
 \\( A \ominus B \\), is a set of all elements that appear in \\( A \\) or in
-\\( B \\) but not in both. And could be written in set-builder notation as:
+\\( B \\) but not in both. And it could be written in set-builder notation as:
 
 \\[ A \ominus B = \\\{ x : x \in A \setminus B \text{ or} \in B \setminus A \\\}
 \\]
@@ -297,13 +298,13 @@ fmt.Println(SD.ToString())
 // {dog,cow,duck,bull}
 ```
 
-Nice.
+Great!
 
 #### Subset
 
 The expression \\( A \subseteq B \\) indicates that set \\( A \\) is a subset of
-set \\( B \\), which means that every element of \\( A \\) is also an element of
-\\( B \\). This could be written as:
+set \\( B \\), which means every element of \\( A \\) is also an element of
+\\( B \\). It could be written in set-builder notation as:
 
 \\[ A \subseteq B \iff A \cap B = A \\]
 
@@ -338,12 +339,12 @@ fmt.Println(B.SubsetOf(A)) // true
 fmt.Println(A.SubsetOf(B)) // false
 ```
 
-Good. With that, we had implemented the basic set operations supported for sets
-as an abstract data type. All the code for this implementation can be found in
-this
+Mission accomplished! Due to that, we had implemented the basic set operations
+supported for sets as an abstract data type. All the code for this
+implementation can be found in this
 [gist](https://gist.github.com/rodmoioliveira/65281facd4117c37957a2373c5323892).
-Now we can get familiar with some fundamental set properties that we should know
-about.
+Now we can get familiar with some fundamental set properties that we should be
+aware of.
 
 ### Set Identities
 
@@ -382,13 +383,13 @@ change the result. Union and intersection are commutative:
 
 #### Complement
 
-In set theory, the complement of a set \\( A \\), denoted by \\( A^c \\), are
-all the elements that aren't in \\( A \\):
+In set theory, the complement of a set \\( A \\), denoted by \\( A^c \\), is a
+set of all the elements that aren't in \\( A \\):
 
 \\[ A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing \newline {U ^ c} =
 \varnothing \newline {\varnothing ^ c} = U \\]
 
-#### De Morgan's
+#### De Morgan's Laws
 
 De Morgan's Laws describe how mathematical statements and concepts are related
 through their opposites, which explain how to distribute NOT's(\\(\neg\\)) over
@@ -404,10 +405,10 @@ through complements.
 
 #### Distributive
 
-The distributive property tells us how to solve expressions where more than one
-binary relation is involved. For example, given a set \\( A \\) and two binary
-operators \\( * \\) and \\( + \\) on \\( A \\), the distributive law asserts
-that multiplication (\\( * \\)) distributes over addition (\\( + \\)) in
+The distributive property tells us how to solve expressions in which more than
+one binary relation is involved. For example, given a set \\( A \\) and two
+binary operators \\( * \\) and \\( + \\) on \\( A \\), the distributive law
+asserts that multiplication (\\( * \\)) distributes over addition (\\( + \\)) in
 elementary arithmetic:
 
 \\[ x * (y + z) = x * y + x * z \\]
