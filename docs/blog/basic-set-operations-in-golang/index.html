@@ -1045,12 +1045,12 @@
         </tbody>
       </table>
       <p>
-        It's precisely in this bijection from product sets to power sets that we
-        rely on when we use a bit set data structure.
+        It's precisely in this bijection, from product sets to power sets, that
+        we rely on when we use a bit set data structure in ours programs.
       </p>
       <h4 id="bit-set">Bit set</h4>
       <p>
-        A bit set is just a n-bit sequence. Bit sets be used in Golang with
+        A bit set is just an n-bit sequence. Bit sets be used in Golang with
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
@@ -1065,7 +1065,7 @@
       </p>
       <p>
         First, let's define a set \(W\) whose elements, \( w_1, w_2, \cdots,
-        w_i\), represent a day of the week:
+        w_i\), represent days of the week:
       </p>
       <p>
         \[ \begin{aligned} W = \{ \ w_1 , \ w_2 ,\ w_3 ,\ w_4 ,\ w_5 ,\ w_6 ,\
@@ -1076,8 +1076,8 @@
       <p>
         The power set of \(W\), denoted \( \mathcal{P}(W) \), is the set of all
         possible subsets of \(W\). Let \( \mathcal{P}(W) \) be our schedule set,
-        which contains all possible sequences of work schedules derived from the
-        seven days of the week. What's the cardinality of \( \mathcal{P}(W) \)?
+        which contains all possible sequences of work schedules that a worker
+        might take in a week. What's the cardinality of \( \mathcal{P}(W) ?\)
         The answer is:
       </p>
       <p>
@@ -1085,40 +1085,54 @@
       </p>
       <p>
         We have \(128\) possible working schedules in our schedule set \(
-        \mathcal{P}(W) \), and it one of them can be encoded as an 7-bit
+        \mathcal{P}(W) \), and it one of them can be encoded as a 7-bit
         sequence. The rule for encoding each one of the subsets \(S \subseteq W
         \) to a sequence \((d_1, \cdots, d_7)\) is defined by:
       </p>
-      <p>\[ d_i = 1 \iff w_i \in S \]</p>
+      <p>\[ w_i \in S \iff d_i = 1 \]</p>
       <p>
-        Let's construct the encode sequence for the subset \( \varnothing
-        \subseteq W \):
+        Let's construct the bit sequence for the subset \( \varnothing \subseteq
+        W \):
       </p>
       <p>
-        \[ d_1 = 0 \iff w_1 \notin \varnothing \newline d_2 = 0 \iff w_2 \notin
-        \varnothing \newline d_3 = 0 \iff w_3 \notin \varnothing \newline d_4 =
-        0 \iff w_4 \notin \varnothing \newline d_5 = 0 \iff w_5 \notin
-        \varnothing \newline d_6 = 0 \iff w_6 \notin \varnothing \newline d_7 =
-        0 \iff w_7 \notin \varnothing \]
+        \[ w_1 \notin \varnothing \iff d_1 = 0 \newline w_2 \notin \varnothing
+        \iff d_2 = 0 \newline w_3 \notin \varnothing \iff d_3 = 0 \newline w_4
+        \notin \varnothing \iff d_4 = 0 \newline w_5 \notin \varnothing \iff d_5
+        = 0 \newline w_6 \notin \varnothing \iff d_6 = 0 \newline w_7 \notin
+        \varnothing \iff d_7 = 0 \]
       </p>
       <p>
-        The encoding sequence for the empty set \( \varnothing \) is \(
-        (0,0,0,0,0,0,0) \). Let's do another one: how about the bit-sequence of
+        The bit sequence for the empty set \( \varnothing \) is \(
+        (0,0,0,0,0,0,0) \). Let's try another one: how about the bit sequence of
         the subset \( \{ \text{mon},\text{tue},\text{thu} \} \in W \)?
       </p>
       <p>
-        \[ d_1 = 0 \iff w_1 \notin \{ \text{mon},\text{tue},\text{thu} \}
-        \newline d_2 = 1 \iff w_2 \in \{ \text{mon},\text{tue},\text{thu} \}
-        \newline d_3 = 1 \iff w_3 \in \{ \text{mon},\text{tue},\text{thu} \}
-        \newline d_4 = 0 \iff w_4 \notin \{ \text{mon},\text{tue},\text{thu} \}
-        \newline d_5 = 1 \iff w_5 \in \{ \text{mon},\text{tue},\text{thu} \}
-        \newline d_6 = 0 \iff w_6 \notin \{ \text{mon},\text{tue},\text{thu} \}
-        \newline d_7 = 0 \iff w_7 \notin \{ \text{mon},\text{tue},\text{thu} \}
+        \[ w_1 \notin \{ \text{mon},\text{tue},\text{thu} \} \iff d_1 = 0
+        \newline w_2 \in \{ \text{mon},\text{tue},\text{thu} \} \iff d_2 = 1
+        \newline w_3 \in \{ \text{mon},\text{tue},\text{thu} \} \iff d_3 = 1
+        \newline w_4 \notin \{ \text{mon},\text{tue},\text{thu} \} \iff d_4 = 0
+        \newline w_5 \in \{ \text{mon},\text{tue},\text{thu} \} \iff d_5 = 1
+        \newline w_6 \notin \{ \text{mon},\text{tue},\text{thu} \} \iff d_6 = 0
+        \newline w_7 \notin \{ \text{mon},\text{tue},\text{thu} \} \iff d_7 = 0
         \]
       </p>
       <p>
         The bit-sequence for the subset \( \{ \text{mon},\text{tue},\text{thu}
-        \} \in W \) is \( (0,1,1,0,1,0,0) \).
+        \} \in W \) is \( (0,1,1,0,1,0,0) \). As you can see, the bit sequence
+        representation of the working schedules is really convenient. Bit
+        sequences can be easily construct in Golang using the
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://golang.org/ref/spec#Iota"
+          >iota constant generator</a
+        >.
+      </p>
+      <p>
+        Let's begin by creating the bit sequences for all the subsets \( S
+        \subseteq W\) whose cardinality is less than \(2\). In other words,
+        let's create bit sequences for all the working schedules that have just
+        one day, and for the empty set \( \varnothing \):
       </p>
       <pre
         data-lang="go"
