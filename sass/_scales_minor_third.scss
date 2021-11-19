@@ -78,3 +78,20 @@ li,
 small {
   font-weight: 300;
 }
+
+h3 {
+  .post > &,
+  .bookmarks > &,
+  .work > & {
+    margin: 1.5em 0 0.5em 0;
+  }
+}
+
+h4,
+h5 {
+  .post > &,
+  .bookmarks > &,
+  .work > & {
+    margin: 1.5em 0 0.5em 0;
+  }
+}
