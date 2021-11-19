@@ -537,7 +537,6 @@ b_n) \\) defined by the rule that:
 
 \\[ b_i = 1 \iff a_i \in S \\]
 
-
 For example, if \\(n = 10\\), then the subset \\(\\\{a_2,a_3,a_7,a_9\\\}\\) maps
 to a 10-bit sequence as follows:
 
@@ -580,18 +579,77 @@ problem. Let's suppose that we have \\(n\\) workers within a company, and we
 would like to known, for any two workers, how many days of the week they work
 together. This problem can be easily solved using bit sets.
 
-First, let's define a set \\(W\\) which each of its elements representing a day
-of the week:
+First, let's define a set \\(W\\) whose elements, \\( w_1, w_2, \cdots, w_i\\),
+represent a day of the week:
 
-\\[W = \\\{
-\text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat}
-\\\} \\]
+\\[ \begin{aligned} W = \\\{ \ w_1 \, \ w_2 \,\ w_3 \,\ w_4 \,\ w_5 \,\ w_6 \,\ w_7 \ \\\} \ \ \newline
+= \\\{ \text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat} \\\} \end{aligned} \\]
 
-The power set of \\(W\\), denoted \\( \mathcal{P}(W) \\), is the set of all the
-possible subsets of \\(W\\). Let \\(S = \mathcal{P}(W) \\), which is our
-schedule set that contains all possible sequences of work schedules derived from
-the seven days of the week. What's the cardinality of \\(S\\)? The answer is:
+The power set of \\(W\\), denoted \\( \mathcal{P}(W) \\), is the set of all
+possible subsets of \\(W\\). Let \\( \mathcal{P}(W) \\) be our schedule set,
+which contains all possible sequences of work schedules derived from the seven
+days of the week. What's the cardinality of \\( \mathcal{P}(W) \\)? The answer
+is:
 
-\\[ |W| = 7 \ \  \text{ implies } \ \  |S| = 2^7 = 128 \\]
+\\[ |W| = 7 \ \  \text{ implies } \ \  | \mathcal{P}(W) | = 2^7 = 128 \\]
+
+We have \\(128\\) possible working schedules in our schedule set \\(
+\mathcal{P}(W) \\), and it one of them can be encoded as an 7-bit sequence. The
+rule for encoding each one of the subsets \\(S \subseteq W \\) to a sequence
+\\((d_1, \cdots, d_7)\\) is defined by:
+
+\\[ d_i = 1 \iff w_i \in S \\]
+
+Let's construct the encode sequence for the subset \\( \varnothing \subseteq W \\):
+
+\\[ d_1 = 0 \iff w_1 \notin \varnothing \newline
+	  d_2 = 0 \iff w_2 \notin \varnothing \newline
+	  d_3 = 0 \iff w_3 \notin \varnothing \newline
+	  d_4 = 0 \iff w_4 \notin \varnothing \newline
+	  d_5 = 0 \iff w_5 \notin \varnothing \newline
+	  d_6 = 0 \iff w_6 \notin \varnothing \newline
+	  d_7 = 0 \iff w_7 \notin \varnothing \\]
+
+The encoding sequence for the empty set \\( \varnothing \\) is \\(
+(0,0,0,0,0,0,0) \\). Let's do another one: how about the bit-sequence of the
+subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\} \in W \\)?
+
+\\[ d_1 = 0 \iff w_1 \notin \\\{ \text{mon},\text{tue},\text{thu} \\\}  \newline
+	  d_2 = 1 \iff w_2 \in \\\{ \text{mon},\text{tue},\text{thu} \\\}  \newline
+	  d_3 = 1 \iff w_3 \in \\\{ \text{mon},\text{tue},\text{thu} \\\}  \newline
+	  d_4 = 0 \iff w_4 \notin \\\{ \text{mon},\text{tue},\text{thu} \\\}  \newline
+	  d_5 = 1 \iff w_5 \in \\\{ \text{mon},\text{tue},\text{thu} \\\}  \newline
+	  d_6 = 0 \iff w_6 \notin \\\{ \text{mon},\text{tue},\text{thu} \\\}  \newline
+	  d_7 = 0 \iff w_7 \notin \\\{ \text{mon},\text{tue},\text{thu} \\\}  \\]
+
+The bit-sequence for the subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\}
+\in W \\) is \\( (0,1,1,0,1,0,0) \\).
+
+```go
+package main
+
+import (
+	"fmt"
+	"math/bits"
+)
+
+const (
+	sat uint8 = 1 << iota // (0b0000001) -> {sat}
+	fri                   // (0b0000010) -> {fri}
+	thu                   // (0b0000100) -> {thu}
+	wed                   // (0b0001000) -> {wed}
+	tue                   // (0b0010000) -> {tue}
+	mon                   // (0b0100000) -> {mon}
+	sun                   // (0b1000000) -> {sun}
+
+	noWork byte = byte(0b0000000) // -> Empty Set
+)
+```
+
+```go
+bob := noWork | sun | thu | fri | sat
+alice := noWork | mon | tue | thu | sat
+daysWorkingTogether := alice & bob
+```
 
 ### References

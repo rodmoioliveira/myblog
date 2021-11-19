@@ -1064,22 +1064,93 @@
         bit sets.
       </p>
       <p>
-        First, let's define a set \(W\) which each of its elements representing
-        a day of the week:
+        First, let's define a set \(W\) whose elements, \( w_1, w_2, \cdots,
+        w_i\), represent a day of the week:
       </p>
       <p>
-        \[W = \{
+        \[ \begin{aligned} W = \{ \ w_1 , \ w_2 ,\ w_3 ,\ w_4 ,\ w_5 ,\ w_6 ,\
+        w_7 \ \} \ \ \newline = \{
         \text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat}
-        \} \]
+        \} \end{aligned} \]
       </p>
       <p>
         The power set of \(W\), denoted \( \mathcal{P}(W) \), is the set of all
-        the possible subsets of \(W\). Let \(S = \mathcal{P}(W) \), which is our
-        schedule set that contains all possible sequences of work schedules
-        derived from the seven days of the week. What's the cardinality of
-        \(S\)? The answer is:
+        possible subsets of \(W\). Let \( \mathcal{P}(W) \) be our schedule set,
+        which contains all possible sequences of work schedules derived from the
+        seven days of the week. What's the cardinality of \( \mathcal{P}(W) \)?
+        The answer is:
       </p>
-      <p>\[ |W| = 7 \ \ \text{ implies } \ \ |S| = 2^7 = 128 \]</p>
+      <p>
+        \[ |W| = 7 \ \ \text{ implies } \ \ | \mathcal{P}(W) | = 2^7 = 128 \]
+      </p>
+      <p>
+        We have \(128\) possible working schedules in our schedule set \(
+        \mathcal{P}(W) \), and it one of them can be encoded as an 7-bit
+        sequence. The rule for encoding each one of the subsets \(S \subseteq W
+        \) to a sequence \((d_1, \cdots, d_7)\) is defined by:
+      </p>
+      <p>\[ d_i = 1 \iff w_i \in S \]</p>
+      <p>
+        Let's construct the encode sequence for the subset \( \varnothing
+        \subseteq W \):
+      </p>
+      <p>
+        \[ d_1 = 0 \iff w_1 \notin \varnothing \newline d_2 = 0 \iff w_2 \notin
+        \varnothing \newline d_3 = 0 \iff w_3 \notin \varnothing \newline d_4 =
+        0 \iff w_4 \notin \varnothing \newline d_5 = 0 \iff w_5 \notin
+        \varnothing \newline d_6 = 0 \iff w_6 \notin \varnothing \newline d_7 =
+        0 \iff w_7 \notin \varnothing \]
+      </p>
+      <p>
+        The encoding sequence for the empty set \( \varnothing \) is \(
+        (0,0,0,0,0,0,0) \). Let's do another one: how about the bit-sequence of
+        the subset \( \{ \text{mon},\text{tue},\text{thu} \} \in W \)?
+      </p>
+      <p>
+        \[ d_1 = 0 \iff w_1 \notin \{ \text{mon},\text{tue},\text{thu} \}
+        \newline d_2 = 1 \iff w_2 \in \{ \text{mon},\text{tue},\text{thu} \}
+        \newline d_3 = 1 \iff w_3 \in \{ \text{mon},\text{tue},\text{thu} \}
+        \newline d_4 = 0 \iff w_4 \notin \{ \text{mon},\text{tue},\text{thu} \}
+        \newline d_5 = 1 \iff w_5 \in \{ \text{mon},\text{tue},\text{thu} \}
+        \newline d_6 = 0 \iff w_6 \notin \{ \text{mon},\text{tue},\text{thu} \}
+        \newline d_7 = 0 \iff w_7 \notin \{ \text{mon},\text{tue},\text{thu} \}
+        \]
+      </p>
+      <p>
+        The bit-sequence for the subset \( \{ \text{mon},\text{tue},\text{thu}
+        \} \in W \) is \( (0,1,1,0,1,0,0) \).
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#b48ead;">package </span><span style="color:#bf616a;">main
+</span><span>
+</span><span style="color:#b48ead;">import </span><span>(
+</span><span>	&quot;</span><span style="color:#a3be8c;">fmt</span><span>&quot;
+</span><span>	&quot;</span><span style="color:#a3be8c;">math/bits</span><span>&quot;
+</span><span>)
+</span><span>
+</span><span style="color:#b48ead;">const </span><span>(
+</span><span>	</span><span style="color:#bf616a;">sat </span><span style="color:#b48ead;">uint8 </span><span>= </span><span style="color:#d08770;">1 </span><span>&lt;&lt; </span><span style="color:#d08770;">iota </span><span style="color:#65737e;">// (0b0000001) -&gt; {sat}
+</span><span>	</span><span style="color:#bf616a;">fri                   </span><span style="color:#65737e;">// (0b0000010) -&gt; {fri}
+</span><span>	</span><span style="color:#bf616a;">thu                   </span><span style="color:#65737e;">// (0b0000100) -&gt; {thu}
+</span><span>	</span><span style="color:#bf616a;">wed                   </span><span style="color:#65737e;">// (0b0001000) -&gt; {wed}
+</span><span>	</span><span style="color:#bf616a;">tue                   </span><span style="color:#65737e;">// (0b0010000) -&gt; {tue}
+</span><span>	</span><span style="color:#bf616a;">mon                   </span><span style="color:#65737e;">// (0b0100000) -&gt; {mon}
+</span><span>	</span><span style="color:#bf616a;">sun                   </span><span style="color:#65737e;">// (0b1000000) -&gt; {sun}
+</span><span>
+</span><span>	</span><span style="color:#bf616a;">noWork </span><span style="color:#b48ead;">byte </span><span>= </span><span style="color:#bf616a;">byte</span><span>(</span><span style="color:#d08770;">0b0000000</span><span>) </span><span style="color:#65737e;">// -&gt; Empty Set
+</span><span>)
+</span></code></pre>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">bob </span><span>:= </span><span style="color:#bf616a;">noWork </span><span>| </span><span style="color:#bf616a;">sun </span><span>| </span><span style="color:#bf616a;">thu </span><span>| </span><span style="color:#bf616a;">fri </span><span>| </span><span style="color:#bf616a;">sat
+</span><span style="color:#bf616a;">alice </span><span>:= </span><span style="color:#bf616a;">noWork </span><span>| </span><span style="color:#bf616a;">mon </span><span>| </span><span style="color:#bf616a;">tue </span><span>| </span><span style="color:#bf616a;">thu </span><span>| </span><span style="color:#bf616a;">sat
+</span><span style="color:#bf616a;">daysWorkingTogether </span><span>:= </span><span style="color:#bf616a;">alice </span><span>&amp; </span><span style="color:#bf616a;">bob
+</span></code></pre>
       <h3 id="references">References</h3>
 
       <ul class="reference__ul">
