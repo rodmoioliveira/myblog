@@ -574,7 +574,7 @@ when we use a bit set data structure.
 
 A bit set is just a n-bit sequence. They can be used in Golang with [bitwise
 operators](https://yourbasic.org/golang/bitwise-operator-cheat-sheet/) to
-represent several set operations. To see them in action, we'll propose a simple
+execute several set operations. To see them in action, we'll propose a simple
 problem. Let's suppose that we have \\(n\\) workers within a company, and we
 would like to known, for any two workers, how many days of the week they work
 together. This problem can be easily solved using bit sets.
@@ -585,9 +585,9 @@ of the week:
 \\[W = \\\{ sun, mon, tue, wed, thu, fri, sat \\\} \\]
 
 The power set of \\(W\\), denoted \\( \mathcal{P}(W) \\), is the set of all the
-possible subsets of \\(W\\). Let be \\(S = \mathcal{P}(W) \\), which is our
-schedule set, with all possible sequences of work schedules derived from the
-seven days of the week. What's the cardinality of \\(S\\)? The answer is:
+possible subsets of \\(W\\). Let \\(S = \mathcal{P}(W) \\), which is our
+schedule set that contains all possible sequences of work schedules derived from
+the seven days of the week. What's the cardinality of \\(S\\)? The answer is:
 
 \\[ |W| = 7 \ \  \text{ implies } \ \  |S| = 2^7 = 128 \\]
 
