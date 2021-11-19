@@ -3,7 +3,7 @@ title = "Basic set operations in Golang"
 description = "As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
 date = 2021-11-30
 slug = "basic-set-operations-in-golang"
-draft = true
+draft = false
 [extra]
 references = "content/blog/basic-set-operations-in-golang.bibtex"
 katex_enable = true
@@ -437,13 +437,12 @@ C ) \\]
 
 ### Counting bit sequences
 
-Sets are great for counting things because we can establish a clever
-relationship between different sets. If you know the size of one set, you can
-discover the size of the other one, which is useful to count infinite sets. For
-instance, the set theory presents a clever way to count the number of binary
-sequences that can be made using a certain number of bits. To understand how it
-works, we have to comprehend the following mathematical concepts of set theory:
-*cardinality*, *product of sets*, *power sets*, and *bijections*.
+Sets are great for counting things because we can establish relations between
+different sets, which can be useful to count infinite sets. For instance,
+there's a clever way to count the number of binary sequences that can be yielded
+from a certain number of bits. To understand how it works, we have to comprehend
+the following mathematical concepts within set theory: *cardinality*, *product
+of sets*, *power sets*, and *bijections*.
 
 #### Cardinality
 
@@ -460,72 +459,85 @@ notation it is:
 
 \\[ A \times B = \\\{(a,b) : a \in A \text{ and } b \in B\\\} \\]
 
-A product of \\(n\\) copies of a set \\(A\\) is denoted \\(A^n\\):
+A product of \\(n\\) copies of a set \\(A\\) is denoted \\(A^n\\). In
+set-builder notation:
 
 \\[ A^n = \\\{(a_1, \cdots, a_n) : a_i \in A \text{ for every } i \\\} \\]
 
+The cardinality of the product of sets is rule by \\( |A \times B| =
+2^{|A||B|}\\) and \\( |A^{n}| = 2^n \\).
+
 #### Power Set
 
-The power set of the set \\(A\\), denoted \\( \mathcal{P}(A) \\),
-is the set of all the subsets \\(B\\) in the set \\(A\\):
+The power set of the set \\(A\\), denoted \\( \mathcal{P}(A) \\), is the set of
+all the subsets \\(B\\) in the set \\(A\\). In set-builder notation it is:
 
 \\[ \mathcal{P}(A) = \\\{B : B \subseteq A  \\\} \\]
 
-For example:
+Here's an example for the set \\( \\\{ a,b \\\} \\):
 
 \\[ \mathcal{P}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b
 \\} \\\} \\]
 
+The cardinality of power sets is defined as \\(|\mathcal{P}(A)| = 2^{|A|}\\).
+
 #### Bijection
 
-A bijection or bijective function is a function between the elements of two
-sets, where each element of one set is paired with exactly one element of the
-other set, and vice-versa. A bijective function mean that the sets being mapped
-have the same cardinality:
+A bijection is a function between the elements of two sets, where each element
+of one set is paired with exactly one element of the other set. A bijective
+function mean that the sets being mapped have the same cardinality:
 
 \\[ \text{if } f : A \rightarrow B \text{ is a bijection } \Rightarrow |A| = |B|
 \\]
 
 #### Counting subsets of a finite set
 
-As an application of the bijection rule above, we can prove that there are
-\\(2^n\\) subsets of an n-element set:
+As a consequence of the bijection rule above, and the cardinalities of power
+sets and product sets, we can demonstrate that there's a bijection that maps the
+elements of \\( \mathcal{P}(A) \\) to elements in \\( \\\{0,1\\\}^n \\), the
+product set of n-bit sequences. More formally, we want to prove that power sets
+and product sets have the same cardinality:
 
-\\[ |A| = n \ \ \text{ implies } \ \  | \mathcal{P}(A) | = 2^{n} \\]
+\\[ |A| = n \ \ \text{ implies } \ \  | \mathcal{P}(A) | = | \\\{0,1\\\}^n | =
+2^{n} \\]
 
-For example, the two-elements set \\( \\\{a,b \\\} \\) has four different
-subsets:
+And that there's a bijection between them:
 
-\\[ \mathcal{P}(\\\{a,b\\\}) = \\\{ \varnothing, \\\{a \\\}, \\\{b \\\}, \\\{a,b
-\\} \\\} \\]
+\\[ \mathcal{P}(A) \text{ bij } \\\{0,1\\\}^n \\]
 
-We can establish a bijection from the set of subsets of \\(A\\) to \\(
-\\\{0,1\\\}^n \\), the product set of n-bit sequences. To prove that, let \\(
-a_1,a_2, \cdots, a_n \\) be the elements of \\(A\\). The bijection maps each
-subset of \\(S \subseteq A \\) to the bit sequence \\( (b_1, \cdots, b_n) \\)
-defined by the rule that:
+Let \\(A\\) be a three-elements set \\( \\\{a_1,a_2,a_3 \\\} \\). The \\(
+\mathcal{P}(A) \\) has eight different subsets:
+
+\\[ \varnothing, \\\{a_1 \\\}, \\\{a_2 \\\}, \\\{a_3 \\\},\\\{a_1,a_2 \\},
+\newline \\\{a_2,a_3 \\}, \\\{a_1,a_3 \\}, \\\{a_1,a_2,a_3 \\} \\]
+
+Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A \\). The bijection
+maps each subset of \\( S \subseteq A \\) to the bit sequence \\( (b_1, \cdots,
+b_n) \\) defined by the rule that:
 
 \\[ b_i = 1 \iff a_i \in S \\]
 
-Here is the map between the subsets of the set \\(\\\{a,b,c\\\}\\) to a 3-bit
-sequences:
 
-| \\(\mathcal{P}(\\\{a,b,c\\\})\\) | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
+For example, if \\(n = 10\\), then the subset \\(\\\{a_2,a_3,a_7,a_9\\\}\\) maps
+to a 10-bit sequence as follows:
+
+\\[ \begin{align*} \text{subset: } \\\{\ \ \ ,a_2, a_3,\ \ \ ,\ \ \ ,\ \ ,a_7,\ \ , a_9,\ \ \\\} \newline
+\text{sequence: } (\ \ 0,\ 1,\ 1,\ 0,\ 0,\ 0,\ 1,\ 0,\ 1,\ 0) \end{align*} \\]
+
+Here is the map from the subsets of the set \\(A = \\\{a_1,a_2,a_3\\\}\\) to the
+product set of 3-bit sequences:
+
+| \\(\mathcal{P}(A)\\)      | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
 |-|-|-|-|
-| \\( \varnothing \\)              | \\( (0,0,0) \\)       | \\( 000_2 \\)       | \\(0_{10}\\)         |
-| \\(\\\{c\\\}\\)			             | \\( (0,0,1) \\)       | \\( 001_2 \\)       | \\(1_{10}\\)         |
-| \\(\\\{b\\\}\\)			             | \\( (0,1,0) \\)       | \\( 010_2 \\)       | \\(2_{10}\\)         |
-| \\(\\\{b,c\\\}\\)		             | \\( (0,1,1) \\)       | \\( 011_2 \\)       | \\(3_{10}\\)         |
-| \\(\\\{a\\\}\\)			             | \\( (1,0,0) \\)       | \\( 100_2 \\)       | \\(4_{10}\\)         |
-| \\(\\\{a,c\\\}\\)		             | \\( (1,0,1) \\)       | \\( 101_2 \\)       | \\(5_{10}\\)         |
-| \\(\\\{a,b\\\}\\)		             | \\( (1,1,0) \\)       | \\( 110_2 \\)       | \\(6_{10}\\)         |
-| \\(\\\{a,b,c\\\}\\)              | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
+| \\( \varnothing \\)				| \\( (0,0,0) \\)       | \\( 000_2 \\)       | \\(0_{10}\\)         |
+| \\(\\\{a_3\\\}\\)					| \\( (0,0,1) \\)       | \\( 001_2 \\)       | \\(1_{10}\\)         |
+| \\(\\\{a_2\\\}\\)					| \\( (0,1,0) \\)       | \\( 010_2 \\)       | \\(2_{10}\\)         |
+| \\(\\\{a_2,a_3\\\}\\)		  | \\( (0,1,1) \\)       | \\( 011_2 \\)       | \\(3_{10}\\)         |
+| \\(\\\{a_1\\\}\\)				  | \\( (1,0,0) \\)       | \\( 100_2 \\)       | \\(4_{10}\\)         |
+| \\(\\\{a_1,a_3\\\}\\)		  | \\( (1,0,1) \\)       | \\( 101_2 \\)       | \\(5_{10}\\)         |
+| \\(\\\{a_1,a_2\\\}\\)		  | \\( (1,1,0) \\)       | \\( 110_2 \\)       | \\(6_{10}\\)         |
+| \\(\\\{a_1,a_2,a_3\\\}\\) | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
 
 #### Bitsets
 
 ### References
-
-There is a cool relation between the number of elements in a [power
-set](https://www.mathsisfun.com/sets/power-set.html) and the [cartesian
-product](https://math24.net/cartesian-product-sets.html) of sets.
-
