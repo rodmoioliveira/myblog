@@ -572,7 +572,7 @@ when we use a bit set data structure.
 
 #### Bit set
 
-A bit set is just a n-bit sequence. They can be used in Golang with [bitwise
+A bit set is just a n-bit sequence. Bit sets be used in Golang with [bitwise
 operators](https://yourbasic.org/golang/bitwise-operator-cheat-sheet/) to
 execute several set operations. To see them in action, we'll propose a simple
 problem. Let's suppose that we have \\(n\\) workers within a company, and we
