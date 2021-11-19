@@ -570,9 +570,9 @@ represented by any given `int` type in Golang:
 It's precisely in this bijection, from product sets to power sets, that we rely
 on when we use a bit set data structure in ours programs.
 
-#### Bit set
+### Bit set
 
-A bit set is just an n-bit sequence. Bit sets be used in Golang with [bitwise
+A bit set is just an n-bit sequence. Bit sets can be used in Golang with [bitwise
 operators](https://yourbasic.org/golang/bitwise-operator-cheat-sheet/) to
 execute several set operations. To see them in action, we'll propose a simple
 problem. Let's suppose that we have \\(n\\) workers within a company, and we
@@ -612,7 +612,7 @@ Let's construct the bit sequence for the subset \\( \varnothing \subseteq W
 
 The bit sequence for the empty set \\( \varnothing \\) is \\(
 (0,0,0,0,0,0,0) \\). Let's try another one: how about the bit sequence of the
-subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\} \in W \\)?
+subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\} \subseteq W \\)?
 
 \\[ w_1 \notin \\\{ \text{mon},\text{tue},\text{thu} \\\} \iff d_1 = 0 \newline
 	  w_2 \in		 \\\{ \text{mon},\text{tue},\text{thu} \\\} \iff d_2 = 1 \newline
@@ -623,7 +623,7 @@ subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\} \in W \\)?
 	  w_7 \notin \\\{ \text{mon},\text{tue},\text{thu} \\\} \iff d_7 = 0 \\]
 
 The bit-sequence for the subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\}
-\in W \\) is \\( (0,1,1,0,1,0,0) \\). As you can see, the bit sequence
+\subseteq W \\) is \\( (0,1,1,0,1,0,0) \\). As you can see, the bit sequence
 representation of the working schedules is really convenient. Bit sequences can
 be easily construct in Golang using the [iota constant
 generator](https://golang.org/ref/spec#Iota).
