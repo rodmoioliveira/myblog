@@ -323,9 +323,19 @@
           <li class="toc__li">
             <a
               class="toc__anchor"
-              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#bit-set"
-              >Bit set</a
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#bit-sets"
+              >Bit sets</a
             >
+
+            <ul class="toc__ul">
+              <li class="toc__li">
+                <a
+                  class="toc__anchor"
+                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#working-together"
+                  >Working together</a
+                >
+              </li>
+            </ul>
           </li>
 
           <li class="toc__li">
@@ -1062,9 +1072,11 @@
         It's precisely in this bijection, from product sets to power sets, that
         we rely on when we use a bit set data structure in ours programs.
       </p>
-      <h3 id="bit-set">Bit set</h3>
+      <h3 id="bit-sets">Bit sets</h3>
       <p>
-        A bit set is just an n-bit sequence. Bit sets can be used in Golang with
+        A bit set is just an n-bit vector in which the \(\text{nth}\) byte
+        represents if any given \(\text{nth}\) elements it's presented in the
+        set. Bit sets can be used in Golang with
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
@@ -1072,10 +1084,13 @@
           >bitwise operators</a
         >
         to execute several set operations. To see them in action, we'll propose
-        a simple problem. Let's suppose that we have \(n\) workers within a
-        company, and we would like to known, for any two workers, how many days
-        of the week they work together. This problem can be easily solved using
-        bit sets.
+        a simple problem.
+      </p>
+      <h4 id="working-together">Working together</h4>
+      <p>
+        Let's suppose that we have \(n\) workers within a company, and we would
+        like to known, for any two workers, how many days of the week they work
+        together. This problem can be easily solved using bit sets.
       </p>
       <p>
         First, let's define a set \(W\) whose elements, \( w_1, w_2, \cdots,

@@ -584,12 +584,18 @@ represented by any given `int` type in Golang:
 It's precisely in this bijection, from product sets to power sets, that we rely
 on when we use a bit set data structure in ours programs.
 
-### Bit set
+### Bit sets
 
-A bit set is just an n-bit sequence. Bit sets can be used in Golang with [bitwise
+A bit set is just an n-bit vector in which the \\(\text{nth}\\) byte represents
+if any given \\(\text{nth}\\) elements it's presented in the set. Bit sets can
+be used in Golang with [bitwise
 operators](https://yourbasic.org/golang/bitwise-operator-cheat-sheet/) to
-execute several set operations. To see them in action, we'll propose a simple
-problem. Let's suppose that we have \\(n\\) workers within a company, and we
+execute several set operations.  To see them in action, we'll propose a simple
+problem.
+
+#### Working together
+
+Let's suppose that we have \\(n\\) workers within a company, and we
 would like to known, for any two workers, how many days of the week they work
 together. This problem can be easily solved using bit sets.
 
