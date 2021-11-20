@@ -630,9 +630,9 @@ Let's construct the bit sequence for the subset \\( \varnothing \subseteq W
 	  w_6 \notin \varnothing \iff d_6 = 0 \newline
 	  w_7 \notin \varnothing \iff d_7 = 0 \\]
 
-The bit sequence for the empty set \\( \varnothing \\) is \\(
-(0,0,0,0,0,0,0) \\). Let's try another one: how about the bit sequence of the
-subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\} \subseteq W \\)?
+The bit sequence for \\( \varnothing \\) is \\( (0,0,0,0,0,0,0) \\). Let's try
+another one: how about the bit sequence of the subset \\( \\\{
+\text{mon},\text{tue},\text{thu} \\\} \subseteq W \\)?
 
 \\[ w_1 \notin \\\{ \text{mon},\text{tue},\text{thu} \\\} \iff d_1 = 0 \newline
 	  w_2 \in		 \\\{ \text{mon},\text{tue},\text{thu} \\\} \iff d_2 = 1 \newline
@@ -648,10 +648,10 @@ representation of the working schedules is really convenient. Bit sequences can
 be easily construct in Golang using the [iota constant
 generator](https://golang.org/ref/spec#Iota).
 
-Let's begin by creating the bit sequences for all the subsets \\( S \subseteq
-W\\) whose cardinality is less than \\(2\\). In other words, let's create bit
+Let's begin by creating bit sequences for all the subsets \\( S \subseteq
+W\\) whose cardinalities are less than \\(2\\). In other words, let's create bit
 sequences for all the working schedules that have just one day, and for the
-empty set \\( \varnothing \\):
+empty set:
 
 ```go
 package main
