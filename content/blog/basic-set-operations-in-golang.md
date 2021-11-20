@@ -535,10 +535,24 @@ Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A \\). The bijection
 maps each subset of \\( S \subseteq A \\) to the bit sequence \\( (b_1, \cdots,
 b_n) \\) defined by the rule that:
 
-\\[ b_i = 1 \iff a_i \in S \\]
+\\[ a_i \in S \iff  b_i = 1\\]
 
-For example, if \\(n = 10\\), then the subset \\(\\\{a_2,a_3,a_7,a_9\\\}\\) maps
+For example, if \\(n = 10\\), then the subset \\(\\\{a_2,a_3,a_7,a_9\\\} \subseteq A \\) maps
 to a 10-bit sequence as follows:
+
+\\[ \begin{aligned}
+		a_1			\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_1    = 0 \newline
+	  a_2 		\in		  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_2    = 1 \newline
+	  a_3 		\in		  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_3    = 1 \newline
+	  a_4 		\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_4    = 0 \newline
+	  a_5 		\in		  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_5    = 0 \newline
+	  a_6 		\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_6    = 0 \newline
+	  a_7 		\in     \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_7    = 1 \newline
+	  a_8 		\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_8    = 0 \newline
+	  a_9 		\in     \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_9    = 1 \newline
+	  a_{10}  \notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_{10} = 0 \end{aligned} \\]
+
+If you prefer a more concise representation, it could be written as:
 
 \\[ \begin{align*} \text{subset: } \\\{\ \ \ ,a_2, a_3,\ \ \ ,\ \ \ ,\ \ ,a_7,\ \ , a_9,\ \ \\\} \newline
 \text{sequence: } (\ \ 0,\ 1,\ 1,\ 0,\ 0,\ 0,\ 1,\ 0,\ 1,\ 0) \end{align*} \\]

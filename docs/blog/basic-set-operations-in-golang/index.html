@@ -317,15 +317,15 @@
                   >Counting subsets of a finite set</a
                 >
               </li>
-
-              <li class="toc__li">
-                <a
-                  class="toc__anchor"
-                  href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#bit-set"
-                  >Bit set</a
-                >
-              </li>
             </ul>
+          </li>
+
+          <li class="toc__li">
+            <a
+              class="toc__anchor"
+              href="https://rm-o.netlify.app/blog/basic-set-operations-in-golang/#bit-set"
+              >Bit set</a
+            >
           </li>
 
           <li class="toc__li">
@@ -935,10 +935,24 @@
         maps each subset of \( S \subseteq A \) to the bit sequence \( (b_1,
         \cdots, b_n) \) defined by the rule that:
       </p>
-      <p>\[ b_i = 1 \iff a_i \in S \]</p>
+      <p>\[ a_i \in S \iff b_i = 1\]</p>
       <p>
-        For example, if \(n = 10\), then the subset \(\{a_2,a_3,a_7,a_9\}\) maps
-        to a 10-bit sequence as follows:
+        For example, if \(n = 10\), then the subset \(\{a_2,a_3,a_7,a_9\}
+        \subseteq A \) maps to a 10-bit sequence as follows:
+      </p>
+      <p>
+        \[ \begin{aligned} a_1 \notin \{ a_2,a_3,a_7,a_9 \} \iff b_1 = 0
+        \newline a_2 \in \{ a_2,a_3,a_7,a_9 \} \iff b_2 = 1 \newline a_3 \in \{
+        a_2,a_3,a_7,a_9 \} \iff b_3 = 1 \newline a_4 \notin \{ a_2,a_3,a_7,a_9
+        \} \iff b_4 = 0 \newline a_5 \in \{ a_2,a_3,a_7,a_9 \} \iff b_5 = 0
+        \newline a_6 \notin \{ a_2,a_3,a_7,a_9 \} \iff b_6 = 0 \newline a_7 \in
+        \{ a_2,a_3,a_7,a_9 \} \iff b_7 = 1 \newline a_8 \notin \{
+        a_2,a_3,a_7,a_9 \} \iff b_8 = 0 \newline a_9 \in \{ a_2,a_3,a_7,a_9 \}
+        \iff b_9 = 1 \newline a_{10} \notin \{ a_2,a_3,a_7,a_9 \} \iff b_{10} =
+        0 \end{aligned} \]
+      </p>
+      <p>
+        If you prefer a more concise representation, it could be written as:
       </p>
       <p>
         \[ \begin{align*} \text{subset: } \{\ \ \ ,a_2, a_3,\ \ \ ,\ \ \ ,\ \
@@ -1048,9 +1062,9 @@
         It's precisely in this bijection, from product sets to power sets, that
         we rely on when we use a bit set data structure in ours programs.
       </p>
-      <h4 id="bit-set">Bit set</h4>
+      <h3 id="bit-set">Bit set</h3>
       <p>
-        A bit set is just an n-bit sequence. Bit sets be used in Golang with
+        A bit set is just an n-bit sequence. Bit sets can be used in Golang with
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
@@ -1104,7 +1118,7 @@
       <p>
         The bit sequence for the empty set \( \varnothing \) is \(
         (0,0,0,0,0,0,0) \). Let's try another one: how about the bit sequence of
-        the subset \( \{ \text{mon},\text{tue},\text{thu} \} \in W \)?
+        the subset \( \{ \text{mon},\text{tue},\text{thu} \} \subseteq W \)?
       </p>
       <p>
         \[ w_1 \notin \{ \text{mon},\text{tue},\text{thu} \} \iff d_1 = 0
@@ -1118,9 +1132,9 @@
       </p>
       <p>
         The bit-sequence for the subset \( \{ \text{mon},\text{tue},\text{thu}
-        \} \in W \) is \( (0,1,1,0,1,0,0) \). As you can see, the bit sequence
-        representation of the working schedules is really convenient. Bit
-        sequences can be easily construct in Golang using the
+        \} \subseteq W \) is \( (0,1,1,0,1,0,0) \). As you can see, the bit
+        sequence representation of the working schedules is really convenient.
+        Bit sequences can be easily construct in Golang using the
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
