@@ -598,10 +598,10 @@ problem.
 
 Let's suppose that we have \\(n\\) workers within a company, and we
 would like to known, for any two workers, how many days of the week they work
-together. This problem can be easily solved using bit sets.
-
-First, let's define a set \\(W\\) whose elements, \\( w_1, w_2, \cdots, w_i\\),
-represent days of the week:
+together. This problem can be easily solved using bit sets. Before we start, for
+clarity sake, let's depict the problem mathematically. First, let's define a set
+\\(W\\) whose elements, \\( w_1, w_2, \cdots, w_i\\), represent days of the
+week:
 
 \\[ \begin{aligned} W = \\\{ \ w_1, \ w_2,\ w_3,\ w_4,\ w_5,\ w_6,\ w_7 \\\} \ \ \newline
 = \\\{ \text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat} \\\} \end{aligned} \\]
@@ -645,14 +645,14 @@ another one: how about the bit sequence of the subset \\( \\\{
 
 The bit-sequence for the subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\}
 \subseteq W \\) is \\( (0,1,1,0,1,0,0) \\). As you can see, the bit sequence
-representation of the working schedules is really convenient. Bit sequences can
-be easily construct in Golang using the [iota constant
-generator](https://golang.org/ref/spec#Iota).
+representation of the working schedules is really convenient. Hence, we can use
+them to encode the working schedule of all \\(n\\) workers within the company.
 
-Let's begin by creating bit sequences for all the subsets \\( S \subseteq
-W\\) whose cardinalities are less than \\(2\\). In other words, let's create bit
-sequences for all the working schedules that have just one day, and for the
-empty set:
+Bit sequences can be easily construct in Golang using the [iota constant
+generator](https://golang.org/ref/spec#Iota). Let's begin by creating bit
+sequences for all the subsets \\( S \subseteq W\\) whose cardinalities are equal
+to \\(1\\). In other words, let's create bit sequences for all the working
+schedules that have just one day:
 
 ```go
 package main
@@ -663,21 +663,39 @@ import (
 )
 
 const (
-	sat uint8 = 1 << iota // (0b0000001) -> {sat}
-	fri                   // (0b0000010) -> {fri}
-	thu                   // (0b0000100) -> {thu}
-	wed                   // (0b0001000) -> {wed}
-	tue                   // (0b0010000) -> {tue}
-	mon                   // (0b0100000) -> {mon}
-	sun                   // (0b1000000) -> {sun}
-
-	noWork byte = byte(0b0000000) // -> Empty Set
+	sat uint8 = 1 << iota // (0b00000001) -> {sat}
+	fri                   // (0b00000010) -> {fri}
+	thu                   // (0b00000100) -> {thu}
+	wed                   // (0b00001000) -> {wed}
+	tue                   // (0b00010000) -> {tue}
+	mon                   // (0b00100000) -> {mon}
+	sun                   // (0b01000000) -> {sun}
 )
 ```
 
+We had used the [iota constant generator](https://golang.org/ref/spec#Iota) with
+the binary *shift left* operator `<<` to create seven sets, whereby each one
+represents a day of the week:
+
+| operation			 | input										 | output |
+|-|-|-|
+| x				  		 | \\( 00000001 \\)					 | \\( 00000001 \\)
+| x << \\( 1 \\) | \\( \textbf{0}0000001 \\) | \\( 0000001\textit{0} \\)
+| x << \\( 2 \\) | \\( \textbf{00}000001 \\) | \\( 000001\textit{00} \\)
+| x << \\( 3 \\) | \\( \textbf{000}00001 \\) | \\( 00001\textit{000} \\)
+| x << \\( 4 \\) | \\( \textbf{0000}0001 \\) | \\( 0001\textit{0000} \\)
+| x << \\( 5 \\) | \\( \textbf{00000}001 \\) | \\( 001\textit{00000} \\)
+| x << \\( 6 \\) | \\( \textbf{000000}01 \\) | \\( 01\textit{000000} \\)
+
+Notice that the operation `x << k` consistes in shifting the bytes of \\(x\\) by
+\\(k\\) bits, dropping off the \\(k\\) most significant bits and then filling the
+right end with \\(k\\) zeros. The **bolded digits** indicate the values that were
+dropped from the left end, and *italicized digits* indicate the values that were
+filled from the right end.
+
 ```go
-bob := noWork | sun | thu | fri | sat
-alice := noWork | mon | tue | thu | sat
+bob := sun | thu | fri | sat
+alice := mon | tue | thu | sat
 daysWorkingTogether := alice & bob
 ```
 
