@@ -536,8 +536,8 @@ Let \\(A\\) be a three-elements set \\( \\\{a_1,a_2,a_3 \\\} \\). The \\(
 \newline \\\{a_2,a_3 \\}, \\\{a_1,a_3 \\}, \\\{a_1,a_2,a_3 \\} \\]
 
 Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A \\). The bijection
-maps each subset of \\( S \subseteq A \\) to the bit sequence \\( (b_1, \cdots,
-b_n) \\) defined by the rule that:
+that maps each subset of \\( S \subseteq A \\) to the bit sequence \\( (b_1,
+\cdots, b_n) \\) is defined by the rule:
 
 \\[ a_i \in S \iff  b_i = 1\\]
 
@@ -554,8 +554,8 @@ If you prefer a more concise representation, it could be written as:
 \\[ \begin{align*} \text{subset: } \\\{\ \ ,a_2, a_3 \\\} \newline
 \text{sequence: } (\ \ 0,\ \  1,\ \  1) \end{align*} \\]
 
-Down below there's the map between all subsets \\(\in A = \\\{a_1,a_2,a_3\\\}\\)
-to the product set of 3-bit sequences:
+Down below there's the map between all subsets \\(\in A \\) to the product set
+of 3-bit sequences:
 
 || \\(\mathcal{P}(A)\\)						    | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
 |-|-|-|-|-|
@@ -569,11 +569,11 @@ to the product set of 3-bit sequences:
 |\\(8\\) | \\(\\\{a_1,a_2,a_3\\\}\\)  | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
 
 As you can see, both sets \\( \mathcal{P}(A) \\) and \\( \\\{0,1\\\}^n \\) have
-the same cardinality. More importantly, we demonstrated that there's a bijection
-between them, because each element of one \\( \mathcal{P}(A) \\) is paired with
-exactly one element of \\( \\\{0,1\\\}^n \\). With this knowledge, it's very
-easy to count the number of values that can be represented by any given `int`
-type in Golang:
+the same cardinality, which is \\(8\\). More importantly, we demonstrated that
+there's a bijection between both sets, because each element of one \\(
+\mathcal{P}(A) \\) is paired with exactly one element of \\( \\\{0,1\\\}^n \\).
+With this knowledge, it's very easy to count the number of values that can be
+represented by any given `int` type in Golang:
 
 | \\(\text{type}\\)      |\\( \| \\\{0,1\\\}^n \| \\) | \\(\text{n-bit sequences}\\)
 |-|-|-|
@@ -582,7 +582,7 @@ type in Golang:
 | \\(\text{int32} \\)    |\\( 2^{32} \\)              | \\( 4294967296 \\)
 | \\(\text{int64} \\)    |\\( 2^{64} \\)              | \\( 1.8446744e+19 \\)
 
-It's precisely in this bijection, from product sets to power sets, that we rely
+It's precisely in this bijection, between product sets and power sets, that we rely
 on when we use a bit set data structure in ours programs.
 
 ### Bit sets
@@ -673,25 +673,25 @@ const (
 )
 ```
 
-We had used the [iota constant generator](https://golang.org/ref/spec#Iota) with
-the binary *shift left* operator `<<` to create seven sets, whereby each one
-represents a day of the week:
+We have used the [iota constant generator](https://golang.org/ref/spec#Iota)
+with the binary *shift left* operator `<<` to create seven sets, whereby each
+one represents a day of the week. Notice that the operation `x << k` consistes
+in shifting the bytes of \\(x\\) by \\(k\\) bits, dropping off the \\(k\\) most
+significant bits and then filling the right end with \\(k\\) zeros. Down below,
+we present a detail table of the binary *shift left* operation. The **bolded
+digits** indicate the values that were dropped from the left end, and
+*italicized digits* indicate the values that were filled from the right end:
+
 
 | operation			 | input										 | output |
 |-|-|-|
-| x				  		 | \\( 00000001 \\)					 | \\( 00000001 \\)
+| x	<< \\( 0 \\) | \\( 00000001 \\)					 | \\( 00000001 \\)
 | x << \\( 1 \\) | \\( \textbf{0}0000001 \\) | \\( 0000001\textit{0} \\)
 | x << \\( 2 \\) | \\( \textbf{00}000001 \\) | \\( 000001\textit{00} \\)
 | x << \\( 3 \\) | \\( \textbf{000}00001 \\) | \\( 00001\textit{000} \\)
 | x << \\( 4 \\) | \\( \textbf{0000}0001 \\) | \\( 0001\textit{0000} \\)
 | x << \\( 5 \\) | \\( \textbf{00000}001 \\) | \\( 001\textit{00000} \\)
 | x << \\( 6 \\) | \\( \textbf{000000}01 \\) | \\( 01\textit{000000} \\)
-
-Notice that the operation `x << k` consistes in shifting the bytes of \\(x\\) by
-\\(k\\) bits, dropping off the \\(k\\) most significant bits and then filling the
-right end with \\(k\\) zeros. The **bolded digits** indicate the values that were
-dropped from the left end, and *italicized digits* indicate the values that were
-filled from the right end.
 
 ```go
 bob := sun | thu | fri | sat
