@@ -1106,11 +1106,15 @@
       <h4 id="working-together">Working together</h4>
       <p>
         Let's suppose that we have \(n\) workers within a company, and we would
-        like to known, for any two workers, how many days of the week they work
-        together. This problem can be easily solved using bit sets. Before we
-        start, for clarity sake, let's depict the problem mathematically. First,
-        let's define a set \(W\) whose elements, \( w_1, w_2, \cdots, w_i\),
-        represent days of the week:
+        like to known:
+        <em
+          >for any two workers, how many days of the week do they work
+          together?</em
+        >
+        This problem can be easily solved using bit sets. Before we start, for
+        clarity sake, let's depict the problem mathematically. First, let's
+        define a set \(W\) whose elements, \( w_1, w_2, \cdots, w_i\), represent
+        days of the week:
       </p>
       <p>
         \[ \begin{aligned} W = \{ \ w_1, \ w_2,\ w_3,\ w_4,\ w_5,\ w_6,\ w_7 \}
@@ -1210,11 +1214,12 @@
           >iota constant generator</a
         >
         with the binary <em>shift left</em> operator <code>&lt;&lt;</code> to
-        create seven sets, whereby each one represents a day of the week. Notice
-        that the operation <code>x &lt;&lt; k</code> consistes in shifting the
-        bytes of \(x\) by \(k\) bits, dropping off the \(k\) most significant
-        bits and then filling the right end with \(k\) zeros. Down below, we
-        present a detail table of the binary <em>shift left</em> operation. The
+        create seven bit sets, whereby each one represents a day of the week.
+        Notice that the operation <code>x &lt;&lt; k</code> consists in shifting
+        the bytes of \(x\) by \(k\) bits, dropping off the \(k\) most
+        significant bits and then filling the right end with \(k\) zeros. Down
+        below, we present a detail table of the binary
+        <em>shift left</em> operation. The
         <strong>bolded digits</strong> indicate the values that were dropped
         from the left end, and <em>italicized digits</em> indicate the values
         that were filled from the right end:
@@ -1265,13 +1270,84 @@
           </tr>
         </tbody>
       </table>
+      <p>
+        So, now that we've created all the bit sequences for the working
+        schedules with a single day, we can unite them to create some working
+        schedules for our workers. Take <em>Bob</em> and <em>Alice</em>, for
+        example. They just return from vacations, and need to pick the days
+        they're going to work this week. This company they work for is highly
+        flexible about working schedules, which is great, isn't it?
+        <em>Bob</em> decides to work four days this week: <em>Sunday</em>,
+        <em>Tuesday</em>, <em>Friday</em>, and <em>Saturday</em>. And
+        <em>Alice</em> decides to take a three-day working schedule this week:
+        <em>Tuesday</em>, <em>Tuesday</em>, and <em>Saturday</em>. Both workers
+        can have theirs working schedules represented as a set:
+      </p>
+      <p>
+        \[ \begin{align*} \text{Bob} = \{ \text{sun} \} \cup \{ \text{thu} \}
+        \cup \{ \text{fri} \} \cup \{ \text{sat} \} \newline \text{Alice} = \{
+        \text{tue} \} \cup \{ \text{thu} \} \cup \{ \text{sat} \} \end{align*}
+        \]
+      </p>
+      <p>
+        Well, let's code that. We'll create two variables <code>bob</code> and
+        <code>alice</code> and use the binary <em>or</em> operator
+        <code>|</code> to union the working days of each one of them in a bit
+        set:
+      </p>
       <pre
         data-lang="go"
         style="background-color: #2b303b; color: #c0c5ce"
         class="language-go"
-      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">bob </span><span>:= </span><span style="color:#bf616a;">sun </span><span>| </span><span style="color:#bf616a;">thu </span><span>| </span><span style="color:#bf616a;">fri </span><span>| </span><span style="color:#bf616a;">sat
-</span><span style="color:#bf616a;">alice </span><span>:= </span><span style="color:#bf616a;">mon </span><span>| </span><span style="color:#bf616a;">tue </span><span>| </span><span style="color:#bf616a;">thu </span><span>| </span><span style="color:#bf616a;">sat
-</span><span style="color:#bf616a;">daysWorkingTogether </span><span>:= </span><span style="color:#bf616a;">alice </span><span>&amp; </span><span style="color:#bf616a;">bob
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">bob </span><span>:= </span><span style="color:#bf616a;">sun </span><span>| </span><span style="color:#bf616a;">thu </span><span>| </span><span style="color:#bf616a;">fri </span><span>| </span><span style="color:#bf616a;">sat </span><span style="color:#65737e;">// (0b01000111)
+</span><span style="color:#bf616a;">alice </span><span>:= </span><span style="color:#bf616a;">tue </span><span>| </span><span style="color:#bf616a;">thu </span><span>| </span><span style="color:#bf616a;">sat     </span><span style="color:#65737e;">// (0b00010101)
+</span></code></pre>
+      <p>
+        Well, isn't that grand? Now we've to known many days of the week they
+        work together. To answer that, we've to intersect both sets, like this:
+      </p>
+      <p>\[ \text{Bob} \cap \text{Alice} = \{ \text{thu}, \text{sat} \} \]</p>
+      <p>
+        How might we do that within our code? We have to use the binary
+        <em>and</em> operator <code>&amp;</code> to intersect the two sets:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">daysWorkingTogether </span><span>:= </span><span style="color:#bf616a;">alice </span><span>&amp; </span><span style="color:#bf616a;">bob </span><span style="color:#65737e;">// (0b00000101)
+</span></code></pre>
+      <p>
+        Perfect! Finally, to getting the cardinality of the bit set
+        <code>daysWorkingTogether</code>, we need to calculate the
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://en.wikipedia.org/wiki/Hamming_weight"
+          >hamming weight</a
+        >
+        of the bit set. Which, in this case, means counting how many ones exists
+        within the bit set. To do that, we can use the function
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://pkg.go.dev/math/bits#OnesCount8"
+          >OnesCount8</a
+        >
+        from the package
+        <a
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+          href="https://pkg.go.dev/math/bits"
+          >math/bits</a
+        >
+        package:
+      </p>
+      <pre
+        data-lang="go"
+        style="background-color: #2b303b; color: #c0c5ce"
+        class="language-go"
+      ><code class="language-go" data-lang="go"><span style="color:#bf616a;">cardinality </span><span>:= </span><span style="color:#bf616a;">bits</span><span>.</span><span style="color:#bf616a;">OnesCount8</span><span>(</span><span style="color:#bf616a;">daysWorkingTogether</span><span>) </span><span style="color:#65737e;">// 2
 </span></code></pre>
       <h3 id="references">References</h3>
 
@@ -1389,6 +1465,22 @@
           <span>Mathematical Structures for Computer Science</span>.
 
           <span class="reference__publisher">W. H. Freeman and Company.</span>
+        </li>
+
+        <li class="reference__li" id="GoogleMathBits">
+          <span class="reference__author">Google.</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;pkg.go.dev&#x2F;math&#x2F;bits"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >math&#x2F;bits</a
+          >.
+
+          <span class="reference__jornal">pkg.go.dev.</span>
+
+          <span class="reference__urldate">Accessed: 2021-11-22.</span>
         </li>
 
         <li class="reference__li" id="Kun2018">
@@ -1536,6 +1628,20 @@
           >.
 
           <span class="reference__urldate">Accessed: 2021-11-05.</span>
+        </li>
+
+        <li class="reference__li" id="WikipediaHammingWeight">
+          <span class="reference__author">Wikipedia.</span>
+
+          <a
+            class="reference__url"
+            href="https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Hamming_weight"
+            rel="noopener nofollow noreferrer"
+            target="_blank"
+            >Hamming weight</a
+          >.
+
+          <span class="reference__urldate">Accessed: 2021-11-22.</span>
         </li>
       </ul>
 

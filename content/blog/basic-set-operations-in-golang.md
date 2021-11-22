@@ -606,12 +606,11 @@ problem.
 
 #### Working together
 
-Let's suppose that we have \\(n\\) workers within a company, and we
-would like to known, for any two workers, how many days of the week they work
-together. This problem can be easily solved using bit sets. Before we start, for
-clarity sake, let's depict the problem mathematically. First, let's define a set
-\\(W\\) whose elements, \\( w_1, w_2, \cdots, w_i\\), represent days of the
-week:
+Let's suppose that we have \\(n\\) workers within a company, and we would like
+to known: *for any two workers, how many days of the week do they work together?*
+This problem can be easily solved using bit sets. Before we start, for clarity
+sake, let's depict the problem mathematically. First, let's define a set \\(W\\)
+whose elements, \\( w_1, w_2, \cdots, w_i\\), represent days of the week:
 
 \\[ \begin{aligned} W = \\\{ \ w_1, \ w_2,\ w_3,\ w_4,\ w_5,\ w_6,\ w_7 \\\} \ \ \newline
 = \\\{ \text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat} \\\} \end{aligned} \\]
@@ -684,14 +683,13 @@ const (
 ```
 
 We have used the [iota constant generator](https://golang.org/ref/spec#Iota)
-with the binary *shift left* operator `<<` to create seven sets, whereby each
-one represents a day of the week. Notice that the operation `x << k` consistes
-in shifting the bytes of \\(x\\) by \\(k\\) bits, dropping off the \\(k\\) most
-significant bits and then filling the right end with \\(k\\) zeros. Down below,
-we present a detail table of the binary *shift left* operation. The **bolded
-digits** indicate the values that were dropped from the left end, and
+with the binary *shift left* operator `<<` to create seven bit sets, whereby
+each one represents a day of the week. Notice that the operation `x << k`
+consists in shifting the bytes of \\(x\\) by \\(k\\) bits, dropping off the
+\\(k\\) most significant bits and then filling the right end with \\(k\\) zeros.
+Down below, we present a detail table of the binary *shift left* operation. The
+**bolded digits** indicate the values that were dropped from the left end, and
 *italicized digits* indicate the values that were filled from the right end:
-
 
 | operation			 | input										 | output |
 |-|-|-|
@@ -703,10 +701,51 @@ digits** indicate the values that were dropped from the left end, and
 | x << \\( 5 \\) | \\( \textbf{00000}001 \\) | \\( 001\textit{00000} \\)
 | x << \\( 6 \\) | \\( \textbf{000000}01 \\) | \\( 01\textit{000000} \\)
 
+So, now that we've created all the bit sequences for the working schedules with
+a single day, we can unite them to create some working schedules for our
+workers. Take *Bob* and *Alice*, for example. They just return from vacations,
+and need to pick the days they're going to work this week. This company they
+work for is highly flexible about working schedules, which is great, isn't it?
+*Bob* decides to work four days this week: *Sunday*, *Tuesday*, *Friday*, and
+*Saturday*. And *Alice* decides to take a three-day working schedule this week:
+*Tuesday*, *Tuesday*, and *Saturday*. Both workers can have theirs working
+schedules represented as a set:
+
+\\[ \begin{align*} \text{Bob} = \\\{ \text{sun} \\\} \cup \\\{ \text{thu} \\\}
+\cup \\\{ \text{fri} \\\} \cup \\\{ \text{sat} \\\} \newline \text{Alice} = \\\{
+\text{tue} \\\} \cup \\\{ \text{thu} \\\} \cup \\\{ \text{sat} \\\} \end{align*}
+\\]
+
+Well, let's code that. We'll create two variables `bob` and `alice` and use the
+binary *or* operator `|` to union the working days of each one of them in a bit
+set:
+
 ```go
-bob := sun | thu | fri | sat
-alice := mon | tue | thu | sat
-daysWorkingTogether := alice & bob
+bob := sun | thu | fri | sat // (0b01000111)
+alice := tue | thu | sat     // (0b00010101)
+```
+
+Well, isn't that grand? Now we've to known many days of the week they work
+together. To answer that, we've to intersect both sets, like this:
+
+\\[ \text{Bob} \cap \text{Alice} = \\\{ \text{thu}, \text{sat} \\\} \\]
+
+How might we do that within our code? We have to use the binary *and* operator
+`&` to intersect the two sets:
+
+```go
+daysWorkingTogether := alice & bob // (0b00000101)
+```
+
+Perfect! Finally, to getting the cardinality of the bit set
+`daysWorkingTogether`, we need to calculate the [hamming
+weight](https://en.wikipedia.org/wiki/Hamming_weight) of the bit set. Which, in
+this case, means counting how many ones exists within the bit set. To do that,
+we can use the function [OnesCount8](https://pkg.go.dev/math/bits#OnesCount8)
+from the package [math/bits](https://pkg.go.dev/math/bits) package:
+
+```go
+cardinality := bits.OnesCount8(daysWorkingTogether) // 2
 ```
 
 ### References
