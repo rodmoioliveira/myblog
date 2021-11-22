@@ -706,8 +706,8 @@ a single day, we can unite them to create some working schedules for our
 workers. Take *Bob* and *Alice*, for example. They just return from vacations,
 and need to pick the days they're going to work this week. This company they
 work for is highly flexible about working schedules, which is great, isn't it?
-*Bob* decides to work four days this week: *Sunday*, *Tuesday*, *Friday*, and
-*Saturday*. And *Alice* decides to take a three-day working schedule this week:
+So *Bob* decides to work four days this week: *Sunday*, *Tuesday*, *Friday*, and
+*Saturday*. And *Alice* decides to begin with a three-day working schedule this week:
 *Tuesday*, *Tuesday*, and *Saturday*. Both workers can have theirs working
 schedules represented as a set:
 
@@ -716,7 +716,7 @@ schedules represented as a set:
 \text{tue} \\\} \cup \\\{ \text{thu} \\\} \cup \\\{ \text{sat} \\\} \end{align*}
 \\]
 
-Well, let's code that. We'll create two variables `bob` and `alice` and use the
+Well, let's implement that. We'll create two variables `bob` and `alice` and use the
 binary *or* operator `|` to union the working days of each one of them in a bit
 set:
 
@@ -737,15 +737,17 @@ How might we do that within our code? We have to use the binary *and* operator
 daysWorkingTogether := alice & bob // (0b00000101)
 ```
 
-Perfect! Finally, to getting the cardinality of the bit set
-`daysWorkingTogether`, we need to calculate the [hamming
-weight](https://en.wikipedia.org/wiki/Hamming_weight) of the bit set. Which, in
-this case, means counting how many ones exists within the bit set. To do that,
+Perfect! Finally, to get the cardinality of the bit set `daysWorkingTogether`,
+we need to calculate its [hamming
+weight](https://en.wikipedia.org/wiki/Hamming_weight). Which, in this case,
+means counting how many ones exists within the bit set. To do that,
 we can use the function [OnesCount8](https://pkg.go.dev/math/bits#OnesCount8)
 from the package [math/bits](https://pkg.go.dev/math/bits) package:
 
 ```go
 cardinality := bits.OnesCount8(daysWorkingTogether) // 2
 ```
+
+Well, we did it! Bob and Alice work two days together.
 
 ### References

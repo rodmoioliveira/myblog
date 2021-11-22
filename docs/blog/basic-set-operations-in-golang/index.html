@@ -1276,12 +1276,12 @@
         schedules for our workers. Take <em>Bob</em> and <em>Alice</em>, for
         example. They just return from vacations, and need to pick the days
         they're going to work this week. This company they work for is highly
-        flexible about working schedules, which is great, isn't it?
+        flexible about working schedules, which is great, isn't it? So
         <em>Bob</em> decides to work four days this week: <em>Sunday</em>,
         <em>Tuesday</em>, <em>Friday</em>, and <em>Saturday</em>. And
-        <em>Alice</em> decides to take a three-day working schedule this week:
-        <em>Tuesday</em>, <em>Tuesday</em>, and <em>Saturday</em>. Both workers
-        can have theirs working schedules represented as a set:
+        <em>Alice</em> decides to begin with a three-day working schedule this
+        week: <em>Tuesday</em>, <em>Tuesday</em>, and <em>Saturday</em>. Both
+        workers can have theirs working schedules represented as a set:
       </p>
       <p>
         \[ \begin{align*} \text{Bob} = \{ \text{sun} \} \cup \{ \text{thu} \}
@@ -1290,10 +1290,10 @@
         \]
       </p>
       <p>
-        Well, let's code that. We'll create two variables <code>bob</code> and
-        <code>alice</code> and use the binary <em>or</em> operator
-        <code>|</code> to union the working days of each one of them in a bit
-        set:
+        Well, let's implement that. We'll create two variables
+        <code>bob</code> and <code>alice</code> and use the binary
+        <em>or</em> operator <code>|</code> to union the working days of each
+        one of them in a bit set:
       </p>
       <pre
         data-lang="go"
@@ -1318,16 +1318,15 @@
       ><code class="language-go" data-lang="go"><span style="color:#bf616a;">daysWorkingTogether </span><span>:= </span><span style="color:#bf616a;">alice </span><span>&amp; </span><span style="color:#bf616a;">bob </span><span style="color:#65737e;">// (0b00000101)
 </span></code></pre>
       <p>
-        Perfect! Finally, to getting the cardinality of the bit set
-        <code>daysWorkingTogether</code>, we need to calculate the
+        Perfect! Finally, to get the cardinality of the bit set
+        <code>daysWorkingTogether</code>, we need to calculate its
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
           href="https://en.wikipedia.org/wiki/Hamming_weight"
           >hamming weight</a
-        >
-        of the bit set. Which, in this case, means counting how many ones exists
-        within the bit set. To do that, we can use the function
+        >. Which, in this case, means counting how many ones exists within the
+        bit set. To do that, we can use the function
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
@@ -1349,6 +1348,7 @@
         class="language-go"
       ><code class="language-go" data-lang="go"><span style="color:#bf616a;">cardinality </span><span>:= </span><span style="color:#bf616a;">bits</span><span>.</span><span style="color:#bf616a;">OnesCount8</span><span>(</span><span style="color:#bf616a;">daysWorkingTogether</span><span>) </span><span style="color:#65737e;">// 2
 </span></code></pre>
+      <p>Well, we did it! Bob and Alice work two days together.</p>
       <h3 id="references">References</h3>
 
       <ul class="reference__ul">
