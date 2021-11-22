@@ -460,7 +460,7 @@ different sets, which can be useful to count infinite sets. If we could find
 these relations, we can transform otherwise hard problems into trivial
 operations. For instance, there's a clever way to count the number of n-bit
 sequences that can be yielded from an n-bit unit of data used. Therefore,
-question like: *how many values a* `int64` *can represents in Golang?*, can be
+questions like: *how many values a* `int64` *can represents in Golang?*, can be
 easily answered.
 
 To understand how it works, we have to comprehend the following mathematical
@@ -474,11 +474,13 @@ elements in \\(A\\) when that number is finite:
 
 \\[ A = \\\{0,1\\\} \Rightarrow |A| = 2 \\]
 
+Easy enough, right?
+
 #### Product of sets
 
-The product of two sets \\(A\\) and \\(B\\), denoted \\(A \times B\\), is the set of
-all ordered pairs of elements in \\(A\\) and elements in \\(B\\). In set-builder
-notation it is:
+The cross product of two sets \\(A\\) and \\(B\\), denoted \\(A \times B\\), is
+the set of all ordered pairs of elements in \\(A\\) and elements in \\(B\\). In
+set-builder notation it is:
 
 \\[ A \times B = \\\{(a,b) : a \in A \text{ and } b \in B\\\} \\]
 
@@ -487,8 +489,16 @@ set-builder notation:
 
 \\[ A^n = \\\{(a_1, \cdots, a_n) : a_i \in A \text{ for every } i \\\} \\]
 
-The cardinality of the product of sets is rule by \\( |A \times B| =
-2^{|A||B|}\\) and \\( |A^{n}| = 2^n \\).
+The cardinality of the cross product of sets is rule by \\( |A \times B| = |A||B|\\)
+and \\( |A^{n}| = |A|^n \\). For example, the cross product \\(A \times
+B\\) of the sets \\( A = \\\{a,b\\\} \\) and \\( B = \\\{1,2,3\\\} \\) is equal
+to:
+
+\\[ \\\{ (a,1),(a,2),(a,3),(b,1),(b,2),(b,3) \\\} \\]
+
+Which is not the same that the cross product of \\( B \times A \\):
+
+\\[ \\\{ (1,a), (1,b), (2,a), (2,b), (3,a), (3,b) \\\} \\]
 
 #### Power Set
 

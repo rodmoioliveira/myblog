@@ -858,7 +858,7 @@
         we could find these relations, we can transform otherwise hard problems
         into trivial operations. For instance, there's a clever way to count the
         number of n-bit sequences that can be yielded from an n-bit unit of data
-        used. Therefore, question like: <em>how many values a</em>
+        used. Therefore, questions like: <em>how many values a</em>
         <code>int64</code> <em>can represents in Golang?</em>, can be easily
         answered.
       </p>
@@ -874,11 +874,12 @@
         of elements in \(A\) when that number is finite:
       </p>
       <p>\[ A = \{0,1\} \Rightarrow |A| = 2 \]</p>
+      <p>Easy enough, right?</p>
       <h4 id="product-of-sets">Product of sets</h4>
       <p>
-        The product of two sets \(A\) and \(B\), denoted \(A \times B\), is the
-        set of all ordered pairs of elements in \(A\) and elements in \(B\). In
-        set-builder notation it is:
+        The cross product of two sets \(A\) and \(B\), denoted \(A \times B\),
+        is the set of all ordered pairs of elements in \(A\) and elements in
+        \(B\). In set-builder notation it is:
       </p>
       <p>\[ A \times B = \{(a,b) : a \in A \text{ and } b \in B\} \]</p>
       <p>
@@ -889,9 +890,14 @@
         \[ A^n = \{(a_1, \cdots, a_n) : a_i \in A \text{ for every } i \} \]
       </p>
       <p>
-        The cardinality of the product of sets is rule by \( |A \times B| =
-        2^{|A||B|}\) and \( |A^{n}| = 2^n \).
+        The cardinality of the cross product of sets is rule by \( |A \times B|
+        = |A||B|\) and \( |A^{n}| = |A|^n \). For example, the cross product \(A
+        \times B\) of the sets \( A = \{a,b\} \) and \( B = \{1,2,3\} \) is
+        equal to:
       </p>
+      <p>\[ \{ (a,1),(a,2),(a,3),(b,1),(b,2),(b,3) \} \]</p>
+      <p>Which is not the same that the cross product of \( B \times A \):</p>
+      <p>\[ \{ (1,a), (1,b), (2,a), (2,b), (3,a), (3,b) \} \]</p>
       <h4 id="power-set">Power Set</h4>
       <p>
         The power set of the set \(A\), denoted \( \mathcal{P}(A) \), is the set
