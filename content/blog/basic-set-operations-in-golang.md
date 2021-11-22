@@ -460,7 +460,7 @@ different sets, which can be useful to count infinite sets. If we could find
 these relations, we can transform otherwise hard problems into trivial
 operations. For instance, there's a clever way to count the number of n-bit
 sequences that can be yielded from an n-bit unit of data used. Therefore,
-questions like: *how many values a* `int64` *can represents in Golang?*, can be
+questions like: *how many values an* `int64` *can represents in Golang?*, can be
 easily answered.
 
 To understand how it works, we have to comprehend the following mathematical
@@ -703,13 +703,13 @@ Down below, we present a detail table of the binary *shift left* operation. The
 
 So, now that we've created all the bit sequences for the working schedules with
 a single day, we can unite them to create some working schedules for our
-workers. Take *Bob* and *Alice*, for example. They just return from vacations,
-and need to pick the days they're going to work this week. This company they
-work for is highly flexible about working schedules, which is great, isn't it?
-So *Bob* decides to work four days this week: *Sunday*, *Tuesday*, *Friday*, and
-*Saturday*. And *Alice* decides to begin with a three-day working schedule this week:
-*Tuesday*, *Tuesday*, and *Saturday*. Both workers can have theirs working
-schedules represented as a set:
+workers. Take *Bob* and *Alice*, for example. They just returned from vacation
+and must choose the days they're going to work this week. Fortunately, the
+company they work for is highly flexible about working schedules, which is
+great, isn't it? So *Bob* decides to work four days this week: *Sunday*,
+*Tuesday*, *Friday*, and *Saturday*. And *Alice* decides to begin with a
+three-day working schedule this week: *Tuesday*, *Tuesday*, and *Saturday*. Both
+workers can have theirs working schedules represented as a set:
 
 \\[ \begin{align*} \text{Bob} = \\\{ \text{sun} \\\} \cup \\\{ \text{thu} \\\}
 \cup \\\{ \text{fri} \\\} \cup \\\{ \text{sat} \\\} \newline \text{Alice} = \\\{
