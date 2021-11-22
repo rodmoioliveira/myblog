@@ -595,7 +595,7 @@ represented by any given `int` type in Golang:
 It's precisely in this bijection, between product sets and power sets, that we rely
 on when we use a bit set data structure in ours programs.
 
-### Bit sets
+#### Bit sets
 
 A bit set is just an n-bit vector in which the \\(\text{nth}\\) byte represents
 if any given \\(\text{nth}\\) elements it's presented in the set. Bit sets can
