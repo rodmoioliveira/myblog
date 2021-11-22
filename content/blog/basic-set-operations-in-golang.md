@@ -459,9 +459,13 @@ Sets are great for counting things because we can establish relations between
 different sets, which can be useful to count infinite sets. If we could find
 these relations, we can transform otherwise hard problems into trivial
 operations. For instance, there's a clever way to count the number of n-bit
-sequences that can be yielded from an n-bit unit of data used. To understand how
-it works, we have to comprehend the following mathematical concepts within set
-theory: **cardinality**, **product of sets**, **power sets**, and **bijections**.
+sequences that can be yielded from an n-bit unit of data used. Therefore,
+question like: *how many values a* `int64` *can represents in Golang?*, can be
+easily answered.
+
+To understand how it works, we have to comprehend the following mathematical
+concepts within set theory: **cardinality**, **product of sets**, **power
+sets**, and **bijections**.
 
 #### Cardinality
 
@@ -537,42 +541,39 @@ b_n) \\) defined by the rule that:
 
 \\[ a_i \in S \iff  b_i = 1\\]
 
-For example, if \\(n = 10\\), then the subset \\(\\\{a_2,a_3,a_7,a_9\\\} \subseteq A \\) maps
-to a 10-bit sequence as follows:
+For example, if \\(n = 3\\), then the subset \\(\\\{a_2,a_3\\\}
+\subseteq A \\) maps to a 3-bit sequence as follows:
 
 \\[ \begin{aligned}
-		a_1			\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_1    = 0 \newline
-	  a_2 		\in		  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_2    = 1 \newline
-	  a_3 		\in		  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_3    = 1 \newline
-	  a_4 		\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_4    = 0 \newline
-	  a_5 		\in		  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_5    = 0 \newline
-	  a_6 		\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_6    = 0 \newline
-	  a_7 		\in     \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_7    = 1 \newline
-	  a_8 		\notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_8    = 0 \newline
-	  a_9 		\in     \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_9    = 1 \newline
-	  a_{10}  \notin  \\\{ a_2,a_3,a_7,a_9 \\\} \iff b_{10} = 0 \end{aligned} \\]
+		a_1			\notin  \\\{ a_2,a_3 \\\} \iff b_1    = 0 \newline
+	  a_2 		\in		  \\\{ a_2,a_3 \\\} \iff b_2    = 1 \newline
+	  a_3 		\in		  \\\{ a_2,a_3 \\\} \iff b_3    = 1 \newline \end{aligned} \\]
 
 If you prefer a more concise representation, it could be written as:
 
-\\[ \begin{align*} \text{subset: } \\\{\ \ \ ,a_2, a_3,\ \ \ ,\ \ \ ,\ \ ,a_7,\ \ , a_9,\ \ \\\} \newline
-\text{sequence: } (\ \ 0,\ 1,\ 1,\ 0,\ 0,\ 0,\ 1,\ 0,\ 1,\ 0) \end{align*} \\]
+\\[ \begin{align*} \text{subset: } \\\{\ \ ,a_2, a_3 \\\} \newline
+\text{sequence: } (\ \ 0,\ \  1,\ \  1) \end{align*} \\]
 
-Here is the map from the subsets of the set \\(A = \\\{a_1,a_2,a_3\\\}\\) to the
-product set of 3-bit sequences:
+Down below there's the map between all subsets \\(\in A = \\\{a_1,a_2,a_3\\\}\\)
+to the product set of 3-bit sequences:
 
-| \\(\mathcal{P}(A)\\)      | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
-|-|-|-|-|
-| \\( \varnothing \\)				| \\( (0,0,0) \\)       | \\( 000_2 \\)       | \\(0_{10}\\)         |
-| \\(\\\{a_3\\\}\\)					| \\( (0,0,1) \\)       | \\( 001_2 \\)       | \\(1_{10}\\)         |
-| \\(\\\{a_2\\\}\\)					| \\( (0,1,0) \\)       | \\( 010_2 \\)       | \\(2_{10}\\)         |
-| \\(\\\{a_2,a_3\\\}\\)		  | \\( (0,1,1) \\)       | \\( 011_2 \\)       | \\(3_{10}\\)         |
-| \\(\\\{a_1\\\}\\)				  | \\( (1,0,0) \\)       | \\( 100_2 \\)       | \\(4_{10}\\)         |
-| \\(\\\{a_1,a_3\\\}\\)		  | \\( (1,0,1) \\)       | \\( 101_2 \\)       | \\(5_{10}\\)         |
-| \\(\\\{a_1,a_2\\\}\\)		  | \\( (1,1,0) \\)       | \\( 110_2 \\)       | \\(6_{10}\\)         |
-| \\(\\\{a_1,a_2,a_3\\\}\\) | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
+|| \\(\mathcal{P}(A)\\)						    | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
+|-|-|-|-|-|
+|\\(1\\) | \\( \varnothing \\)				| \\( (0,0,0) \\)       | \\( 000_2 \\)       | \\(0_{10}\\)         |
+|\\(2\\) | \\(\\\{a_3\\\}\\)					| \\( (0,0,1) \\)       | \\( 001_2 \\)       | \\(1_{10}\\)         |
+|\\(3\\) | \\(\\\{a_2\\\}\\)					| \\( (0,1,0) \\)       | \\( 010_2 \\)       | \\(2_{10}\\)         |
+|\\(4\\) | \\(\\\{a_2,a_3\\\}\\)		  | \\( (0,1,1) \\)       | \\( 011_2 \\)       | \\(3_{10}\\)         |
+|\\(5\\) | \\(\\\{a_1\\\}\\)				  | \\( (1,0,0) \\)       | \\( 100_2 \\)       | \\(4_{10}\\)         |
+|\\(6\\) | \\(\\\{a_1,a_3\\\}\\)		  | \\( (1,0,1) \\)       | \\( 101_2 \\)       | \\(5_{10}\\)         |
+|\\(7\\) | \\(\\\{a_1,a_2\\\}\\)		  | \\( (1,1,0) \\)       | \\( 110_2 \\)       | \\(6_{10}\\)         |
+|\\(8\\) | \\(\\\{a_1,a_2,a_3\\\}\\)  | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
 
-With this knowledge, it's very easy to count the number of values that can be
-represented by any given `int` type in Golang:
+As you can see, both sets \\( \mathcal{P}(A) \\) and \\( \\\{0,1\\\}^n \\) have
+the same cardinality. More importantly, we demonstrated that there's a bijection
+between them, because each element of one \\( \mathcal{P}(A) \\) is paired with
+exactly one element of \\( \\\{0,1\\\}^n \\). With this knowledge, it's very
+easy to count the number of values that can be represented by any given `int`
+type in Golang:
 
 | \\(\text{type}\\)      |\\( \| \\\{0,1\\\}^n \| \\) | \\(\text{n-bit sequences}\\)
 |-|-|-|
@@ -602,7 +603,7 @@ together. This problem can be easily solved using bit sets.
 First, let's define a set \\(W\\) whose elements, \\( w_1, w_2, \cdots, w_i\\),
 represent days of the week:
 
-\\[ \begin{aligned} W = \\\{ \ w_1 \, \ w_2 \,\ w_3 \,\ w_4 \,\ w_5 \,\ w_6 \,\ w_7 \ \\\} \ \ \newline
+\\[ \begin{aligned} W = \\\{ \ w_1, \ w_2,\ w_3,\ w_4,\ w_5,\ w_6,\ w_7 \\\} \ \ \newline
 = \\\{ \text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat} \\\} \end{aligned} \\]
 
 The power set of \\(W\\), denoted \\( \mathcal{P}(W) \\), is the set of all
