@@ -745,10 +745,15 @@ package [math/bits](https://pkg.go.dev/math/bits) package:
 cardinality := bits.OnesCount8(daysWorkingTogether) // 2
 ```
 
-We did it! Bob and Alice work two days together. All the code for this
-implementation can be found in this
+Great work! Bob and Alice work two days together. Go, team! If you are
+interested in the code for the working together problem, it's in this
 [gist](https://gist.github.com/rodmoioliveira/ac0cf7e41aca59c83cce4b4f8f1efe76).
 
-To sum up, ...
+To sum up, sets are the build blocks of mathematics and constitute an essential
+data structure to understand when writing computer programs. Sets provide an
+efficient way to test for membership and to compute the union and intersection
+of groups of objects. Also, they support several different implementations, such
+as maps, bit vectors, and [bloom
+filters](https://en.wikipedia.org/wiki/Bloom_filter).
 
 ### References
