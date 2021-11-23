@@ -733,8 +733,7 @@ daysWorkingTogether := alice & bob // (0b00000101)
 ```
 
 Perfect! The bit sequence \\( (0,0,0,0,1,0,1) \\) stands for the set \\( \\\{
-\text{thu}, \text{sat} \\\} \\), which represent the days that Alice and Bob
-work together. Finally, to get the cardinality of the bit set
+\text{thu}, \text{sat} \\\} \\). Finally, to get the cardinality of the bit set
 `daysWorkingTogether`, we need to calculate its [hamming
 weight](https://en.wikipedia.org/wiki/Hamming_weight). Which, in this case,
 means counting how many ones exist within the bit set. To do that, we can use
