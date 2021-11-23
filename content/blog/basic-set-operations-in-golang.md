@@ -1,7 +1,7 @@
 +++
 title = "Basic set operations in Golang"
 description = "As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
-date = 2021-11-19
+date = 2021-11-23
 slug = "basic-set-operations-in-golang"
 draft = false
 [extra]
