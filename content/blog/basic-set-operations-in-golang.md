@@ -580,7 +580,7 @@ of 3-bit sequences:
 
 As you can see, both sets \\( \mathcal{P}(A) \\) and \\( \\\{0,1\\\}^n \\) have
 the same cardinality, which is \\(8\\). More importantly, we demonstrated that
-there's a bijection between both sets, because each element of one \\(
+there's a bijection between both sets, because each element of \\(
 \mathcal{P}(A) \\) is paired with exactly one element of \\( \\\{0,1\\\}^n \\).
 With this knowledge, it's very easy to count the number of values that can be
 represented by any given `int` type in Golang:
@@ -612,8 +612,8 @@ This problem can be easily solved using bit sets. Before we start, for clarity
 sake, let's depict the problem mathematically. First, let's define a set \\(W\\)
 whose elements, \\( w_1, w_2, \cdots, w_i\\), represent days of the week:
 
-\\[ \begin{aligned} W = \\\{ \ w_1, \ w_2,\ w_3,\ w_4,\ w_5,\ w_6,\ w_7 \\\} \ \ \newline
-= \\\{ \text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat} \\\} \end{aligned} \\]
+\\[ \begin{align*} W &= \\\{ \ w_1, \ w_2,\ w_3,\ w_4,\ w_5,\ w_6,\ w_7 \\\} \ \ \newline
+&= \\\{ \text{sun},\text{mon},\text{tue},\text{wed},\text{thu},\text{fri},\text{sat} \\\} \end{align*} \\]
 
 The power set of \\(W\\), denoted \\( \mathcal{P}(W) \\), is the set of all
 possible subsets of \\(W\\). Let \\( \mathcal{P}(W) \\) be our schedule set,
@@ -711,8 +711,8 @@ great, isn't it? So *Bob* decides to work four days this week: *Sunday*,
 three-day working schedule this week: *Tuesday*, *Tuesday*, and *Saturday*. Both
 workers can have theirs working schedules represented as a set:
 
-\\[ \begin{align*} \text{Bob} = \\\{ \text{sun} \\\} \cup \\\{ \text{thu} \\\}
-\cup \\\{ \text{fri} \\\} \cup \\\{ \text{sat} \\\} \newline \text{Alice} = \\\{
+\\[ \begin{align*} \text{Bob} &= \\\{ \text{sun} \\\} \cup \\\{ \text{thu} \\\}
+\cup \\\{ \text{fri} \\\} \cup \\\{ \text{sat} \\\} \newline \text{Alice} &= \\\{
 \text{tue} \\\} \cup \\\{ \text{thu} \\\} \cup \\\{ \text{sat} \\\} \end{align*}
 \\]
 
@@ -741,7 +741,7 @@ Perfect! Finally, to get the cardinality of the bit set `daysWorkingTogether`,
 we need to calculate its [hamming
 weight](https://en.wikipedia.org/wiki/Hamming_weight). Which, in this case,
 means counting how many ones exists within the bit set. To do that,
-we can use the function [OnesCount8](https://pkg.go.dev/math/bits#OnesCount8)
+we can use the function [OnesCount](https://pkg.go.dev/math/bits#OnesCount)
 from the package [math/bits](https://pkg.go.dev/math/bits) package:
 
 ```go
