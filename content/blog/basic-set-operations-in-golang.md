@@ -460,8 +460,8 @@ different sets, which can be useful to count infinite sets. If we could find
 these relations between countable things, we can transform otherwise hard
 problems into trivial operations. For instance, there's a clever way to count
 the number of n-bit sequences that can be yielded from using an n-bit unit of
-data. Therefore, questions like *how many values an* `int64` *can represents in
-Golang?* can be easily answered.
+data. Therefore, questions like how many values a 64-integer type can
+represent are easily answered.
 
 To understand how it works, we have to comprehend the following mathematical
 concepts within set theory: **cardinality**, **product of sets**, **power
@@ -532,20 +532,20 @@ elements of \\( \mathcal{P}(A) \\) to elements in \\( \\\{0,1\\\}^n \\), the
 product set of n-bit sequences. More formally, we want to prove that power sets
 and product sets have the same cardinality:
 
-\\[ |A| = n \ \ \text{ implies } \ \  | \mathcal{P}(A) | = | \\\{0,1\\\}^n | =
+\\[ |A| = n  \implies | \mathcal{P}(A) | = | \\\{0,1\\\}^n | =
 2^{n} \\]
 
 And that there's a bijection between them:
 
 \\[ \mathcal{P}(A) \text{ bij } \\\{0,1\\\}^n \\]
 
-\\( \text{Prove:} \\) Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A \\). The bijection
-that maps each subset of \\( S \subseteq A \\) to the bit sequence \\( (b_1,
-\cdots, b_n) \\) is defined by the rule:
+\\( \text{Prove:} \\) Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A
+\\). The bijection that maps each subset of \\( S \subseteq A \\) to the bit
+sequence \\( (b_1, \cdots, b_n) \\) is defined by the rule:
 
-\\[ a_i \in S \iff  b_i = 1\\]
+\\[\tag{1.0} a_i \in S \iff  b_i = 1\\]
 
-For example, if \\(n = 3\\), then the subset \\(\\\{a_2,a_3\\\}
+Therefore, if \\(n = 3\\), then the subset \\(\\\{a_2,a_3\\\}
 \subseteq A \\) maps to a 3-bit sequence as follows:
 
 \\[ \begin{aligned}
@@ -553,13 +553,8 @@ For example, if \\(n = 3\\), then the subset \\(\\\{a_2,a_3\\\}
 	  a_2 		\in		  \\\{ a_2,a_3 \\\} \iff b_2    = 1 \newline
 	  a_3 		\in		  \\\{ a_2,a_3 \\\} \iff b_3    = 1 \newline \end{aligned} \\]
 
-If you prefer a more concise representation, it could be written as:
-
-\\[ \begin{align*} \text{subset: }& \\\{\ \ ,a_2, a_3 \\\} \newline
-\text{sequence: }& (\ 0,\ 1,\ 1) \end{align*} \\]
-
-Down below there's the map between all subsets \\(\subseteq A \\) to the product
-set of 3-bit sequences:
+In fact, all subsets \\( S \subseteq A \\) can be mapped to a 3-bit sequence
+using the rule \\((1.0)\\) as follows:
 
 || \\(\mathcal{P}(A)\\)						    | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
 |-|-|-|-|-|
@@ -574,12 +569,12 @@ set of 3-bit sequences:
 
 As you can see, both sets \\( \mathcal{P}(A) \\) and \\( \\\{0,1\\\}^n \\) have
 the same cardinality, which is \\(8\\). More importantly, we'd demonstrated that
-there's a bijection between both sets, because each element of \\(
+there's a bijection between them, because each element of \\(
 \mathcal{P}(A) \\) is paired with exactly one element of \\( \\\{0,1\\\}^n \\).
 \\(\blacksquare \\)
 
 With this knowledge, it's very easy to count the number of values that can be
-represented by any given `int` type in Golang:
+represented by any given n-bit integer type in Golang:
 
 | \\(\text{type}\\)      |\\( \| \\\{0,1\\\}^n \| \\) | \\(\text{n-bit sequences}\\)
 |-|-|-|
@@ -679,13 +674,13 @@ const (
 ```
 
 We have used the [iota constant generator](https://golang.org/ref/spec#Iota)
-with the binary *shift left* operator `<<` to create seven bit sets, whereby
-each one represents a day of the week. Notice that the operation `x << k`
-consists in shifting the bytes of \\(x\\) by \\(k\\) bits, dropping off the
-\\(k\\) most significant bits and then filling the right end with \\(k\\) zeros.
-Down below, we present a detailed table of the binary *shift left* operation.
-The **bolded digits** indicate the values that were dropped from the left end,
-and *italicized digits* indicate the values that were filled from the right end:
+with the binary *shift left* operator `<<` to create seven bit sets. Notice that
+the operation `x << k` consists in shifting the bytes of \\(x\\) by \\(k\\)
+bits, dropping off the \\(k\\) most significant bits and then filling the right
+end with \\(k\\) zeros.  Down below, we present a detailed table of the binary
+*shift left* operation.  The **bolded digits** indicate the values that were
+dropped from the left end, and *italicized digits* indicate the values that were
+filled from the right end:
 
 | operation			 | input										 | output |
 |-|-|-|
@@ -699,12 +694,12 @@ and *italicized digits* indicate the values that were filled from the right end:
 
 So, now that we've created all the bit sequences for the working schedules with
 a single day, we can unite them to create some working schedules for our
-workers. Take *Bob* and *Alice*, for example. They just returned from vacation
+workers. Take Bob and Alice, for example. They just returned from vacation
 and must choose the days they're going to work this week. Fortunately, the
 company they work for is highly flexible about working schedules, which is
-great, isn't it? So *Bob* decides to work four days this week: *Sunday*,
-*Tuesday*, *Friday*, and *Saturday*. And *Alice* decides to begin with a
-three-day working schedule this week: *Tuesday*, *Tuesday*, and *Saturday*. Both
+great, isn't it? So Bob decides to work four days this week: *Sunday*,
+*Tuesday*, *Friday*, and *Saturday*. And Alice decides to begin with a
+three-day working schedule: *Tuesday*, *Tuesday*, and *Saturday*. Both
 workers can have theirs working schedules represented as a set:
 
 \\[ \begin{align*} \text{Bob} &= \\\{ \text{sun} \\\} \cup \\\{ \text{thu} \\\}
@@ -721,8 +716,12 @@ bob := sun | thu | fri | sat // (0b01000111)
 alice := tue | thu | sat     // (0b00010101)
 ```
 
-Well, isn't that grand? Now we've to known many days of the week they work
-together. To answer that, we've to intersect both sets, like this:
+Great! The bit sequence for Bob is \\( ( 1,0,0,0,1,1,1  ) \\) which represent
+the set \\( \\\{ \text{sun}, \text{thu}, \text{fri}, \text{sat} \\\} \\). For
+Alice, the bit sequence is \\( (0,0,1,0,1,0,1) \\) which maps to the set \\(
+\\\{ \text{tue}, \text{thu}, \text{sat} \\\} \\). Now we've to known many days
+of the week they work together. To answer that, we've to intersect both sets,
+like this:
 
 \\[ \text{Bob} \cap \text{Alice} = \\\{ \text{thu}, \text{sat} \\\} \\]
 
@@ -733,8 +732,10 @@ How might we do that within our code? We have to use the binary *and* operator
 daysWorkingTogether := alice & bob // (0b00000101)
 ```
 
-Perfect! Finally, to get the cardinality of the bit set `daysWorkingTogether`,
-we need to calculate its [hamming
+Perfect! The bit sequence \\( (0,0,0,0,1,0,1) \\) stands for the set \\( \\\{
+\text{thu}, \text{sat} \\\} \\), which represent the days that Alice and Bob
+work together. Finally, to get the cardinality of the bit set
+`daysWorkingTogether`, we need to calculate its [hamming
 weight](https://en.wikipedia.org/wiki/Hamming_weight). Which, in this case,
 means counting how many ones exist within the bit set. To do that, we can use
 the function [OnesCount](https://pkg.go.dev/math/bits#OnesCount) from the
@@ -744,8 +745,10 @@ package [math/bits](https://pkg.go.dev/math/bits) package:
 cardinality := bits.OnesCount8(daysWorkingTogether) // 2
 ```
 
-We did it! Bob and Alice work two days together. (((...))) All the code for this
+We did it! Bob and Alice work two days together. All the code for this
 implementation can be found in this
 [gist](https://gist.github.com/rodmoioliveira/ac0cf7e41aca59c83cce4b4f8f1efe76).
+
+To sum up, ...
 
 ### References
