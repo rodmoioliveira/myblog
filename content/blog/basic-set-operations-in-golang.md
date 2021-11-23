@@ -457,11 +457,11 @@ C ) \\]
 
 Sets are great for counting things because we can establish relations between
 different sets, which can be useful to count infinite sets. If we could find
-these relations, we can transform otherwise hard problems into trivial
-operations. For instance, there's a clever way to count the number of n-bit
-sequences that can be yielded from an n-bit unit of data used. Therefore,
-questions like: *how many values an* `int64` *can represents in Golang?*, can be
-easily answered.
+these relations between countable things, we can transform otherwise hard
+problems into trivial operations. For instance, there's a clever way to count
+the number of n-bit sequences that can be yielded from using an n-bit unit of
+data. Therefore, questions like *how many values an* `int64` *can represents in
+Golang?* can be easily answered.
 
 To understand how it works, we have to comprehend the following mathematical
 concepts within set theory: **cardinality**, **product of sets**, **power
@@ -479,20 +479,20 @@ Easy enough, right?
 #### Product of sets
 
 The cross product of two sets \\(A\\) and \\(B\\), denoted \\(A \times B\\), is
-the set of all ordered pairs of elements in \\(A\\) and elements in \\(B\\). In
-set-builder notation it is:
+the set of all ordered pairs of elements in \\(A\\) and elements in \\(B\\):
 
 \\[ A \times B = \\\{(a,b) : a \in A \text{ and } b \in B\\\} \\]
 
-A product of \\(n\\) copies of a set \\(A\\) is denoted \\(A^n\\). In
-set-builder notation:
+A product of \\(n\\) copies of a set \\(A\\) is denoted \\(A^n\\):
 
 \\[ A^n = \\\{(a_1, \cdots, a_n) : a_i \in A \text{ for every } i \\\} \\]
 
-The cardinality of the cross product of sets is rule by \\( |A \times B| = |A||B|\\)
-and \\( |A^{n}| = |A|^n \\). For example, the cross product \\(A \times
-B\\) of the sets \\( A = \\\{a,b\\\} \\) and \\( B = \\\{1,2,3\\\} \\) is equal
-to:
+The cardinality of the cross product of sets is calculated by these rules:
+
+\\[ \begin{align*} |A \times B| &= |A||B| \newline |A^{n}| &= |A|^n \end{align*} \\]
+
+For example, the cross product of the sets \\( A = \\\{a,b\\\} \\) and \\( B =
+\\\{1,2,3\\\} \\), denoted \\(A \times B\\), is equal to:
 
 \\[ \\\{ (a,1),(a,2),(a,3),(b,1),(b,2),(b,3) \\\} \\]
 
@@ -503,7 +503,7 @@ Which is not the same that the cross product of \\( B \times A \\):
 #### Power Set
 
 The power set of the set \\(A\\), denoted \\( \mathcal{P}(A) \\), is the set of
-all the subsets \\(B\\) in the set \\(A\\). In set-builder notation it is:
+all the subsets \\(B\\) in the set \\(A\\):
 
 \\[ \mathcal{P}(A) = \\\{B : B \subseteq A  \\\} \\]
 
@@ -539,13 +539,7 @@ And that there's a bijection between them:
 
 \\[ \mathcal{P}(A) \text{ bij } \\\{0,1\\\}^n \\]
 
-Let \\(A\\) be a three-elements set \\( \\\{a_1,a_2,a_3 \\\} \\). The \\(
-\mathcal{P}(A) \\) has eight different subsets:
-
-\\[ \varnothing, \\\{a_1 \\\}, \\\{a_2 \\\}, \\\{a_3 \\\},\\\{a_1,a_2 \\},
-\newline \\\{a_2,a_3 \\}, \\\{a_1,a_3 \\}, \\\{a_1,a_2,a_3 \\} \\]
-
-Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A \\). The bijection
+\\( \text{Prove:} \\) Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A \\). The bijection
 that maps each subset of \\( S \subseteq A \\) to the bit sequence \\( (b_1,
 \cdots, b_n) \\) is defined by the rule:
 
@@ -561,11 +555,11 @@ For example, if \\(n = 3\\), then the subset \\(\\\{a_2,a_3\\\}
 
 If you prefer a more concise representation, it could be written as:
 
-\\[ \begin{align*} \text{subset: } \\\{\ \ ,a_2, a_3 \\\} \newline
-\text{sequence: } (\ \ 0,\ \  1,\ \  1) \end{align*} \\]
+\\[ \begin{align*} \text{subset: }& \\\{\ \ ,a_2, a_3 \\\} \newline
+\text{sequence: }& (\ 0,\ 1,\ 1) \end{align*} \\]
 
-Down below there's the map between all subsets \\(\in A \\) to the product set
-of 3-bit sequences:
+Down below there's the map between all subsets \\(\subseteq A \\) to the product
+set of 3-bit sequences:
 
 || \\(\mathcal{P}(A)\\)						    | \\( \\\{0,1\\\}^3 \\) | \\(\text{binary}\\) | \\(\text{decimal}\\) |
 |-|-|-|-|-|
@@ -579,9 +573,11 @@ of 3-bit sequences:
 |\\(8\\) | \\(\\\{a_1,a_2,a_3\\\}\\)  | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
 
 As you can see, both sets \\( \mathcal{P}(A) \\) and \\( \\\{0,1\\\}^n \\) have
-the same cardinality, which is \\(8\\). More importantly, we demonstrated that
+the same cardinality, which is \\(8\\). More importantly, we'd demonstrated that
 there's a bijection between both sets, because each element of \\(
 \mathcal{P}(A) \\) is paired with exactly one element of \\( \\\{0,1\\\}^n \\).
+\\(\blacksquare \\)
+
 With this knowledge, it's very easy to count the number of values that can be
 represented by any given `int` type in Golang:
 
@@ -607,8 +603,8 @@ problem.
 #### Working together
 
 Let's suppose that we have \\(n\\) workers within a company, and we would like
-to known: *for any two workers, how many days of the week do they work together?*
-This problem can be easily solved using bit sets. Before we start, for clarity
+to know: *for any two workers, how many days of the week do they work together?*
+This problem can be easily solved using bit sets. Before we start, for clarity's
 sake, let's depict the problem mathematically. First, let's define a set \\(W\\)
 whose elements, \\( w_1, w_2, \cdots, w_i\\), represent days of the week:
 
@@ -687,9 +683,9 @@ with the binary *shift left* operator `<<` to create seven bit sets, whereby
 each one represents a day of the week. Notice that the operation `x << k`
 consists in shifting the bytes of \\(x\\) by \\(k\\) bits, dropping off the
 \\(k\\) most significant bits and then filling the right end with \\(k\\) zeros.
-Down below, we present a detail table of the binary *shift left* operation. The
-**bolded digits** indicate the values that were dropped from the left end, and
-*italicized digits* indicate the values that were filled from the right end:
+Down below, we present a detailed table of the binary *shift left* operation.
+The **bolded digits** indicate the values that were dropped from the left end,
+and *italicized digits* indicate the values that were filled from the right end:
 
 | operation			 | input										 | output |
 |-|-|-|
@@ -740,14 +736,16 @@ daysWorkingTogether := alice & bob // (0b00000101)
 Perfect! Finally, to get the cardinality of the bit set `daysWorkingTogether`,
 we need to calculate its [hamming
 weight](https://en.wikipedia.org/wiki/Hamming_weight). Which, in this case,
-means counting how many ones exists within the bit set. To do that,
-we can use the function [OnesCount](https://pkg.go.dev/math/bits#OnesCount)
-from the package [math/bits](https://pkg.go.dev/math/bits) package:
+means counting how many ones exist within the bit set. To do that, we can use
+the function [OnesCount](https://pkg.go.dev/math/bits#OnesCount) from the
+package [math/bits](https://pkg.go.dev/math/bits) package:
 
 ```go
 cardinality := bits.OnesCount8(daysWorkingTogether) // 2
 ```
 
-Well, we did it! Bob and Alice work two days together.
+We did it! Bob and Alice work two days together. (((...))) All the code for this
+implementation can be found in this
+[gist](https://gist.github.com/rodmoioliveira/ac0cf7e41aca59c83cce4b4f8f1efe76).
 
 ### References
