@@ -719,9 +719,9 @@ alice := tue | thu | sat     // (0b00010101)
 Great! The bit sequence for Bob is \\( ( 1,0,0,0,1,1,1  ) \\) which represent
 the set \\( \\\{ \text{sun}, \text{thu}, \text{fri}, \text{sat} \\\} \\). For
 Alice, the bit sequence is \\( (0,0,1,0,1,0,1) \\) which maps to the set \\(
-\\\{ \text{tue}, \text{thu}, \text{sat} \\\} \\). Now we've to known many days
-of the week they work together. To answer that, we've to intersect both sets,
-like this:
+\\\{ \text{tue}, \text{thu}, \text{sat} \\\} \\). Now we've to know how many
+days they work together. To answer that, we've to intersect both sets, like
+this:
 
 \\[ \text{Bob} \cap \text{Alice} = \\\{ \text{thu}, \text{sat} \\\} \\]
 
