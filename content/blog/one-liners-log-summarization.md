@@ -1,6 +1,6 @@
 +++
 title = "One-Liners: Log Summarization"
-description = "Let's demonstrate some useful techniques for peeking, summarizing, and plotting logs data."
+description = "Here are some useful techniques for peeking, summarizing, and plotting logs data in the terminal."
 date = 2021-10-27
 slug = "one-liners-log-summarization"
 draft = false

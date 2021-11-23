@@ -1,6 +1,6 @@
 +++
 title = "One-Liners: Counting Files and LOC"
-description = "Sometimes it is useful to count the number of files and/or LOC a project has."
+description = "How to count the number of files and/or LOC a project has."
 date = 2021-10-25
 slug = "one-liners-counting-files-and-loc"
 draft = false

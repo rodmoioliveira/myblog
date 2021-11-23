@@ -8,11 +8,15 @@
 }
 // .blog__ul {
 // }
-.blog__li {
-  display: flex;
-  justify-content: flex-start;
+// .blog__li {
+// }
+.blog__date {
+  font-family: 'PT Mono', monospace !important;
 }
-// .blog__date {}
 .blog__link {
   margin-top: 0;
+}
+.blog__postdescription {
+  margin: 0 auto 2em 1em;
+  color: var(--primary-color-accent);
 }
