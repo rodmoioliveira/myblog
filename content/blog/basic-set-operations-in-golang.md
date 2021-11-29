@@ -304,7 +304,7 @@ Great!
 
 The expression \\( A \subseteq B \\) indicates that set \\( A \\) is a subset of
 set \\( B \\), which means every element of \\( A \\) is also an element of
-\\( B \\). It could be written in set-builder notation as:
+\\( B \\). It could be written in mathematical notation as:
 
 \\[ A \subseteq B \iff A \cap B = A \\]
 
