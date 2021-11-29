@@ -707,9 +707,9 @@ represented as a set:
 \text{tue} \\\} \cup \\\{ \text{thu} \\\} \cup \\\{ \text{sat} \\\} \end{align*}
 \\]
 
-Well, let's implement that. We'll create two variables `bob` and `alice` and use the
-binary *or* operator `|` to union the work days of each one of them in a bit
-set:
+Well, let's implement that. We'll create two variables `bob` and `alice` and use
+the binary *or* operator `|` to union the working days of each one of them in a
+bit set:
 
 ```go
 bob := sun | thu | fri | sat // (0b01000111)
