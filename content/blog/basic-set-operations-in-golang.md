@@ -747,11 +747,11 @@ Great work! Bob and Alice work two days together. Go, team! If you are
 interested in the code for the working together problem, it's in this
 [gist](https://gist.github.com/rodmoioliveira/ac0cf7e41aca59c83cce4b4f8f1efe76).
 
-To sum up, sets are the build blocks of mathematics and constitute an essential
-data structure to understand when writing computer programs. Sets provide an
-efficient way to test for membership and to compute the union and intersection
-of groups of objects. Also, they support several different implementations, such
-as maps, bit vectors, and [bloom
+In summary, sets are the building blocks of mathematics and are an essential data
+structure to understand when writing computer programs. Sets provide an
+efficient way to check membership in a group and to compute the union and
+intersection of groups of objects. They also support various implementations,
+such as maps, bit vectors, and [Bloom
 filters](https://en.wikipedia.org/wiki/Bloom_filter).
 
 ### References
