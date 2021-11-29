@@ -443,8 +443,9 @@ universal set (\\( U \\)) is the identity operand for intersections:
 #### Transitive
 
 In mathematics, a relation \\(R\\) on a set \\(A\\) is transitive if, for all
-elements \\(a\\), \\(b\\), \\(c\\) in \\(A\\), whenever \\(R\\) relates \\(a\\)
-to \\(b\\) and \\(b\\) to \\(c\\), then \\(R\\) also relates \\(a\\) to \\(c\\):
+elements \\(a\\), \\(b\\), \\(c\\) in \\(A \text{,}\\) whenever \\(R\\) relates
+\\(a\\) to \\(b\\) and \\(b\\) to \\(c\\), then \\(R\\) also relates \\(a\\) to
+\\(c\\):
 
 \\[ \forall (a,b,c) \in A:(aRb \text{ and } bRc) \Rightarrow aRc \\]
 
