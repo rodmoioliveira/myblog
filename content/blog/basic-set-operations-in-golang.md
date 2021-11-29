@@ -692,15 +692,15 @@ filled from the right end:
 | x << \\( 5 \\) | \\( \textbf{00000}001 \\) | \\( 001\textit{00000} \\)
 | x << \\( 6 \\) | \\( \textbf{000000}01 \\) | \\( 01\textit{000000} \\)
 
-So now that we have created all the bit sequences for the work schedules with
-a single day, we can unite them to create some work schedules for our
-workers. Take Bob and Alice, for example. They just returned from vacation
-and must choose the days they're going to work this week. Fortunately, the
-company they work for is highly flexible about work schedules, which is
-great, isn't it? So Bob decides to work four days this week: *Sunday*,
-*Tuesday*, *Friday*, and *Saturday*. And Alice decides to begin with a
-three-day work schedule: *Tuesday*, *Tuesday*, and *Saturday*. Both
-workers can have theirs work schedules represented as a set:
+So now that we have created all the bit sequences for the work schedules with a
+single day, we can unite them to create some work schedules for our workers. For
+example, let us take Bob and Alice. They have just returned from vacation and
+need to select the days they will work this week. Fortunately, the company they
+work for is very flexible about the days they work, which is great, right? So
+Bob decides to work four days this week: *Sunday*, *Tuesday*, *Friday*, and
+*Saturday*. And Alice decides to start with a three-day work schedule:
+*Tuesday*, *Tuesday*, and *Saturday*. Both workers can have their work schedules
+represented as a set:
 
 \\[ \begin{align*} \text{Bob} &= \\\{ \text{sun} \\\} \cup \\\{ \text{thu} \\\}
 \cup \\\{ \text{fri} \\\} \cup \\\{ \text{sat} \\\} \newline \text{Alice} &= \\\{
