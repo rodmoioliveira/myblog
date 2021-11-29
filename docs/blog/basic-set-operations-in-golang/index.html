@@ -1110,7 +1110,7 @@
         \[ |W| = 7 \ \ \text{ implies } \ \ | \mathcal{P}(W) | = 2^7 = 128 \]
       </p>
       <p>
-        We have \(128\) possible working schedules in our schedule set \(
+        We have \(128\) possible work schedules in our schedule set \(
         \mathcal{P}(W) \), and it one of them can be encoded as a 7-bit
         sequence. The rule for encoding each one of the subsets \(S \subseteq W
         \) to a sequence \((d_1, \cdots, d_7)\) is defined by:
@@ -1145,9 +1145,9 @@
       <p>
         The bit-sequence for the subset \( \{ \text{mon},\text{tue},\text{thu}
         \} \subseteq W \) is \( (0,1,1,0,1,0,0) \). As you can see, the bit
-        sequence representation of the working schedules is really convenient.
-        Hence, we can use them to encode the working schedule of all \(n\)
-        workers within the company.
+        sequence representation of the work schedules is really convenient.
+        Hence, we can use them to encode the work schedule of all \(n\) workers
+        within the company.
       </p>
       <p>
         Bit sequences can be easily construct in Golang using the
@@ -1158,8 +1158,8 @@
           >iota constant generator</a
         >. Let's begin by creating bit sequences for all the subsets \( S
         \subseteq W\) whose cardinalities are equal to \(1\). In other words,
-        let's create bit sequences for all the working schedules that have just
-        one day:
+        let's create bit sequences for all the work schedules that have just one
+        day:
       </p>
       <pre
         data-lang="go"
@@ -1247,17 +1247,16 @@
         </tbody>
       </table>
       <p>
-        So, now that we've created all the bit sequences for the working
-        schedules with a single day, we can unite them to create some working
-        schedules for our workers. Take Bob and Alice, for example. They just
-        returned from vacation and must choose the days they're going to work
-        this week. Fortunately, the company they work for is highly flexible
-        about working schedules, which is great, isn't it? So Bob decides to
-        work four days this week: <em>Sunday</em>, <em>Tuesday</em>,
-        <em>Friday</em>, and <em>Saturday</em>. And Alice decides to begin with
-        a three-day working schedule: <em>Tuesday</em>, <em>Tuesday</em>, and
-        <em>Saturday</em>. Both workers can have theirs working schedules
-        represented as a set:
+        So now that we have created all the bit sequences for the work schedules
+        with a single day, we can unite them to create some work schedules for
+        our workers. Take Bob and Alice, for example. They just returned from
+        vacation and must choose the days they're going to work this week.
+        Fortunately, the company they work for is highly flexible about work
+        schedules, which is great, isn't it? So Bob decides to work four days
+        this week: <em>Sunday</em>, <em>Tuesday</em>, <em>Friday</em>, and
+        <em>Saturday</em>. And Alice decides to begin with a three-day work
+        schedule: <em>Tuesday</em>, <em>Tuesday</em>, and <em>Saturday</em>.
+        Both workers can have theirs work schedules represented as a set:
       </p>
       <p>
         \[ \begin{align*} \text{Bob} &amp;= \{ \text{sun} \} \cup \{ \text{thu}
@@ -1268,8 +1267,8 @@
       <p>
         Well, let's implement that. We'll create two variables
         <code>bob</code> and <code>alice</code> and use the binary
-        <em>or</em> operator <code>|</code> to union the working days of each
-        one of them in a bit set:
+        <em>or</em> operator <code>|</code> to union the work days of each one
+        of them in a bit set:
       </p>
       <pre
         data-lang="go"

@@ -613,7 +613,7 @@ in a week. What's the cardinality of \\( \mathcal{P}(W) ?\\) The answer is:
 
 \\[ |W| = 7 \ \  \text{ implies } \ \  | \mathcal{P}(W) | = 2^7 = 128 \\]
 
-We have \\(128\\) possible working schedules in our schedule set \\(
+We have \\(128\\) possible work schedules in our schedule set \\(
 \mathcal{P}(W) \\), and it one of them can be encoded as a 7-bit sequence. The
 rule for encoding each one of the subsets \\(S \subseteq W \\) to a sequence
 \\((d_1, \cdots, d_7)\\) is defined by:
@@ -645,13 +645,13 @@ another one: how about the bit sequence of the subset \\( \\\{
 
 The bit-sequence for the subset \\( \\\{ \text{mon},\text{tue},\text{thu} \\\}
 \subseteq W \\) is \\( (0,1,1,0,1,0,0) \\). As you can see, the bit sequence
-representation of the working schedules is really convenient. Hence, we can use
-them to encode the working schedule of all \\(n\\) workers within the company.
+representation of the work schedules is really convenient. Hence, we can use
+them to encode the work schedule of all \\(n\\) workers within the company.
 
 Bit sequences can be easily construct in Golang using the [iota constant
 generator](https://golang.org/ref/spec#Iota). Let's begin by creating bit
 sequences for all the subsets \\( S \subseteq W\\) whose cardinalities are equal
-to \\(1\\). In other words, let's create bit sequences for all the working
+to \\(1\\). In other words, let's create bit sequences for all the work
 schedules that have just one day:
 
 ```go
@@ -692,15 +692,15 @@ filled from the right end:
 | x << \\( 5 \\) | \\( \textbf{00000}001 \\) | \\( 001\textit{00000} \\)
 | x << \\( 6 \\) | \\( \textbf{000000}01 \\) | \\( 01\textit{000000} \\)
 
-So, now that we've created all the bit sequences for the working schedules with
-a single day, we can unite them to create some working schedules for our
+So now that we have created all the bit sequences for the work schedules with
+a single day, we can unite them to create some work schedules for our
 workers. Take Bob and Alice, for example. They just returned from vacation
 and must choose the days they're going to work this week. Fortunately, the
-company they work for is highly flexible about working schedules, which is
+company they work for is highly flexible about work schedules, which is
 great, isn't it? So Bob decides to work four days this week: *Sunday*,
 *Tuesday*, *Friday*, and *Saturday*. And Alice decides to begin with a
-three-day working schedule: *Tuesday*, *Tuesday*, and *Saturday*. Both
-workers can have theirs working schedules represented as a set:
+three-day work schedule: *Tuesday*, *Tuesday*, and *Saturday*. Both
+workers can have theirs work schedules represented as a set:
 
 \\[ \begin{align*} \text{Bob} &= \\\{ \text{sun} \\\} \cup \\\{ \text{thu} \\\}
 \cup \\\{ \text{fri} \\\} \cup \\\{ \text{sat} \\\} \newline \text{Alice} &= \\\{
@@ -708,7 +708,7 @@ workers can have theirs working schedules represented as a set:
 \\]
 
 Well, let's implement that. We'll create two variables `bob` and `alice` and use the
-binary *or* operator `|` to union the working days of each one of them in a bit
+binary *or* operator `|` to union the work days of each one of them in a bit
 set:
 
 ```go
