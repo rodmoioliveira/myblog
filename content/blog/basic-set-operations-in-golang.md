@@ -1,6 +1,6 @@
 +++
 title = "Basic set operations in Golang"
-description = "Sets are a fundamental mathematical construct and serve as a handy data structure when writing computer programs. As an abstract data type, sets are a missing feature in the Go language. However they can be easily implemented with maps."
+description = "Sets are a fundamental mathematical construct and serve as a handy data structure when writing computer programs. As an abstract data type, sets are a missing feature in the Go language. However, they can be easily implemented with maps."
 date = 2021-11-29
 slug = "basic-set-operations-in-golang"
 draft = false
@@ -28,7 +28,7 @@ default. But in others, like Go, you have to implement yourself.
 ### Abstract Data Type
 
 As an [abstract data type](https://en.wikipedia.org/wiki/Abstract_data_type),
-sets are a missing feature in the Go language. However they can be easily
+sets are a missing feature in the Go language. However, they can be easily
 implemented with [maps](https://tour.golang.org/moretypes/19). Let's
 implement the `Set` type with three methods: `MakeSet` to create new sets,
 `Size` to get the set's cardinality and, `ToString` to print its string
