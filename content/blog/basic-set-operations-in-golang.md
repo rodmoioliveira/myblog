@@ -1,6 +1,6 @@
 +++
 title = "Basic set operations in Golang"
-description = "Sets are a fundamental mathematical construct and serve as a handy data structure when writing computer programs. As an abstract data type, sets are a missing feature in the Go language. However, they can be easily implemented with maps."
+description = "Sets are a fundamental mathematical construct and serve as a convenient data structure when writing computer programs. As an abstract data type, sets are a missing feature in the Go language. However, they can be easily implemented with maps."
 date = 2021-11-29
 slug = "basic-set-operations-in-golang"
 draft = false
@@ -21,7 +21,7 @@ sets \\( \\\{ \text{dog}, \text{dog}, \text{cat} \\\} \\) and \\( \\\{
 inside a set is meaningless, so \\( \\\{ a,b,c \\\} \\) and \\( \\\{ c,b,a \\\}
 \\) are the same set written in two different ways.
 
-Sets are a fundamental mathematical construct and serve as a handy data
+Sets are a fundamental mathematical construct and serve as a convenient data
 structure when writing computer programs. Some languages implement sets by
 default. But in others, like Go, you have to implement yourself.
 
