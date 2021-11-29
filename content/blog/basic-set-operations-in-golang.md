@@ -1,6 +1,6 @@
 +++
 title = "Basic set operations in Golang"
-description = "As an abstract data type, sets are a missing feature in the Go language. But can be easily implemented using maps."
+description = "Sets are a fundamental mathematical construct and serve as a handy data structure when writing computer programs. As an abstract data type, sets are a missing feature in the Go language. However they can be easily implemented with maps."
 date = 2021-11-29
 slug = "basic-set-operations-in-golang"
 draft = false
