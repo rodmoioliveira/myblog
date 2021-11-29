@@ -84,7 +84,7 @@ fmt.Println(set.ToString()) // {dog,cow,cat,frog}
 ```
 
 As you can see, all the duplicate elements were removed from the set, and its
-elements were printed out inside curly braces in arbitrary order.
+elements were printed inside curly braces in arbitrary order.
 
 ### Basic set operations
 
@@ -399,7 +399,7 @@ AND's(\\(\\land\\)) and OR's(\\(\lor\\)):
 (\neg P) \land (\neg Q) \\]
 
 In set theory, De Morgan's Laws relate the intersection and union of sets
-through complements.
+through complements:
 
 \\[ ( A \cup B )^c = A^c \cap B^c \newline ( A \cap B )^c = A^c \cup B^c \\]
 
@@ -435,7 +435,7 @@ value:
 
 #### Identity
 
-The empty set (\\( \varnothing \\)) is an identity operand for unions, and the
+The empty set (\\( \varnothing \\)) is the identity operand for unions, and the
 universal set (\\( U \\)) is the identity operand for intersections:
 
 \\[ A \cup \varnothing = A \newline A \cap U = A \\]
@@ -457,10 +457,10 @@ C ) \\]
 
 Sets are great for counting things because we can establish relations between
 different sets, which can be useful to count infinite sets. If we could find
-these relations between countable things, we can transform otherwise hard
+relationships between countable things, we can transform otherwise tough
 problems into trivial operations. For instance, there's a clever way to count
-the number of n-bit sequences that can be yielded from using an n-bit unit of
-data. Therefore, questions like how many values a 64-integer type can
+the number of n-bit sequences that can be yielded from utilizing an n-bit unit
+of data. Therefore, questions like how many values a 64-integer type can
 represent are easily answered.
 
 To understand how it works, we have to comprehend the following mathematical
@@ -540,7 +540,7 @@ And that there's a bijection between them:
 \\[ \mathcal{P}(A) \text{ bij } \\\{0,1\\\}^n \\]
 
 \\( \text{Prove:} \\) Let \\( a_1,a_2, \cdots, a_n \\) be the elements of \\( A
-\\). The bijection that maps each subset of \\( S \subseteq A \\) to the bit
+\\). The bijection that maps each subset \\( S \subseteq A \\) to the bit
 sequence \\( (b_1, \cdots, b_n) \\) is defined by the rule:
 
 \\[\tag{1.0} a_i \in S \iff  b_i = 1\\]
@@ -568,8 +568,8 @@ using the rule \\((1.0)\\) as follows:
 |\\(8\\) | \\(\\\{a_1,a_2,a_3\\\}\\)  | \\( (1,1,1) \\)       | \\( 111_2 \\)       | \\(7_{10}\\)         |
 
 As you can see, both sets \\( \mathcal{P}(A) \\) and \\( \\\{0,1\\\}^n \\) have
-the same cardinality, which is \\(8\\). More importantly, we'd demonstrated that
-there's a bijection between them, because each element of \\(
+the same cardinality, which is \\(8\\). More importantly, we've demonstrated
+that there's a bijection between them, because each element of \\(
 \mathcal{P}(A) \\) is paired with exactly one element of \\( \\\{0,1\\\}^n \\).
 \\(\blacksquare \\)
 
@@ -584,13 +584,13 @@ represented by any given n-bit integer type in Golang:
 | \\(\text{int64} \\)    |\\( 2^{64} \\)              | \\( 1.8446744e+19 \\)
 
 It's precisely in this bijection, between product sets and power sets, that we rely
-on when we use a bit set data structure in ours programs.
+on when we use a bit set data structure in our programs.
 
 #### Bit sets
 
 A bit set is just an n-bit vector in which the \\(\text{nth}\\) byte represents
-if any given \\(\text{nth}\\) elements it's presented in the set. Bit sets can
-be used in Golang with [bitwise
+if any given \\(\text{nth}\\) element is present in the set. Bit sets can be
+used in Golang with [bitwise
 operators](https://yourbasic.org/golang/bitwise-operator-cheat-sheet/) to
 execute several set operations.  To see them in action, we'll propose a simple
 problem.

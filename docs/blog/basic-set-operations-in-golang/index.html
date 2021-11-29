@@ -431,8 +431,7 @@
 </span></code></pre>
       <p>
         As you can see, all the duplicate elements were removed from the set,
-        and its elements were printed out inside curly braces in arbitrary
-        order.
+        and its elements were printed inside curly braces in arbitrary order.
       </p>
       <h3 id="basic-set-operations">Basic set operations</h3>
       <p>
@@ -791,7 +790,7 @@
       </p>
       <p>
         In set theory, De Morgan's Laws relate the intersection and union of
-        sets through complements.
+        sets through complements:
       </p>
       <p>
         \[ ( A \cup B )^c = A^c \cap B^c \newline ( A \cap B )^c = A^c \cup B^c
@@ -826,8 +825,9 @@
       <p>\[ A \cup A = A \newline A \cap A = A \]</p>
       <h4 id="identity">Identity</h4>
       <p>
-        The empty set (\( \varnothing \)) is an identity operand for unions, and
-        the universal set (\( U \)) is the identity operand for intersections:
+        The empty set (\( \varnothing \)) is the identity operand for unions,
+        and the universal set (\( U \)) is the identity operand for
+        intersections:
       </p>
       <p>\[ A \cup \varnothing = A \newline A \cap U = A \]</p>
       <h4 id="transitive">Transitive</h4>
@@ -846,10 +846,10 @@
       <p>
         Sets are great for counting things because we can establish relations
         between different sets, which can be useful to count infinite sets. If
-        we could find these relations between countable things, we can transform
-        otherwise hard problems into trivial operations. For instance, there's a
-        clever way to count the number of n-bit sequences that can be yielded
-        from using an n-bit unit of data. Therefore, questions like how many
+        we could find relationships between countable things, we can transform
+        otherwise tough problems into trivial operations. For instance, there's
+        a clever way to count the number of n-bit sequences that can be yielded
+        from utilizing an n-bit unit of data. Therefore, questions like how many
         values a 64-integer type can represent are easily answered.
       </p>
       <p>
@@ -934,8 +934,8 @@
       <p>\[ \mathcal{P}(A) \text{ bij } \{0,1\}^n \]</p>
       <p>
         \( \text{Prove:} \) Let \( a_1,a_2, \cdots, a_n \) be the elements of \(
-        A \). The bijection that maps each subset of \( S \subseteq A \) to the
-        bit sequence \( (b_1, \cdots, b_n) \) is defined by the rule:
+        A \). The bijection that maps each subset \( S \subseteq A \) to the bit
+        sequence \( (b_1, \cdots, b_n) \) is defined by the rule:
       </p>
       <p>\[\tag{1.0} a_i \in S \iff b_i = 1\]</p>
       <p>
@@ -1022,7 +1022,7 @@
       </table>
       <p>
         As you can see, both sets \( \mathcal{P}(A) \) and \( \{0,1\}^n \) have
-        the same cardinality, which is \(8\). More importantly, we'd
+        the same cardinality, which is \(8\). More importantly, we've
         demonstrated that there's a bijection between them, because each element
         of \( \mathcal{P}(A) \) is paired with exactly one element of \(
         \{0,1\}^n \). \(\blacksquare \)
@@ -1064,13 +1064,13 @@
       </table>
       <p>
         It's precisely in this bijection, between product sets and power sets,
-        that we rely on when we use a bit set data structure in ours programs.
+        that we rely on when we use a bit set data structure in our programs.
       </p>
       <h4 id="bit-sets">Bit sets</h4>
       <p>
         A bit set is just an n-bit vector in which the \(\text{nth}\) byte
-        represents if any given \(\text{nth}\) elements it's presented in the
-        set. Bit sets can be used in Golang with
+        represents if any given \(\text{nth}\) element is present in the set.
+        Bit sets can be used in Golang with
         <a
           rel="noopener nofollow noreferrer"
           target="_blank"
