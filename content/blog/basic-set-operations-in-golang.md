@@ -88,7 +88,7 @@ elements were printed inside curly braces in arbitrary order.
 
 ### Basic set operations
 
-We'll implement some basic set operations in Golang, like **membership**
+We'll implement some basic set operations in Golang, such as **membership**
 assertion, **union**, **intersection**, **difference**, **symmetric
 difference**, and **subset** assertion.  Along the way, we'll provide the
 mathematical definition for each one of those operations to better understand
