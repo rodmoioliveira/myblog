@@ -167,7 +167,7 @@ fmt.Println(U.ToString())
 // {cat,dog,cow,duck,bull}
 ```
 
-So far so good?
+So far, so good?
 
 #### Intersection
 
@@ -339,7 +339,7 @@ fmt.Println(B.SubsetOf(A)) // true
 fmt.Println(A.SubsetOf(B)) // false
 ```
 
-Mission accomplished! Due to that, we had implemented the basic set operations
+Mission accomplished! Due to that, we have implemented the basic set operations
 supported for sets as an abstract data type. All the code for this
 implementation can be found in this
 [gist](https://gist.github.com/rodmoioliveira/65281facd4117c37957a2373c5323892).
@@ -614,10 +614,10 @@ in a week. What's the cardinality of \\( \mathcal{P}(W) ?\\) The answer is:
 
 \\[ |W| = 7 \ \  \text{ implies } \ \  | \mathcal{P}(W) | = 2^7 = 128 \\]
 
-We have \\(128\\) possible work schedules in our schedule set \\(
-\mathcal{P}(W) \\), and it one of them can be encoded as a 7-bit sequence. The
-rule for encoding each one of the subsets \\(S \subseteq W \\) to a sequence
-\\((d_1, \cdots, d_7)\\) is defined by:
+We have \\(128\\) possible work schedules in our schedule set \\( \mathcal{P}(W)
+\\), and each one of them can be encoded as a 7-bit sequence. The rule for
+encoding each one of the subsets \\(S \subseteq W \\) to a sequence \\((d_1,
+\cdots, d_7)\\) is defined by:
 
 \\[ w_i \in S \iff  d_i = 1 \\]
 
@@ -653,7 +653,7 @@ Bit sequences can be easily construct in Golang using the [iota constant
 generator](https://golang.org/ref/spec#Iota). Let's begin by creating bit
 sequences for all the subsets \\( S \subseteq W\\) whose cardinalities are equal
 to \\(1\\). In other words, let's create bit sequences for all the work
-schedules that have just one day:
+schedules containing only one day:
 
 ```go
 package main
@@ -720,7 +720,7 @@ alice := tue | thu | sat     // (0b00010101)
 Great! The bit sequence for Bob is \\( ( 1,0,0,0,1,1,1  ) \\) which represent
 the set \\( \\\{ \text{sun}, \text{thu}, \text{fri}, \text{sat} \\\} \\). For
 Alice, the bit sequence is \\( (0,0,1,0,1,0,1) \\) which maps to the set \\(
-\\\{ \text{tue}, \text{thu}, \text{sat} \\\} \\). Now we've to know how many
+\\\{ \text{tue}, \text{thu}, \text{sat} \\\} \\). Now we have to know how many
 days they work together. To answer that, we must intersect both sets, like this:
 
 \\[ \text{Bob} \cap \text{Alice} = \\\{ \text{thu}, \text{sat} \\\} \\]
@@ -744,8 +744,9 @@ package [math/bits](https://pkg.go.dev/math/bits) package:
 cardinality := bits.OnesCount8(daysWorkingTogether) // 2
 ```
 
-Great work! Bob and Alice work two days together. Go, team! If you are
-interested in the code for the working together problem, it's in this
+Great work! Bob and Alice work two days together. Go, team!
+
+If you are interested in the code for the working together problem, it's in this
 [gist](https://gist.github.com/rodmoioliveira/ac0cf7e41aca59c83cce4b4f8f1efe76).
 
 In summary, sets are the building blocks of mathematics and are an essential data
