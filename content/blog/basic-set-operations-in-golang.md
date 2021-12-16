@@ -386,8 +386,8 @@ change the result. Union and intersection are commutative:
 In set theory, the complement of a set \\( A \\), denoted by \\( A^c \\), is a
 set of all the elements that aren't in \\( A \\):
 
-\\[ A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing \newline {U ^ c} =
-\varnothing \newline {\varnothing ^ c} = U \\]
+\\[ \begin{align*} A \cup {A ^ c} = U \newline A \cap {A ^ c} = \varnothing
+\newline {U ^ c} = \varnothing \newline {\varnothing ^ c} = U \end{align*} \\]
 
 #### De Morgan's Laws
 
