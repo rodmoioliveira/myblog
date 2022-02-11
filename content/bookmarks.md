@@ -9,6 +9,8 @@ intro = "Here are many things that I do not know because I bookmarked a link and
 
 ### Blogs
 
+- [Amos](https://fasterthanli.me/articles)
+- - Good articles about Rust.
 - [Andrew Gallant](https://blog.burntsushi.net/)
 - - Ripgreg maintainer.
 - [Brendan Gregg](https://www.brendangregg.com/)
@@ -17,8 +19,12 @@ intro = "Here are many things that I do not know because I bookmarked a link and
 - - CTO and co-founder of Oxide Computer Company.
 - [Cliff L. Biffle](http://cliffle.com/)
 - - Top notch Rust content.
+- [Daniel Lemire](https://lemire.me/blog/)
+- - Daniel Lemire is a computer science professor at the University of Quebec (TELUQ) in Montreal.
 - [Jessie Frazelle](https://blog.jessfraz.com/)
 - - Co-Founder and Chief Product Officer at Oxide Computer.
+- [Librarian Shipwreck](https://librarianshipwreck.wordpress.com)
+- - Topics focused primarily on technology, critical theory, and impending doom.
 - [Piotr Kołaczkowski](https://pkolaczk.github.io)
 - - Blog on programming, optimization and performance analysis.
 
@@ -40,9 +46,18 @@ intro = "Here are many things that I do not know because I bookmarked a link and
 - [This Page is Designed to Last](https://jeffhuang.com/designed_to_last/)
 - - A Manifesto for Preserving Content on the Web.
 
+### Podcasts
+
+- [Rustacean Station](https://rustacean-station.org/)
+- - A community project for creating podcast content for the Rust programming language.
+- [Tech Won't Save Us](https://techwontsave.us/)
+- - Tech Won't Save Us isn't simply about tearing down tech. It also presents radical ideas for a better world and better technology.
+
 ### RFCs
 
 - [Hypertext Transfer Protocol -- HTTP/1.1](https://datatracker.ietf.org/doc/html/rfc2616)
-- -
-- [HTTP Header Field Registrations](https://datatracker.ietf.org/doc/html/rfc4229)
-- -
+
+### Tools
+
+- [Compiler Explorer](https://godbolt.org/)
+
